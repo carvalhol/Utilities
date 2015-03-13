@@ -1,0 +1,1759 @@
+--------------------------------------------
+----------- Carvalhol Initialization--------
+--------------------------------------------
+
+
+Currently Loaded Modulefiles:
+  1) git/1.8.3               6) hdf5/1.8.12
+  2) intel-compiler/14.0.0   7) eclipse/Parallel-juno
+  3) intel-mkl/11.1.0        8) Paraview/3.98
+  4) intel-mpi/4.0.0.028     9) python/2.7.6
+  5) cmake/2.8.12.2         10) texlive/2014
+
+
+
+ Screen is 6
+ Directory is being created: 
+ ./../WEAK                                                                      
+                                                                                
+                                           
+ ----------------------------------------
+ nDim =            1
+ runAll_path = 
+ ../WEAK/runAll_1D.sh                                                           
+                                                                                
+                                           
+ Directory is being created: 
+ ./../WEAK/1D_W                                                                 
+                                                                                
+                                           
+ dim_path = ../WEAK/1D_W
+ 
+ 
+ method =            2
+ methodTxt = SHINO
+ 
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/1D_W/SHINO_1D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 1D_1_W_SHINO                                      
+     outName = 1D_1_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it1_1p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it1_1p_SHINO_1D_W                                    
+                                                                                
+                                           
+     xMax =    10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 1D_2_W_SHINO                                      
+     outName = 1D_2_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it2_2p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it2_2p_SHINO_1D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 1D_4_W_SHINO                                      
+     outName = 1D_4_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it3_4p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it3_4p_SHINO_1D_W                                    
+                                                                                
+                                           
+     xMax =    40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 1D_8_W_SHINO                                      
+     outName = 1D_8_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it4_8p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it4_8p_SHINO_1D_W                                    
+                                                                                
+                                           
+     xMax =    80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 1D_16_W_SHINO                                     
+     outName = 1D_16_W_SHINO.txt                                 
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it5_16p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it5_16p_SHINO_1D_W                                   
+                                                                                
+                                           
+     xMax =    160.000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 1D_32_W_SHINO                                     
+     outName = 1D_32_W_SHINO.txt                                 
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it6_32p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it6_32p_SHINO_1D_W                                   
+                                                                                
+                                           
+     xMax =    320.000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 1D_64_W_SHINO                                     
+     outName = 1D_64_W_SHINO.txt                                 
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it7_64p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it7_64p_SHINO_1D_W                                   
+                                                                                
+                                           
+     xMax =    640.000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 1D_128_W_SHINO                                    
+     outName = 1D_128_W_SHINO.txt                                
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/it8_128p_SHINO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/SHINO_1D_W/it8_128p_SHINO_1D_W                                  
+                                                                                
+                                           
+     xMax =    1280.00000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ 
+ method =            3
+ methodTxt = RANDO
+ 
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/1D_W/RANDO_1D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 1D_1_W_RANDO                                      
+     outName = 1D_1_W_RANDO.txt                                  
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it1_1p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it1_1p_RANDO_1D_W                                    
+                                                                                
+                                           
+     xMax =    10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 1D_2_W_RANDO                                      
+     outName = 1D_2_W_RANDO.txt                                  
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it2_2p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it2_2p_RANDO_1D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 1D_4_W_RANDO                                      
+     outName = 1D_4_W_RANDO.txt                                  
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it3_4p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it3_4p_RANDO_1D_W                                    
+                                                                                
+                                           
+     xMax =    40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 1D_8_W_RANDO                                      
+     outName = 1D_8_W_RANDO.txt                                  
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it4_8p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it4_8p_RANDO_1D_W                                    
+                                                                                
+                                           
+     xMax =    80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 1D_16_W_RANDO                                     
+     outName = 1D_16_W_RANDO.txt                                 
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it5_16p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it5_16p_RANDO_1D_W                                   
+                                                                                
+                                           
+     xMax =    160.000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 1D_32_W_RANDO                                     
+     outName = 1D_32_W_RANDO.txt                                 
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it6_32p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it6_32p_RANDO_1D_W                                   
+                                                                                
+                                           
+     xMax =    320.000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 1D_64_W_RANDO                                     
+     outName = 1D_64_W_RANDO.txt                                 
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it7_64p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it7_64p_RANDO_1D_W                                   
+                                                                                
+                                           
+     xMax =    640.000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 1D_128_W_RANDO                                    
+     outName = 1D_128_W_RANDO.txt                                
+     Iteration path = ../WEAK/1D_W/RANDO_1D_W/it8_128p_RANDO_1D_W
+ Directory is being created: 
+ ./../WEAK/1D_W/RANDO_1D_W/it8_128p_RANDO_1D_W                                  
+                                                                                
+                                           
+     xMax =    1280.00000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ -> runAll done
+ ----------------------------------------
+ nDim =            2
+ runAll_path = 
+ ../WEAK/runAll_2D.sh                                                           
+                                                                                
+                                           
+ Directory is being created: 
+ ./../WEAK/2D_W                                                                 
+                                                                                
+                                           
+ dim_path = ../WEAK/2D_W
+ 
+ 
+ method =            1
+ methodTxt = ISO  
+ 
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W                                                        
+                                                                                
+                                           
+ method_path = ../WEAK/2D_W/ISO_2D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 2D_1_W_ISO                                        
+     outName = 2D_1_W_ISO.txt                                    
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it1_1p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it1_1p_ISO_2D_W                                        
+                                                                                
+                                           
+     xMax =    10.0000000000000        10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 2D_2_W_ISO                                        
+     outName = 2D_2_W_ISO.txt                                    
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it2_2p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it2_2p_ISO_2D_W                                        
+                                                                                
+                                           
+     xMax =    20.0000000000000        10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 2D_4_W_ISO                                        
+     outName = 2D_4_W_ISO.txt                                    
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it3_4p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it3_4p_ISO_2D_W                                        
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 2D_8_W_ISO                                        
+     outName = 2D_8_W_ISO.txt                                    
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it4_8p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it4_8p_ISO_2D_W                                        
+                                                                                
+                                           
+     xMax =    40.0000000000000        20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 2D_16_W_ISO                                       
+     outName = 2D_16_W_ISO.txt                                   
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it5_16p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it5_16p_ISO_2D_W                                       
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 2D_32_W_ISO                                       
+     outName = 2D_32_W_ISO.txt                                   
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it6_32p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it6_32p_ISO_2D_W                                       
+                                                                                
+                                           
+     xMax =    80.0000000000000        40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 2D_64_W_ISO                                       
+     outName = 2D_64_W_ISO.txt                                   
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it7_64p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it7_64p_ISO_2D_W                                       
+                                                                                
+                                           
+     xMax =    80.0000000000000        80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 2D_128_W_ISO                                      
+     outName = 2D_128_W_ISO.txt                                  
+     Iteration path = ../WEAK/2D_W/ISO_2D_W/it8_128p_ISO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/ISO_2D_W/it8_128p_ISO_2D_W                                      
+                                                                                
+                                           
+     xMax =    160.000000000000        80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ 
+ method =            2
+ methodTxt = SHINO
+ 
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/2D_W/SHINO_2D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 2D_1_W_SHINO                                      
+     outName = 2D_1_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it1_1p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it1_1p_SHINO_2D_W                                    
+                                                                                
+                                           
+     xMax =    10.0000000000000        10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 2D_2_W_SHINO                                      
+     outName = 2D_2_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it2_2p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it2_2p_SHINO_2D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 2D_4_W_SHINO                                      
+     outName = 2D_4_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it3_4p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it3_4p_SHINO_2D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 2D_8_W_SHINO                                      
+     outName = 2D_8_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it4_8p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it4_8p_SHINO_2D_W                                    
+                                                                                
+                                           
+     xMax =    40.0000000000000        20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 2D_16_W_SHINO                                     
+     outName = 2D_16_W_SHINO.txt                                 
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it5_16p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it5_16p_SHINO_2D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 2D_32_W_SHINO                                     
+     outName = 2D_32_W_SHINO.txt                                 
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it6_32p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it6_32p_SHINO_2D_W                                   
+                                                                                
+                                           
+     xMax =    80.0000000000000        40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 2D_64_W_SHINO                                     
+     outName = 2D_64_W_SHINO.txt                                 
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it7_64p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it7_64p_SHINO_2D_W                                   
+                                                                                
+                                           
+     xMax =    80.0000000000000        80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 2D_128_W_SHINO                                    
+     outName = 2D_128_W_SHINO.txt                                
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/it8_128p_SHINO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/SHINO_2D_W/it8_128p_SHINO_2D_W                                  
+                                                                                
+                                           
+     xMax =    160.000000000000        80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ 
+ method =            3
+ methodTxt = RANDO
+ 
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/2D_W/RANDO_2D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 2D_1_W_RANDO                                      
+     outName = 2D_1_W_RANDO.txt                                  
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it1_1p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it1_1p_RANDO_2D_W                                    
+                                                                                
+                                           
+     xMax =    10.0000000000000        10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 2D_2_W_RANDO                                      
+     outName = 2D_2_W_RANDO.txt                                  
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it2_2p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it2_2p_RANDO_2D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 2D_4_W_RANDO                                      
+     outName = 2D_4_W_RANDO.txt                                  
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it3_4p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it3_4p_RANDO_2D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 2D_8_W_RANDO                                      
+     outName = 2D_8_W_RANDO.txt                                  
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it4_8p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it4_8p_RANDO_2D_W                                    
+                                                                                
+                                           
+     xMax =    40.0000000000000        20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 2D_16_W_RANDO                                     
+     outName = 2D_16_W_RANDO.txt                                 
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it5_16p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it5_16p_RANDO_2D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 2D_32_W_RANDO                                     
+     outName = 2D_32_W_RANDO.txt                                 
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it6_32p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it6_32p_RANDO_2D_W                                   
+                                                                                
+                                           
+     xMax =    80.0000000000000        40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 2D_64_W_RANDO                                     
+     outName = 2D_64_W_RANDO.txt                                 
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it7_64p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it7_64p_RANDO_2D_W                                   
+                                                                                
+                                           
+     xMax =    80.0000000000000        80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 2D_128_W_RANDO                                    
+     outName = 2D_128_W_RANDO.txt                                
+     Iteration path = ../WEAK/2D_W/RANDO_2D_W/it8_128p_RANDO_2D_W
+ Directory is being created: 
+ ./../WEAK/2D_W/RANDO_2D_W/it8_128p_RANDO_2D_W                                  
+                                                                                
+                                           
+     xMax =    160.000000000000        80.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ -> runAll done
+ ----------------------------------------
+ nDim =            3
+ runAll_path = 
+ ../WEAK/runAll_3D.sh                                                           
+                                                                                
+                                           
+ Directory is being created: 
+ ./../WEAK/3D_W                                                                 
+                                                                                
+                                           
+ dim_path = ../WEAK/3D_W
+ 
+ 
+ method =            1
+ methodTxt = ISO  
+ 
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W                                                        
+                                                                                
+                                           
+ method_path = ../WEAK/3D_W/ISO_3D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 3D_1_W_ISO                                        
+     outName = 3D_1_W_ISO.txt                                    
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it1_1p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it1_1p_ISO_3D_W                                        
+                                                                                
+                                           
+     xMax =    10.0000000000000        10.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 3D_2_W_ISO                                        
+     outName = 3D_2_W_ISO.txt                                    
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it2_2p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it2_2p_ISO_3D_W                                        
+                                                                                
+                                           
+     xMax =    20.0000000000000        10.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 3D_4_W_ISO                                        
+     outName = 3D_4_W_ISO.txt                                    
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it3_4p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it3_4p_ISO_3D_W                                        
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 3D_8_W_ISO                                        
+     outName = 3D_8_W_ISO.txt                                    
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it4_8p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it4_8p_ISO_3D_W                                        
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 3D_16_W_ISO                                       
+     outName = 3D_16_W_ISO.txt                                   
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it5_16p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it5_16p_ISO_3D_W                                       
+                                                                                
+                                           
+     xMax =    40.0000000000000        20.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 3D_32_W_ISO                                       
+     outName = 3D_32_W_ISO.txt                                   
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it6_32p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it6_32p_ISO_3D_W                                       
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 3D_64_W_ISO                                       
+     outName = 3D_64_W_ISO.txt                                   
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it7_64p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it7_64p_ISO_3D_W                                       
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 3D_128_W_ISO                                      
+     outName = 3D_128_W_ISO.txt                                  
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/it8_128p_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/it8_128p_ISO_3D_W                                      
+                                                                                
+                                           
+     xMax =    80.0000000000000        40.0000000000000     
+   40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ 
+ method =            2
+ methodTxt = SHINO
+ 
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/3D_W/SHINO_3D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 3D_1_W_SHINO                                      
+     outName = 3D_1_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it1_1p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it1_1p_SHINO_3D_W                                    
+                                                                                
+                                           
+     xMax =    10.0000000000000        10.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 3D_2_W_SHINO                                      
+     outName = 3D_2_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it2_2p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it2_2p_SHINO_3D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        10.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 3D_4_W_SHINO                                      
+     outName = 3D_4_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it3_4p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it3_4p_SHINO_3D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 3D_8_W_SHINO                                      
+     outName = 3D_8_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it4_8p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it4_8p_SHINO_3D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 3D_16_W_SHINO                                     
+     outName = 3D_16_W_SHINO.txt                                 
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it5_16p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it5_16p_SHINO_3D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        20.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 3D_32_W_SHINO                                     
+     outName = 3D_32_W_SHINO.txt                                 
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it6_32p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it6_32p_SHINO_3D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 3D_64_W_SHINO                                     
+     outName = 3D_64_W_SHINO.txt                                 
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it7_64p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it7_64p_SHINO_3D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 3D_128_W_SHINO                                    
+     outName = 3D_128_W_SHINO.txt                                
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/it8_128p_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/it8_128p_SHINO_3D_W                                  
+                                                                                
+                                           
+     xMax =    80.0000000000000        40.0000000000000     
+   40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ 
+ method =            3
+ methodTxt = RANDO
+ 
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/3D_W/RANDO_3D_W
+ 
+ iteration =            1
+     nProcs INITIAL =            1
+ Choosing queue 
+ qFactor =   1.388888888888889E-004
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run1.pbs                                          
+     jobName = 3D_1_W_RANDO                                      
+     outName = 3D_1_W_RANDO.txt                                  
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it1_1p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it1_1p_RANDO_3D_W                                    
+                                                                                
+                                           
+     xMax =    10.0000000000000        10.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            2
+     nProcs INITIAL =            2
+ Choosing queue 
+ qFactor =   1.111111111111111E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run2.pbs                                          
+     jobName = 3D_2_W_RANDO                                      
+     outName = 3D_2_W_RANDO.txt                                  
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it2_2p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it2_2p_RANDO_3D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        10.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            3
+     nProcs INITIAL =            4
+ Choosing queue 
+ qFactor =   8.888888888888889E-003
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run4.pbs                                          
+     jobName = 3D_4_W_RANDO                                      
+     outName = 3D_4_W_RANDO.txt                                  
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it3_4p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it3_4p_RANDO_3D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+   10.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            4
+     nProcs INITIAL =            8
+ Choosing queue 
+ qFactor =   1.829460023439957E-003
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ qFound =  T
+     pbsName = run8.pbs                                          
+     jobName = 3D_8_W_RANDO                                      
+     outName = 3D_8_W_RANDO.txt                                  
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it4_8p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it4_8p_RANDO_3D_W                                    
+                                                                                
+                                           
+     xMax =    20.0000000000000        20.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            5
+     nProcs INITIAL =           16
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = iceq 
+ wallTime = 23:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =           62
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run16.pbs                                         
+     jobName = 3D_16_W_RANDO                                     
+     outName = 3D_16_W_RANDO.txt                                 
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it5_16p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it5_16p_RANDO_3D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        20.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            6
+     nProcs INITIAL =           32
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          124
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 00:19:00                                          
+ qFound =  T
+     pbsName = run32.pbs                                         
+     jobName = 3D_32_W_RANDO                                     
+     outName = 3D_32_W_RANDO.txt                                 
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it6_32p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it6_32p_RANDO_3D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+   20.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            7
+     nProcs INITIAL =           64
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 00:19:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          248
+ Choosing queue 
+ qFactor =   0.137777777777778     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run64.pbs                                         
+     jobName = 3D_64_W_RANDO                                     
+     outName = 3D_64_W_RANDO.txt                                 
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it7_64p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it7_64p_RANDO_3D_W                                   
+                                                                                
+                                           
+     xMax =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ 
+ iteration =            8
+     nProcs INITIAL =          128
+ Choosing queue 
+ qFactor =   0.000000000000000E+000
+ queue = icexq
+ wallTime = 03:59:00                                          
+ Modifying memPerNoeud 
+             OLD =           32
+             NEW =           31
+        memTotal =          496
+ Choosing queue 
+ qFactor =   0.275555555555556     
+ queue = icexq
+ wallTime = 03:59:00                                          
+ qFound =  T
+     pbsName = run128.pbs                                        
+     jobName = 3D_128_W_RANDO                                    
+     outName = 3D_128_W_RANDO.txt                                
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/it8_128p_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/it8_128p_RANDO_3D_W                                  
+                                                                                
+                                           
+     xMax =    80.0000000000000        40.0000000000000     
+   40.0000000000000     
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ -> runAll done
