@@ -4,11 +4,11 @@
 
 
 Currently Loaded Modulefiles:
-  1) git/1.8.3               7) eclipse/Parallel-juno
-  2) intel-compiler/14.0.0   8) Paraview/3.98
-  3) intel-mkl/11.1.0        9) python/2.7.6
-  4) intel-mpi/4.0.0.028    10) texlive/2014
-  5) cmake/2.8.12.2         11) valgrind/3.7.0
+  1) git/2.1.3               7) eclipse/Parallel-juno
+  2) intel-compiler/15.0.1   8) Paraview/3.98
+  3) intel-mkl/11.2.1        9) python/2.7.6
+  4) intel-mpi/5.0.2        10) texlive/2014
+  5) cmake/3.0.0            11) valgrind/3.7.0
   6) hdf5/1.8.12
 
 
@@ -29,62 +29,38 @@ Currently Loaded Modulefiles:
  The next is cool
   2147483647
  Directory is being created: 
- ./../STRONG                                                                    
+ ./../WEAK                                                                      
                                                                                 
                                            
  ----------------------------------------
  nDim =            1
  runAll_path = 
- ../STRONG/runAll_1D.sh                                                         
+ ../WEAK/runAll_1D.sh                                                           
                                                                                 
                                            
  Directory is being created: 
- ./../STRONG/1D_S                                                               
+ ./../WEAK/1D_W                                                                 
                                                                                 
                                            
- dim_path = ../STRONG/1D_S
+ dim_path = ../WEAK/1D_W
  
  
  method =            2
  methodTxt = SHINO
  
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S                                                    
+ ./../WEAK/1D_W/SHINO_1D_W                                                      
                                                                                 
                                            
- method_path = ../STRONG/1D_S/SHINO_1D_S
+ method_path = ../WEAK/1D_W/SHINO_1D_W
  Iteration =            1
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            1
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    2.00000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =           21
+     |kNTotal      =            4
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            1
@@ -96,11 +72,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            1
      |wallTime       = 04:00:01
      pbsName = run1.pbs                                          
-     jobName = 1D_1_S_SHINO                                      
-     outName = 1D_1_S_SHINO.txt                                  
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/1p_L-4096_SHINO_1D_S
+     jobName = 1D_1_W_SHINO                                      
+     outName = 1D_1_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/1p_L-2_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/1p_L-4096_SHINO_1D_S                               
+ ./../WEAK/1D_W/SHINO_1D_W/1p_L-2_SHINO_1D_W                                    
                                                                                 
                                            
  -> Writing files
@@ -108,37 +84,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            2
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            2
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    4.00000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =           41
+     |kNTotal      =            6
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            2
@@ -150,11 +102,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            2
      |wallTime       = 00:20:00
      pbsName = run2.pbs                                          
-     jobName = 1D_2_S_SHINO                                      
-     outName = 1D_2_S_SHINO.txt                                  
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/2p_L-4096_SHINO_1D_S
+     jobName = 1D_2_W_SHINO                                      
+     outName = 1D_2_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/2p_L-4_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/2p_L-4096_SHINO_1D_S                               
+ ./../WEAK/1D_W/SHINO_1D_W/2p_L-4_SHINO_1D_W                                    
                                                                                 
                                            
  -> Writing files
@@ -162,37 +114,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            3
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            3
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    8.00000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =           81
+     |kNTotal      =           10
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            4
@@ -204,11 +132,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            4
      |wallTime       = 00:20:00
      pbsName = run4.pbs                                          
-     jobName = 1D_4_S_SHINO                                      
-     outName = 1D_4_S_SHINO.txt                                  
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/4p_L-4096_SHINO_1D_S
+     jobName = 1D_4_W_SHINO                                      
+     outName = 1D_4_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/4p_L-8_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/4p_L-4096_SHINO_1D_S                               
+ ./../WEAK/1D_W/SHINO_1D_W/4p_L-8_SHINO_1D_W                                    
                                                                                 
                                            
  -> Writing files
@@ -216,37 +144,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            4
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            4
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    16.0000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =          161
+     |kNTotal      =           19
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            8
@@ -258,11 +162,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run8.pbs                                          
-     jobName = 1D_8_S_SHINO                                      
-     outName = 1D_8_S_SHINO.txt                                  
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/8p_L-4096_SHINO_1D_S
+     jobName = 1D_8_W_SHINO                                      
+     outName = 1D_8_W_SHINO.txt                                  
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/8p_L-16_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/8p_L-4096_SHINO_1D_S                               
+ ./../WEAK/1D_W/SHINO_1D_W/8p_L-16_SHINO_1D_W                                   
                                                                                 
                                            
  -> Writing files
@@ -270,37 +174,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            5
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            5
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    32.0000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =          321
+     |kNTotal      =           37
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           16
@@ -312,11 +192,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run16.pbs                                         
-     jobName = 1D_16_S_SHINO                                     
-     outName = 1D_16_S_SHINO.txt                                 
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/16p_L-4096_SHINO_1D_S
+     jobName = 1D_16_W_SHINO                                     
+     outName = 1D_16_W_SHINO.txt                                 
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/16p_L-32_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/16p_L-4096_SHINO_1D_S                              
+ ./../WEAK/1D_W/SHINO_1D_W/16p_L-32_SHINO_1D_W                                  
                                                                                 
                                            
  -> Writing files
@@ -324,37 +204,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            6
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            6
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    64.0000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =          641
+     |kNTotal      =           72
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           32
@@ -366,11 +222,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run32.pbs                                         
-     jobName = 1D_32_S_SHINO                                     
-     outName = 1D_32_S_SHINO.txt                                 
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/32p_L-4096_SHINO_1D_S
+     jobName = 1D_32_W_SHINO                                     
+     outName = 1D_32_W_SHINO.txt                                 
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/32p_L-64_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/32p_L-4096_SHINO_1D_S                              
+ ./../WEAK/1D_W/SHINO_1D_W/32p_L-64_SHINO_1D_W                                  
                                                                                 
                                            
  -> Writing files
@@ -378,37 +234,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            7
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            7
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    128.000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =         1281
+     |kNTotal      =          142
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           64
@@ -420,11 +252,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run64.pbs                                         
-     jobName = 1D_64_S_SHINO                                     
-     outName = 1D_64_S_SHINO.txt                                 
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/64p_L-4096_SHINO_1D_S
+     jobName = 1D_64_W_SHINO                                     
+     outName = 1D_64_W_SHINO.txt                                 
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/64p_L-128_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/64p_L-4096_SHINO_1D_S                              
+ ./../WEAK/1D_W/SHINO_1D_W/64p_L-128_SHINO_1D_W                                 
                                                                                 
                                            
  -> Writing files
@@ -432,37 +264,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            8
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            8
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    256.000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =         2561
+     |kNTotal      =          283
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =          128
@@ -474,11 +282,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run128.pbs                                        
-     jobName = 1D_128_S_SHINO                                    
-     outName = 1D_128_S_SHINO.txt                                
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/128p_L-4096_SHINO_1D_S
+     jobName = 1D_128_W_SHINO                                    
+     outName = 1D_128_W_SHINO.txt                                
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/128p_L-256_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/128p_L-4096_SHINO_1D_S                             
+ ./../WEAK/1D_W/SHINO_1D_W/128p_L-256_SHINO_1D_W                                
                                                                                 
                                            
  -> Writing files
@@ -486,37 +294,13 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            9
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  ----------------------------------------------------
  Iteration            9
      Inputs 
-     |xMax         =    4096.00000000000     
+     |xMax         =    512.000000000000     
      |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
+     |xNTotal      =         5121
+     |kNTotal      =          565
      |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =          256
@@ -528,11 +312,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run256.pbs                                        
-     jobName = 1D_256_S_SHINO                                    
-     outName = 1D_256_S_SHINO.txt                                
-     Iteration path = ../STRONG/1D_S/SHINO_1D_S/256p_L-4096_SHINO_1D_S
+     jobName = 1D_256_W_SHINO                                    
+     outName = 1D_256_W_SHINO.txt                                
+     Iteration path = ../WEAK/1D_W/SHINO_1D_W/256p_L-512_SHINO_1D_W
  Directory is being created: 
- ./../STRONG/1D_S/SHINO_1D_S/256p_L-4096_SHINO_1D_S                             
+ ./../WEAK/1D_W/SHINO_1D_W/256p_L-512_SHINO_1D_W                                
                                                                                 
                                            
  -> Writing files
@@ -540,619 +324,52 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =           10
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- 
- 
- method =            3
- methodTxt = RANDO
- 
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S                                                    
-                                                                                
-                                           
- method_path = ../STRONG/1D_S/RANDO_1D_S
- Iteration =            1
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            1
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            1
-     Requirements 
-     |timePerProc    =        14400
-     |memPerProc     =          512
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 04:00:01
-     pbsName = run1.pbs                                          
-     jobName = 1D_1_S_RANDO                                      
-     outName = 1D_1_S_RANDO.txt                                  
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/1p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/1p_L-4096_RANDO_1D_S                               
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            2
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            2
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            2
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            2
-     |nChunks        =            1
-     |nProcsPerChunk =            2
-     |wallTime       = 00:20:00
-     pbsName = run2.pbs                                          
-     jobName = 1D_2_S_RANDO                                      
-     outName = 1D_2_S_RANDO.txt                                  
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/2p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/2p_L-4096_RANDO_1D_S                               
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            3
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            3
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            4
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            4
-     |nChunks        =            1
-     |nProcsPerChunk =            4
-     |wallTime       = 00:20:00
-     pbsName = run4.pbs                                          
-     jobName = 1D_4_S_RANDO                                      
-     outName = 1D_4_S_RANDO.txt                                  
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/4p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/4p_L-4096_RANDO_1D_S                               
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            4
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            4
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            8
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            8
-     |nChunks        =            1
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run8.pbs                                          
-     jobName = 1D_8_S_RANDO                                      
-     outName = 1D_8_S_RANDO.txt                                  
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/8p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/8p_L-4096_RANDO_1D_S                               
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            5
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            5
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           16
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           16
-     |nChunks        =            2
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run16.pbs                                         
-     jobName = 1D_16_S_RANDO                                     
-     outName = 1D_16_S_RANDO.txt                                 
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/16p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/16p_L-4096_RANDO_1D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            6
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            6
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           32
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           32
-     |nChunks        =            4
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run32.pbs                                         
-     jobName = 1D_32_S_RANDO                                     
-     outName = 1D_32_S_RANDO.txt                                 
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/32p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/32p_L-4096_RANDO_1D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            7
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            7
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           64
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           64
-     |nChunks        =            8
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run64.pbs                                         
-     jobName = 1D_64_S_RANDO                                     
-     outName = 1D_64_S_RANDO.txt                                 
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/64p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/64p_L-4096_RANDO_1D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            8
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            8
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          128
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          128
-     |nChunks        =           16
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run128.pbs                                        
-     jobName = 1D_128_S_RANDO                                    
-     outName = 1D_128_S_RANDO.txt                                
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/128p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/128p_L-4096_RANDO_1D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            9
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
- ----------------------------------------------------
- Iteration            9
-     Inputs 
-     |xMax         =    4096.00000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =        40961
-     |kNTotal      =         4507
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          256
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          256
-     |nChunks        =           32
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run256.pbs                                        
-     jobName = 1D_256_S_RANDO                                    
-     outName = 1D_256_S_RANDO.txt                                
-     Iteration path = ../STRONG/1D_S/RANDO_1D_S/256p_L-4096_RANDO_1D_S
- Directory is being created: 
- ./../STRONG/1D_S/RANDO_1D_S/256p_L-4096_RANDO_1D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =           10
- i =            2
- xMax =    2.00000000000000     
- i =            3
- xMax =    4.00000000000000     
- i =            4
- xMax =    8.00000000000000     
- i =            5
- xMax =    16.0000000000000     
- i =            6
- xMax =    32.0000000000000     
- i =            7
- xMax =    64.0000000000000     
- i =            8
- xMax =    128.000000000000     
- i =            9
- xMax =    256.000000000000     
- i =           10
- xMax =    512.000000000000     
- i =           11
- xMax =    1024.00000000000     
- i =           12
- xMax =    2048.00000000000     
- i =           13
- xMax =    4096.00000000000     
  -> runAll done
  ----------------------------------------
  nDim =            2
  runAll_path = 
- ../STRONG/runAll_2D.sh                                                         
+ ../WEAK/runAll_2D.sh                                                           
                                                                                 
                                            
  Directory is being created: 
- ./../STRONG/2D_S                                                               
+ ./../WEAK/2D_W                                                                 
                                                                                 
                                            
- dim_path = ../STRONG/2D_S
+ dim_path = ../WEAK/2D_W
  
  
  method =            2
  methodTxt = SHINO
  
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S                                                    
+ ./../WEAK/2D_W/SHINO_2D_W                                                      
                                                                                 
                                            
- method_path = ../STRONG/2D_S/SHINO_2D_S
+ method_path = ../WEAK/2D_W/SHINO_2D_W
  Iteration =            1
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            1
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    2.00000000000000        1.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =          231
+     |kNTotal      =           12
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            1
      Requirements 
      |timePerProc    =        14400
-     |memPerProc     =        31968
+     |memPerProc     =          512
      |nProcsTotal    =            1
      |nChunks        =            1
      |nProcsPerChunk =            1
      |wallTime       = 04:00:01
      pbsName = run1.pbs                                          
-     jobName = 2D_1_S_SHINO                                      
-     outName = 2D_1_S_SHINO.txt                                  
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/1p_L-64-32_SHINO_2D_S
+     jobName = 2D_1_W_SHINO                                      
+     outName = 2D_1_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/1p_L-2-1_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/1p_L-64-32_SHINO_2D_S                              
+ ./../WEAK/2D_W/SHINO_2D_W/1p_L-2-1_SHINO_2D_W                                  
                                                                                 
                                            
  -> Writing files
@@ -1160,51 +377,29 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            2
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            2
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    2.00000000000000        2.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =          441
+     |kNTotal      =           16
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            2
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =        15984
+     |memPerProc     =          512
      |nProcsTotal    =            2
      |nChunks        =            1
      |nProcsPerChunk =            2
      |wallTime       = 00:20:00
      pbsName = run2.pbs                                          
-     jobName = 2D_2_S_SHINO                                      
-     outName = 2D_2_S_SHINO.txt                                  
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/2p_L-64-32_SHINO_2D_S
+     jobName = 2D_2_W_SHINO                                      
+     outName = 2D_2_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/2p_L-2-2_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/2p_L-64-32_SHINO_2D_S                              
+ ./../WEAK/2D_W/SHINO_2D_W/2p_L-2-2_SHINO_2D_W                                  
                                                                                 
                                            
  -> Writing files
@@ -1212,51 +407,29 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            3
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            3
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    4.00000000000000        2.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =          861
+     |kNTotal      =           24
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            4
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =         7992
+     |memPerProc     =          512
      |nProcsTotal    =            4
      |nChunks        =            1
      |nProcsPerChunk =            4
      |wallTime       = 00:20:00
      pbsName = run4.pbs                                          
-     jobName = 2D_4_S_SHINO                                      
-     outName = 2D_4_S_SHINO.txt                                  
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/4p_L-64-32_SHINO_2D_S
+     jobName = 2D_4_W_SHINO                                      
+     outName = 2D_4_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/4p_L-4-2_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/4p_L-64-32_SHINO_2D_S                              
+ ./../WEAK/2D_W/SHINO_2D_W/4p_L-4-2_SHINO_2D_W                                  
                                                                                 
                                            
  -> Writing files
@@ -1264,51 +437,29 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            4
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            4
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    4.00000000000000        4.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =         1681
+     |kNTotal      =           36
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            8
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =         3996
+     |memPerProc     =          512
      |nProcsTotal    =            8
      |nChunks        =            1
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run8.pbs                                          
-     jobName = 2D_8_S_SHINO                                      
-     outName = 2D_8_S_SHINO.txt                                  
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/8p_L-64-32_SHINO_2D_S
+     jobName = 2D_8_W_SHINO                                      
+     outName = 2D_8_W_SHINO.txt                                  
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/8p_L-4-4_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/8p_L-64-32_SHINO_2D_S                              
+ ./../WEAK/2D_W/SHINO_2D_W/8p_L-4-4_SHINO_2D_W                                  
                                                                                 
                                            
  -> Writing files
@@ -1316,51 +467,29 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            5
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            5
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    8.00000000000000        4.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =         3321
+     |kNTotal      =           60
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           16
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =         1998
+     |memPerProc     =          512
      |nProcsTotal    =           16
      |nChunks        =            2
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run16.pbs                                         
-     jobName = 2D_16_S_SHINO                                     
-     outName = 2D_16_S_SHINO.txt                                 
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/16p_L-64-32_SHINO_2D_S
+     jobName = 2D_16_W_SHINO                                     
+     outName = 2D_16_W_SHINO.txt                                 
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/16p_L-8-4_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/16p_L-64-32_SHINO_2D_S                             
+ ./../WEAK/2D_W/SHINO_2D_W/16p_L-8-4_SHINO_2D_W                                 
                                                                                 
                                            
  -> Writing files
@@ -1368,51 +497,29 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            6
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            6
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    8.00000000000000        8.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =         6561
+     |kNTotal      =          100
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           32
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =          999
+     |memPerProc     =          512
      |nProcsTotal    =           32
      |nChunks        =            4
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run32.pbs                                         
-     jobName = 2D_32_S_SHINO                                     
-     outName = 2D_32_S_SHINO.txt                                 
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/32p_L-64-32_SHINO_2D_S
+     jobName = 2D_32_W_SHINO                                     
+     outName = 2D_32_W_SHINO.txt                                 
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/32p_L-8-8_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/32p_L-64-32_SHINO_2D_S                             
+ ./../WEAK/2D_W/SHINO_2D_W/32p_L-8-8_SHINO_2D_W                                 
                                                                                 
                                            
  -> Writing files
@@ -1420,36 +527,14 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            7
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            7
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    16.0000000000000        8.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =        13041
+     |kNTotal      =          190
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           64
      Requirements 
@@ -1460,11 +545,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run64.pbs                                         
-     jobName = 2D_64_S_SHINO                                     
-     outName = 2D_64_S_SHINO.txt                                 
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/64p_L-64-32_SHINO_2D_S
+     jobName = 2D_64_W_SHINO                                     
+     outName = 2D_64_W_SHINO.txt                                 
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/64p_L-16-8_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/64p_L-64-32_SHINO_2D_S                             
+ ./../WEAK/2D_W/SHINO_2D_W/64p_L-16-8_SHINO_2D_W                                
                                                                                 
                                            
  -> Writing files
@@ -1472,36 +557,14 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            8
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            8
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    16.0000000000000        16.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =        25921
+     |kNTotal      =          361
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =          128
      Requirements 
@@ -1512,11 +575,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run128.pbs                                        
-     jobName = 2D_128_S_SHINO                                    
-     outName = 2D_128_S_SHINO.txt                                
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/128p_L-64-32_SHINO_2D_S
+     jobName = 2D_128_W_SHINO                                    
+     outName = 2D_128_W_SHINO.txt                                
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/128p_L-16-16_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/128p_L-64-32_SHINO_2D_S                            
+ ./../WEAK/2D_W/SHINO_2D_W/128p_L-16-16_SHINO_2D_W                              
                                                                                 
                                            
  -> Writing files
@@ -1524,36 +587,14 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            9
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  ----------------------------------------------------
  Iteration            9
      Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
+     |xMax         =    32.0000000000000        16.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
+     |xNTotal      =        51681
+     |kNTotal      =          703
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =          256
      Requirements 
@@ -1564,11 +605,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run256.pbs                                        
-     jobName = 2D_256_S_SHINO                                    
-     outName = 2D_256_S_SHINO.txt                                
-     Iteration path = ../STRONG/2D_S/SHINO_2D_S/256p_L-64-32_SHINO_2D_S
+     jobName = 2D_256_W_SHINO                                    
+     outName = 2D_256_W_SHINO.txt                                
+     Iteration path = ../WEAK/2D_W/SHINO_2D_W/256p_L-32-16_SHINO_2D_W
  Directory is being created: 
- ./../STRONG/2D_S/SHINO_2D_S/256p_L-64-32_SHINO_2D_S                            
+ ./../WEAK/2D_W/SHINO_2D_W/256p_L-32-16_SHINO_2D_W                              
                                                                                 
                                            
  -> Writing files
@@ -1576,595 +617,54 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =           10
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- 
- 
- method =            3
- methodTxt = RANDO
- 
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S                                                    
-                                                                                
-                                           
- method_path = ../STRONG/2D_S/RANDO_2D_S
- Iteration =            1
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            1
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            1
-     Requirements 
-     |timePerProc    =        14400
-     |memPerProc     =        31968
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 04:00:01
-     pbsName = run1.pbs                                          
-     jobName = 2D_1_S_RANDO                                      
-     outName = 2D_1_S_RANDO.txt                                  
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/1p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/1p_L-64-32_RANDO_2D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            2
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            2
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            2
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =        15984
-     |nProcsTotal    =            2
-     |nChunks        =            1
-     |nProcsPerChunk =            2
-     |wallTime       = 00:20:00
-     pbsName = run2.pbs                                          
-     jobName = 2D_2_S_RANDO                                      
-     outName = 2D_2_S_RANDO.txt                                  
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/2p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/2p_L-64-32_RANDO_2D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            3
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            3
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            4
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =         7992
-     |nProcsTotal    =            4
-     |nChunks        =            1
-     |nProcsPerChunk =            4
-     |wallTime       = 00:20:00
-     pbsName = run4.pbs                                          
-     jobName = 2D_4_S_RANDO                                      
-     outName = 2D_4_S_RANDO.txt                                  
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/4p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/4p_L-64-32_RANDO_2D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            4
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            4
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            8
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =         3996
-     |nProcsTotal    =            8
-     |nChunks        =            1
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run8.pbs                                          
-     jobName = 2D_8_S_RANDO                                      
-     outName = 2D_8_S_RANDO.txt                                  
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/8p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/8p_L-64-32_RANDO_2D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            5
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            5
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           16
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =         1998
-     |nProcsTotal    =           16
-     |nChunks        =            2
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run16.pbs                                         
-     jobName = 2D_16_S_RANDO                                     
-     outName = 2D_16_S_RANDO.txt                                 
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/16p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/16p_L-64-32_RANDO_2D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            6
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            6
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           32
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          999
-     |nProcsTotal    =           32
-     |nChunks        =            4
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run32.pbs                                         
-     jobName = 2D_32_S_RANDO                                     
-     outName = 2D_32_S_RANDO.txt                                 
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/32p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/32p_L-64-32_RANDO_2D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            7
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            7
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           64
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           64
-     |nChunks        =            8
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run64.pbs                                         
-     jobName = 2D_64_S_RANDO                                     
-     outName = 2D_64_S_RANDO.txt                                 
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/64p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/64p_L-64-32_RANDO_2D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            8
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            8
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          128
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          128
-     |nChunks        =           16
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run128.pbs                                        
-     jobName = 2D_128_S_RANDO                                    
-     outName = 2D_128_S_RANDO.txt                                
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/128p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/128p_L-64-32_RANDO_2D_S                            
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            9
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
- ----------------------------------------------------
- Iteration            9
-     Inputs 
-     |xMax         =    64.0000000000000        32.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =       205761
-     |kNTotal      =         2664
-     |memTotal     =                  31968
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          256
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          256
-     |nChunks        =           32
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run256.pbs                                        
-     jobName = 2D_256_S_RANDO                                    
-     outName = 2D_256_S_RANDO.txt                                
-     Iteration path = ../STRONG/2D_S/RANDO_2D_S/256p_L-64-32_RANDO_2D_S
- Directory is being created: 
- ./../STRONG/2D_S/RANDO_2D_S/256p_L-64-32_RANDO_2D_S                            
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =           10
- i =            2
- xMax =    2.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000     
- i =            4
- xMax =    4.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        4.00000000000000     
- i =            6
- xMax =    8.00000000000000        4.00000000000000     
- i =            7
- xMax =    8.00000000000000        8.00000000000000     
- i =            8
- xMax =    16.0000000000000        8.00000000000000     
- i =            9
- xMax =    16.0000000000000        16.0000000000000     
- i =           10
- xMax =    32.0000000000000        16.0000000000000     
- i =           11
- xMax =    32.0000000000000        32.0000000000000     
- i =           12
- xMax =    64.0000000000000        32.0000000000000     
  -> runAll done
  ----------------------------------------
  nDim =            3
  runAll_path = 
- ../STRONG/runAll_3D.sh                                                         
+ ../WEAK/runAll_3D.sh                                                           
                                                                                 
                                            
  Directory is being created: 
- ./../STRONG/3D_S                                                               
+ ./../WEAK/3D_W                                                                 
                                                                                 
                                            
- dim_path = ../STRONG/3D_S
+ dim_path = ../WEAK/3D_W
  
  
  method =            2
  methodTxt = SHINO
  
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S                                                    
+ ./../WEAK/3D_W/SHINO_3D_W                                                      
                                                                                 
                                            
- method_path = ../STRONG/3D_S/SHINO_3D_S
+ method_path = ../WEAK/3D_W/SHINO_3D_W
  Iteration =            1
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            1
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    2.00000000000000        1.00000000000000     
+   1.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =         2541
+     |kNTotal      =           36
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            1
      Requirements 
      |timePerProc    =        14400
-     |memPerProc     =        30000
+     |memPerProc     =          512
      |nProcsTotal    =            1
      |nChunks        =            1
      |nProcsPerChunk =            1
      |wallTime       = 04:00:01
      pbsName = run1.pbs                                          
-     jobName = 3D_1_S_SHINO                                      
-     outName = 3D_1_S_SHINO.txt                                  
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/1p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_1_W_SHINO                                      
+     outName = 3D_1_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/1p_L-2-1-1_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/1p_L-8-8-8_SHINO_3D_S                              
+ ./../WEAK/3D_W/SHINO_3D_W/1p_L-2-1-1_SHINO_3D_W                                
                                                                                 
                                            
  -> Writing files
@@ -2172,49 +672,31 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            2
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            2
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    2.00000000000000        2.00000000000000     
+   1.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =         4851
+     |kNTotal      =           48
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            2
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =        15000
+     |memPerProc     =          512
      |nProcsTotal    =            2
      |nChunks        =            1
      |nProcsPerChunk =            2
      |wallTime       = 00:20:00
      pbsName = run2.pbs                                          
-     jobName = 3D_2_S_SHINO                                      
-     outName = 3D_2_S_SHINO.txt                                  
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/2p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_2_W_SHINO                                      
+     outName = 3D_2_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/2p_L-2-2-1_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/2p_L-8-8-8_SHINO_3D_S                              
+ ./../WEAK/3D_W/SHINO_3D_W/2p_L-2-2-1_SHINO_3D_W                                
                                                                                 
                                            
  -> Writing files
@@ -2222,49 +704,31 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            3
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            3
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    2.00000000000000        2.00000000000000     
+   2.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =         9261
+     |kNTotal      =           64
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            4
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =         7500
+     |memPerProc     =          512
      |nProcsTotal    =            4
      |nChunks        =            1
      |nProcsPerChunk =            4
      |wallTime       = 00:20:00
      pbsName = run4.pbs                                          
-     jobName = 3D_4_S_SHINO                                      
-     outName = 3D_4_S_SHINO.txt                                  
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/4p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_4_W_SHINO                                      
+     outName = 3D_4_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/4p_L-2-2-2_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/4p_L-8-8-8_SHINO_3D_S                              
+ ./../WEAK/3D_W/SHINO_3D_W/4p_L-2-2-2_SHINO_3D_W                                
                                                                                 
                                            
  -> Writing files
@@ -2272,49 +736,31 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            4
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            4
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    4.00000000000000        2.00000000000000     
+   2.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =        18081
+     |kNTotal      =           96
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =            8
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =         3750
+     |memPerProc     =          512
      |nProcsTotal    =            8
      |nChunks        =            1
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run8.pbs                                          
-     jobName = 3D_8_S_SHINO                                      
-     outName = 3D_8_S_SHINO.txt                                  
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/8p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_8_W_SHINO                                      
+     outName = 3D_8_W_SHINO.txt                                  
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/8p_L-4-2-2_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/8p_L-8-8-8_SHINO_3D_S                              
+ ./../WEAK/3D_W/SHINO_3D_W/8p_L-4-2-2_SHINO_3D_W                                
                                                                                 
                                            
  -> Writing files
@@ -2322,49 +768,31 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            5
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            5
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    4.00000000000000        4.00000000000000     
+   2.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =        35301
+     |kNTotal      =          144
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           16
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =         1875
+     |memPerProc     =          512
      |nProcsTotal    =           16
      |nChunks        =            2
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run16.pbs                                         
-     jobName = 3D_16_S_SHINO                                     
-     outName = 3D_16_S_SHINO.txt                                 
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/16p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_16_W_SHINO                                     
+     outName = 3D_16_W_SHINO.txt                                 
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/16p_L-4-4-2_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/16p_L-8-8-8_SHINO_3D_S                             
+ ./../WEAK/3D_W/SHINO_3D_W/16p_L-4-4-2_SHINO_3D_W                               
                                                                                 
                                            
  -> Writing files
@@ -2372,49 +800,31 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            6
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            6
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    4.00000000000000        4.00000000000000     
+   4.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =        68921
+     |kNTotal      =          216
+     |memTotal     =                     10
      |timeTotal(s) =                   1200
      |nProcsTotal  =           32
      Requirements 
      |timePerProc    =         1200
-     |memPerProc     =          938
+     |memPerProc     =          512
      |nProcsTotal    =           32
      |nChunks        =            4
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run32.pbs                                         
-     jobName = 3D_32_S_SHINO                                     
-     outName = 3D_32_S_SHINO.txt                                 
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/32p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_32_W_SHINO                                     
+     outName = 3D_32_W_SHINO.txt                                 
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/32p_L-4-4-4_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/32p_L-8-8-8_SHINO_3D_S                             
+ ./../WEAK/3D_W/SHINO_3D_W/32p_L-4-4-4_SHINO_3D_W                               
                                                                                 
                                            
  -> Writing files
@@ -2422,34 +832,16 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            7
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            7
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    8.00000000000000        4.00000000000000     
+   4.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =       136161
+     |kNTotal      =          360
+     |memTotal     =                   2160
      |timeTotal(s) =                   1200
      |nProcsTotal  =           64
      Requirements 
@@ -2460,11 +852,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run64.pbs                                         
-     jobName = 3D_64_S_SHINO                                     
-     outName = 3D_64_S_SHINO.txt                                 
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/64p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_64_W_SHINO                                     
+     outName = 3D_64_W_SHINO.txt                                 
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/64p_L-8-4-4_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/64p_L-8-8-8_SHINO_3D_S                             
+ ./../WEAK/3D_W/SHINO_3D_W/64p_L-8-4-4_SHINO_3D_W                               
                                                                                 
                                            
  -> Writing files
@@ -2472,34 +864,16 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            8
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            8
      Inputs 
      |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+   4.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
+     |xNTotal      =       269001
+     |kNTotal      =          600
+     |memTotal     =                   7200
      |timeTotal(s) =                   1200
      |nProcsTotal  =          128
      Requirements 
@@ -2510,11 +884,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run128.pbs                                        
-     jobName = 3D_128_S_SHINO                                    
-     outName = 3D_128_S_SHINO.txt                                
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/128p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_128_W_SHINO                                    
+     outName = 3D_128_W_SHINO.txt                                
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/128p_L-8-8-4_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/128p_L-8-8-8_SHINO_3D_S                            
+ ./../WEAK/3D_W/SHINO_3D_W/128p_L-8-8-4_SHINO_3D_W                              
                                                                                 
                                            
  -> Writing files
@@ -2522,24 +896,6 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =            9
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  ----------------------------------------------------
  Iteration            9
      Inputs 
@@ -2560,11 +916,11 @@ Currently Loaded Modulefiles:
      |nProcsPerChunk =            8
      |wallTime       = 00:20:00
      pbsName = run256.pbs                                        
-     jobName = 3D_256_S_SHINO                                    
-     outName = 3D_256_S_SHINO.txt                                
-     Iteration path = ../STRONG/3D_S/SHINO_3D_S/256p_L-8-8-8_SHINO_3D_S
+     jobName = 3D_256_W_SHINO                                    
+     outName = 3D_256_W_SHINO.txt                                
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/256p_L-8-8-8_SHINO_3D_W
  Directory is being created: 
- ./../STRONG/3D_S/SHINO_3D_S/256p_L-8-8-8_SHINO_3D_S                            
+ ./../WEAK/3D_W/SHINO_3D_W/256p_L-8-8-8_SHINO_3D_W                              
                                                                                 
                                            
  -> Writing files
@@ -2572,501 +928,4 @@ Currently Loaded Modulefiles:
      *generation
      *mesh
  Iteration =           10
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- 
- 
- method =            3
- methodTxt = RANDO
- 
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S                                                    
-                                                                                
-                                           
- method_path = ../STRONG/3D_S/RANDO_3D_S
- Iteration =            1
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            1
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            1
-     Requirements 
-     |timePerProc    =        14400
-     |memPerProc     =        30000
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 04:00:01
-     pbsName = run1.pbs                                          
-     jobName = 3D_1_S_RANDO                                      
-     outName = 3D_1_S_RANDO.txt                                  
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/1p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/1p_L-8-8-8_RANDO_3D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            2
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            2
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            2
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =        15000
-     |nProcsTotal    =            2
-     |nChunks        =            1
-     |nProcsPerChunk =            2
-     |wallTime       = 00:20:00
-     pbsName = run2.pbs                                          
-     jobName = 3D_2_S_RANDO                                      
-     outName = 3D_2_S_RANDO.txt                                  
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/2p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/2p_L-8-8-8_RANDO_3D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            3
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            3
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            4
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =         7500
-     |nProcsTotal    =            4
-     |nChunks        =            1
-     |nProcsPerChunk =            4
-     |wallTime       = 00:20:00
-     pbsName = run4.pbs                                          
-     jobName = 3D_4_S_RANDO                                      
-     outName = 3D_4_S_RANDO.txt                                  
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/4p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/4p_L-8-8-8_RANDO_3D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            4
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            4
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            8
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =         3750
-     |nProcsTotal    =            8
-     |nChunks        =            1
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run8.pbs                                          
-     jobName = 3D_8_S_RANDO                                      
-     outName = 3D_8_S_RANDO.txt                                  
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/8p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/8p_L-8-8-8_RANDO_3D_S                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            5
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            5
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           16
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =         1875
-     |nProcsTotal    =           16
-     |nChunks        =            2
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run16.pbs                                         
-     jobName = 3D_16_S_RANDO                                     
-     outName = 3D_16_S_RANDO.txt                                 
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/16p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/16p_L-8-8-8_RANDO_3D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            6
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            6
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           32
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          938
-     |nProcsTotal    =           32
-     |nChunks        =            4
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run32.pbs                                         
-     jobName = 3D_32_S_RANDO                                     
-     outName = 3D_32_S_RANDO.txt                                 
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/32p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/32p_L-8-8-8_RANDO_3D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            7
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            7
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           64
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           64
-     |nChunks        =            8
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run64.pbs                                         
-     jobName = 3D_64_S_RANDO                                     
-     outName = 3D_64_S_RANDO.txt                                 
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/64p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/64p_L-8-8-8_RANDO_3D_S                             
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            8
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            8
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          128
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          128
-     |nChunks        =           16
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run128.pbs                                        
-     jobName = 3D_128_S_RANDO                                    
-     outName = 3D_128_S_RANDO.txt                                
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/128p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/128p_L-8-8-8_RANDO_3D_S                            
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            9
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
- ----------------------------------------------------
- Iteration            9
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-  0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          256
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          256
-     |nChunks        =           32
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run256.pbs                                        
-     jobName = 3D_256_S_RANDO                                    
-     outName = 3D_256_S_RANDO.txt                                
-     Iteration path = ../STRONG/3D_S/RANDO_3D_S/256p_L-8-8-8_RANDO_3D_S
- Directory is being created: 
- ./../STRONG/3D_S/RANDO_3D_S/256p_L-8-8-8_RANDO_3D_S                            
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =           10
- i =            2
- xMax =    2.00000000000000        1.00000000000000        1.00000000000000     
- i =            3
- xMax =    2.00000000000000        2.00000000000000        1.00000000000000     
- i =            4
- xMax =    2.00000000000000        2.00000000000000        2.00000000000000     
- i =            5
- xMax =    4.00000000000000        2.00000000000000        2.00000000000000     
- i =            6
- xMax =    4.00000000000000        4.00000000000000        2.00000000000000     
- i =            7
- xMax =    4.00000000000000        4.00000000000000        4.00000000000000     
- i =            8
- xMax =    8.00000000000000        4.00000000000000        4.00000000000000     
- i =            9
- xMax =    8.00000000000000        8.00000000000000        4.00000000000000     
- i =           10
- xMax =    8.00000000000000        8.00000000000000        8.00000000000000     
  -> runAll done

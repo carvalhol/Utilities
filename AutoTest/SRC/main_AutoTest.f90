@@ -7,14 +7,16 @@ program main_AutoTest
 
     !USER
 
-    logical :: weakScal = .false.
+    logical :: weakScal = .true.
     logical :: singleProc = .false.
     character(len=200) :: execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe "
     integer, parameter :: dimMin = 1, dimMax = 3
-    integer, parameter :: methodMin = 2, methodMax = 3
+    integer, parameter :: methodMin = 2, methodMax = 2
     integer :: seedStart = -1
     logical :: ignoreQ = .false.
-    integer :: nRuns = 25
+    integer :: nRuns = 2
+    integer :: independent = 0 !(0 = false, 1 = true (other numbers will be considered as false)
+    double precision :: overlap = 3.0
 
     !COMPUTATION
     integer :: memPerNTerm = 6 !mb
@@ -419,10 +421,15 @@ contains
         write(fileId,"(A)") "#PBS -M lucianopaludoecp@gmail.com"
         write(fileId,"(A)") ""
         write(fileId,"(A)") "# chargement des modules"
-        write(fileId,"(A)") "module load intel-compiler/14.0.0"
-        write(fileId,"(A)") "module load intel-mkl/11.1.0"
-        write(fileId,"(A)") "module load intel-mpi/4.0.0.028"
+        !write(fileId,"(A)") "module load intel-compiler/14.0.0"
+        !write(fileId,"(A)") "module load intel-mkl/11.1.0"
+        !write(fileId,"(A)") "module load intel-mpi/4.0.0.028"
+        !write(fileId,"(A)") "module load hdf5/1.8.12"
+        write(fileId,"(A)") "module load intel-compiler/15.0.1"
+        write(fileId,"(A)") "module load intel-mkl/11.2.1"
+        write(fileId,"(A)") "module load intel-mpi/5.0.2"
         write(fileId,"(A)") "module load hdf5/1.8.12"
+
         write(fileId,"(A)") ""
         write(fileId,"(A)") "# On se place dans le repertoire depuis lequel le job a ete soumis"
         write(fileId,"(A)") "cd $PBS_O_WORKDIR"
@@ -430,7 +437,8 @@ contains
         write(fileId,"(A)") "cat $PBS_NODEFILE | uniq > mpd.hosts"
         write(fileId,"(A)") "nb_nodes=`cat mpd.hosts|wc -l`"
         write(fileId,"(A)") ""
-        write(fileId,"(A)") "mpirun --rsh=ssh -n $nb_nodes -f mpd.hosts -np "//trim(numb2String(nProcsTotal))//" "//trim(execPath)
+        write(fileId,"(A)") "mpirun -np "//trim(numb2String(nProcsTotal))//" "//trim(execPath)
+        !write(fileId,"(A)") "mpirun --rsh=ssh -n $nb_nodes -f mpd.hosts -np "//trim(numb2String(nProcsTotal))//" "//trim(execPath)
 
         close(fileId)
 
@@ -462,6 +470,10 @@ contains
         write(fileId,*) method
         write(fileId,*) "$$seedStart"
         write(fileId,*) seedStart
+        write(fileId,*) "$$independent"
+        write(fileId,*) independent
+        write(fileId,*) "$$overlap"
+        write(fileId,*) overlap
 
         close(fileId)
 
