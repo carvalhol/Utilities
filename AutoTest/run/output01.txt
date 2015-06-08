@@ -28,904 +28,657 @@ Currently Loaded Modulefiles:
    9223372036854775807
  The next is cool
   2147483647
- Directory is being created: 
- ./../WEAK                                                                      
-                                                                                
-                                           
- ----------------------------------------
- nDim =            1
- runAll_path = 
- ../WEAK/runAll_1D.sh                                                           
-                                                                                
-                                           
- Directory is being created: 
- ./../WEAK/1D_W                                                                 
-                                                                                
-                                           
- dim_path = ../WEAK/1D_W
- 
- 
- method =            2
- methodTxt = SHINO
- 
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W                                                      
-                                                                                
-                                           
- method_path = ../WEAK/1D_W/SHINO_1D_W
- Iteration =            1
- ----------------------------------------------------
- Iteration            1
-     Inputs 
-     |xMax         =    2.00000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =           21
-     |kNTotal      =            4
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            1
-     Requirements 
-     |timePerProc    =        14400
-     |memPerProc     =          512
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 04:00:01
-     pbsName = run1.pbs                                          
-     jobName = 1D_1_W_SHINO                                      
-     outName = 1D_1_W_SHINO.txt                                  
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/1p_L-2_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/1p_L-2_SHINO_1D_W                                    
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            2
- ----------------------------------------------------
- Iteration            2
-     Inputs 
-     |xMax         =    4.00000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =           41
-     |kNTotal      =            6
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            2
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            2
-     |nChunks        =            1
-     |nProcsPerChunk =            2
-     |wallTime       = 00:20:00
-     pbsName = run2.pbs                                          
-     jobName = 1D_2_W_SHINO                                      
-     outName = 1D_2_W_SHINO.txt                                  
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/2p_L-4_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/2p_L-4_SHINO_1D_W                                    
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            3
- ----------------------------------------------------
- Iteration            3
-     Inputs 
-     |xMax         =    8.00000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =           81
-     |kNTotal      =           10
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            4
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            4
-     |nChunks        =            1
-     |nProcsPerChunk =            4
-     |wallTime       = 00:20:00
-     pbsName = run4.pbs                                          
-     jobName = 1D_4_W_SHINO                                      
-     outName = 1D_4_W_SHINO.txt                                  
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/4p_L-8_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/4p_L-8_SHINO_1D_W                                    
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            4
- ----------------------------------------------------
- Iteration            4
-     Inputs 
-     |xMax         =    16.0000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =          161
-     |kNTotal      =           19
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            8
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            8
-     |nChunks        =            1
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run8.pbs                                          
-     jobName = 1D_8_W_SHINO                                      
-     outName = 1D_8_W_SHINO.txt                                  
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/8p_L-16_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/8p_L-16_SHINO_1D_W                                   
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            5
- ----------------------------------------------------
- Iteration            5
-     Inputs 
-     |xMax         =    32.0000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =          321
-     |kNTotal      =           37
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           16
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           16
-     |nChunks        =            2
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run16.pbs                                         
-     jobName = 1D_16_W_SHINO                                     
-     outName = 1D_16_W_SHINO.txt                                 
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/16p_L-32_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/16p_L-32_SHINO_1D_W                                  
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            6
- ----------------------------------------------------
- Iteration            6
-     Inputs 
-     |xMax         =    64.0000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =          641
-     |kNTotal      =           72
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           32
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           32
-     |nChunks        =            4
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run32.pbs                                         
-     jobName = 1D_32_W_SHINO                                     
-     outName = 1D_32_W_SHINO.txt                                 
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/32p_L-64_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/32p_L-64_SHINO_1D_W                                  
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            7
- ----------------------------------------------------
- Iteration            7
-     Inputs 
-     |xMax         =    128.000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =         1281
-     |kNTotal      =          142
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           64
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           64
-     |nChunks        =            8
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run64.pbs                                         
-     jobName = 1D_64_W_SHINO                                     
-     outName = 1D_64_W_SHINO.txt                                 
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/64p_L-128_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/64p_L-128_SHINO_1D_W                                 
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            8
- ----------------------------------------------------
- Iteration            8
-     Inputs 
-     |xMax         =    256.000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =         2561
-     |kNTotal      =          283
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          128
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          128
-     |nChunks        =           16
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run128.pbs                                        
-     jobName = 1D_128_W_SHINO                                    
-     outName = 1D_128_W_SHINO.txt                                
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/128p_L-256_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/128p_L-256_SHINO_1D_W                                
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            9
- ----------------------------------------------------
- Iteration            9
-     Inputs 
-     |xMax         =    512.000000000000     
-     |xMin         =   0.000000000000000E+000
-     |xNTotal      =         5121
-     |kNTotal      =          565
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          256
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          256
-     |nChunks        =           32
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run256.pbs                                        
-     jobName = 1D_256_W_SHINO                                    
-     outName = 1D_256_W_SHINO.txt                                
-     Iteration path = ../WEAK/1D_W/SHINO_1D_W/256p_L-512_SHINO_1D_W
- Directory is being created: 
- ./../WEAK/1D_W/SHINO_1D_W/256p_L-512_SHINO_1D_W                                
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =           10
- -> runAll done
- ----------------------------------------
- nDim =            2
- runAll_path = 
- ../WEAK/runAll_2D.sh                                                           
-                                                                                
-                                           
- Directory is being created: 
- ./../WEAK/2D_W                                                                 
-                                                                                
-                                           
- dim_path = ../WEAK/2D_W
- 
- 
- method =            2
- methodTxt = SHINO
- 
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W                                                      
-                                                                                
-                                           
- method_path = ../WEAK/2D_W/SHINO_2D_W
- Iteration =            1
- ----------------------------------------------------
- Iteration            1
-     Inputs 
-     |xMax         =    2.00000000000000        1.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =          231
-     |kNTotal      =           12
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            1
-     Requirements 
-     |timePerProc    =        14400
-     |memPerProc     =          512
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 04:00:01
-     pbsName = run1.pbs                                          
-     jobName = 2D_1_W_SHINO                                      
-     outName = 2D_1_W_SHINO.txt                                  
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/1p_L-2-1_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/1p_L-2-1_SHINO_2D_W                                  
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            2
- ----------------------------------------------------
- Iteration            2
-     Inputs 
-     |xMax         =    2.00000000000000        2.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =          441
-     |kNTotal      =           16
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            2
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            2
-     |nChunks        =            1
-     |nProcsPerChunk =            2
-     |wallTime       = 00:20:00
-     pbsName = run2.pbs                                          
-     jobName = 2D_2_W_SHINO                                      
-     outName = 2D_2_W_SHINO.txt                                  
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/2p_L-2-2_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/2p_L-2-2_SHINO_2D_W                                  
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            3
- ----------------------------------------------------
- Iteration            3
-     Inputs 
-     |xMax         =    4.00000000000000        2.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =          861
-     |kNTotal      =           24
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            4
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            4
-     |nChunks        =            1
-     |nProcsPerChunk =            4
-     |wallTime       = 00:20:00
-     pbsName = run4.pbs                                          
-     jobName = 2D_4_W_SHINO                                      
-     outName = 2D_4_W_SHINO.txt                                  
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/4p_L-4-2_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/4p_L-4-2_SHINO_2D_W                                  
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            4
- ----------------------------------------------------
- Iteration            4
-     Inputs 
-     |xMax         =    4.00000000000000        4.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =         1681
-     |kNTotal      =           36
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            8
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            8
-     |nChunks        =            1
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run8.pbs                                          
-     jobName = 2D_8_W_SHINO                                      
-     outName = 2D_8_W_SHINO.txt                                  
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/8p_L-4-4_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/8p_L-4-4_SHINO_2D_W                                  
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            5
- ----------------------------------------------------
- Iteration            5
-     Inputs 
-     |xMax         =    8.00000000000000        4.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =         3321
-     |kNTotal      =           60
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           16
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           16
-     |nChunks        =            2
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run16.pbs                                         
-     jobName = 2D_16_W_SHINO                                     
-     outName = 2D_16_W_SHINO.txt                                 
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/16p_L-8-4_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/16p_L-8-4_SHINO_2D_W                                 
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            6
- ----------------------------------------------------
- Iteration            6
-     Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =         6561
-     |kNTotal      =          100
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           32
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           32
-     |nChunks        =            4
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run32.pbs                                         
-     jobName = 2D_32_W_SHINO                                     
-     outName = 2D_32_W_SHINO.txt                                 
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/32p_L-8-8_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/32p_L-8-8_SHINO_2D_W                                 
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            7
- ----------------------------------------------------
- Iteration            7
-     Inputs 
-     |xMax         =    16.0000000000000        8.00000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =        13041
-     |kNTotal      =          190
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           64
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           64
-     |nChunks        =            8
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run64.pbs                                         
-     jobName = 2D_64_W_SHINO                                     
-     outName = 2D_64_W_SHINO.txt                                 
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/64p_L-16-8_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/64p_L-16-8_SHINO_2D_W                                
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            8
- ----------------------------------------------------
- Iteration            8
-     Inputs 
-     |xMax         =    16.0000000000000        16.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =        25921
-     |kNTotal      =          361
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          128
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          128
-     |nChunks        =           16
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run128.pbs                                        
-     jobName = 2D_128_W_SHINO                                    
-     outName = 2D_128_W_SHINO.txt                                
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/128p_L-16-16_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/128p_L-16-16_SHINO_2D_W                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =            9
- ----------------------------------------------------
- Iteration            9
-     Inputs 
-     |xMax         =    32.0000000000000        16.0000000000000     
-     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
-     |xNTotal      =        51681
-     |kNTotal      =          703
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          256
-     Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          256
-     |nChunks        =           32
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run256.pbs                                        
-     jobName = 2D_256_W_SHINO                                    
-     outName = 2D_256_W_SHINO.txt                                
-     Iteration path = ../WEAK/2D_W/SHINO_2D_W/256p_L-32-16_SHINO_2D_W
- Directory is being created: 
- ./../WEAK/2D_W/SHINO_2D_W/256p_L-32-16_SHINO_2D_W                              
-                                                                                
-                                           
- -> Writing files
-     *PBS
-     *generation
-     *mesh
- Iteration =           10
- -> runAll done
  ----------------------------------------
  nDim =            3
  runAll_path = 
- ../WEAK/runAll_3D.sh                                                           
+ ../COMP/runAll_3D.sh                                                           
                                                                                 
                                            
- Directory is being created: 
- ./../WEAK/3D_W                                                                 
-                                                                                
-                                           
- dim_path = ../WEAK/3D_W
+ dim_path = ../COMP/3D_C
  
  
  method =            2
  methodTxt = SHINO
  
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W                                                      
-                                                                                
-                                           
- method_path = ../WEAK/3D_W/SHINO_3D_W
+ method_path = ../COMP/3D_C/SHINO_3D_C
  Iteration =            1
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            1
      Inputs 
-     |xMax         =    2.00000000000000        1.00000000000000     
-   1.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =         2541
-     |kNTotal      =           36
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                  20480
+     |timeTotal(s) =                  86400
      |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =        14400
-     |memPerProc     =          512
+     |timePerProc    =        86400
+     |memPerProc     =        20480
      |nProcsTotal    =            1
      |nChunks        =            1
      |nProcsPerChunk =            1
-     |wallTime       = 04:00:01
+     |wallTime       = 24:00:00
      pbsName = run1.pbs                                          
-     jobName = 3D_1_W_SHINO                                      
-     outName = 3D_1_W_SHINO.txt                                  
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/1p_L-2-1-1_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/1p_L-2-1-1_SHINO_3D_W                                
-                                                                                
-                                           
+     jobName = 3D_i1_C_SHINO                                     
+     outName = 3D_i1_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-1_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            2
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            2
      Inputs 
-     |xMax         =    2.00000000000000        2.00000000000000     
-   1.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =         4851
-     |kNTotal      =           48
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            2
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                  10240
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            2
+     |timePerProc    =        86400
+     |memPerProc     =        10240
+     |nProcsTotal    =            1
      |nChunks        =            1
-     |nProcsPerChunk =            2
-     |wallTime       = 00:20:00
-     pbsName = run2.pbs                                          
-     jobName = 3D_2_W_SHINO                                      
-     outName = 3D_2_W_SHINO.txt                                  
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/2p_L-2-2-1_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/2p_L-2-2-1_SHINO_3D_W                                
-                                                                                
-                                           
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i2_C_SHINO                                     
+     outName = 3D_i2_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-2_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            3
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            3
      Inputs 
-     |xMax         =    2.00000000000000        2.00000000000000     
-   2.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =         9261
-     |kNTotal      =           64
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            4
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                   5120
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            4
+     |timePerProc    =        86400
+     |memPerProc     =         5120
+     |nProcsTotal    =            1
      |nChunks        =            1
-     |nProcsPerChunk =            4
-     |wallTime       = 00:20:00
-     pbsName = run4.pbs                                          
-     jobName = 3D_4_W_SHINO                                      
-     outName = 3D_4_W_SHINO.txt                                  
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/4p_L-2-2-2_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/4p_L-2-2-2_SHINO_3D_W                                
-                                                                                
-                                           
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i3_C_SHINO                                     
+     outName = 3D_i3_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-3_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            4
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            4
      Inputs 
-     |xMax         =    4.00000000000000        2.00000000000000     
-   2.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =        18081
-     |kNTotal      =           96
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =            8
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                   2560
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =            8
+     |timePerProc    =        86400
+     |memPerProc     =         2560
+     |nProcsTotal    =            1
      |nChunks        =            1
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run8.pbs                                          
-     jobName = 3D_8_W_SHINO                                      
-     outName = 3D_8_W_SHINO.txt                                  
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/8p_L-4-2-2_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/8p_L-4-2-2_SHINO_3D_W                                
-                                                                                
-                                           
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i4_C_SHINO                                     
+     outName = 3D_i4_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-4_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            5
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            5
      Inputs 
-     |xMax         =    4.00000000000000        4.00000000000000     
-   2.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =        35301
-     |kNTotal      =          144
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           16
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                   1280
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           16
-     |nChunks        =            2
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run16.pbs                                         
-     jobName = 3D_16_W_SHINO                                     
-     outName = 3D_16_W_SHINO.txt                                 
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/16p_L-4-4-2_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/16p_L-4-4-2_SHINO_3D_W                               
-                                                                                
-                                           
+     |timePerProc    =        86400
+     |memPerProc     =         1280
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i5_C_SHINO                                     
+     outName = 3D_i5_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-5_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            6
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            6
      Inputs 
-     |xMax         =    4.00000000000000        4.00000000000000     
-   4.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =        68921
-     |kNTotal      =          216
-     |memTotal     =                     10
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           32
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                    640
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           32
-     |nChunks        =            4
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run32.pbs                                         
-     jobName = 3D_32_W_SHINO                                     
-     outName = 3D_32_W_SHINO.txt                                 
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/32p_L-4-4-4_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/32p_L-4-4-4_SHINO_3D_W                               
-                                                                                
-                                           
+     |timePerProc    =        86400
+     |memPerProc     =          640
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i6_C_SHINO                                     
+     outName = 3D_i6_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-6_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            7
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            7
      Inputs 
-     |xMax         =    8.00000000000000        4.00000000000000     
-   4.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       136161
-     |kNTotal      =          360
-     |memTotal     =                   2160
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =           64
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                    320
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =           64
-     |nChunks        =            8
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run64.pbs                                         
-     jobName = 3D_64_W_SHINO                                     
-     outName = 3D_64_W_SHINO.txt                                 
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/64p_L-8-4-4_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/64p_L-8-4-4_SHINO_3D_W                               
-                                                                                
-                                           
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i7_C_SHINO                                     
+     outName = 3D_i7_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-7_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            8
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            8
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   4.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       269001
-     |kNTotal      =          600
-     |memTotal     =                   7200
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          128
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                    160
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          128
-     |nChunks        =           16
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run128.pbs                                        
-     jobName = 3D_128_W_SHINO                                    
-     outName = 3D_128_W_SHINO.txt                                
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/128p_L-8-8-4_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/128p_L-8-8-4_SHINO_3D_W                              
-                                                                                
-                                           
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i8_C_SHINO                                     
+     outName = 3D_i8_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-8_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =            9
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
  ----------------------------------------------------
  Iteration            9
      Inputs 
-     |xMax         =    8.00000000000000        8.00000000000000     
-   8.00000000000000     
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =       531441
-     |kNTotal      =         1000
-     |memTotal     =                  30000
-     |timeTotal(s) =                   1200
-     |nProcsTotal  =          256
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     80
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =         1200
-     |memPerProc     =          512
-     |nProcsTotal    =          256
-     |nChunks        =           32
-     |nProcsPerChunk =            8
-     |wallTime       = 00:20:00
-     pbsName = run256.pbs                                        
-     jobName = 3D_256_W_SHINO                                    
-     outName = 3D_256_W_SHINO.txt                                
-     Iteration path = ../WEAK/3D_W/SHINO_3D_W/256p_L-8-8-8_SHINO_3D_W
- Directory is being created: 
- ./../WEAK/3D_W/SHINO_3D_W/256p_L-8-8-8_SHINO_3D_W                              
-                                                                                
-                                           
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i9_C_SHINO                                     
+     outName = 3D_i9_C_SHINO.txt                                 
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-9_SHINO_3D_C
  -> Writing files
      *PBS
      *generation
      *mesh
  Iteration =           10
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           10
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     40
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i10_C_SHINO                                    
+     outName = 3D_i10_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-10_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           11
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           11
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     20
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i11_C_SHINO                                    
+     outName = 3D_i11_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-11_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           12
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           12
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i12_C_SHINO                                    
+     outName = 3D_i12_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-12_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           13
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           13
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i13_C_SHINO                                    
+     outName = 3D_i13_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-13_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           14
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           14
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i14_C_SHINO                                    
+     outName = 3D_i14_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-14_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           15
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           15
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i15_C_SHINO                                    
+     outName = 3D_i15_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-15_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           16
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           16
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i16_C_SHINO                                    
+     outName = 3D_i16_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-16_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           17
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           17
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i17_C_SHINO                                    
+     outName = 3D_i17_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-17_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           18
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           18
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i18_C_SHINO                                    
+     outName = 3D_i18_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-18_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           19
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           19
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i19_C_SHINO                                    
+     outName = 3D_i19_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-19_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
+ Iteration =           20
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+ ----------------------------------------------------
+ Iteration           20
+     Inputs 
+     |xMax         =    40.0000000000000        40.0000000000000     
+   40.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =     64481201
+     |kNTotal      =        91125
+     |memTotal     =                     10
+     |timeTotal(s) =                  86400
+     |nProcsTotal  =            1
+     Requirements 
+     |timePerProc    =        86400
+     |memPerProc     =           10
+     |nProcsTotal    =            1
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 24:00:00
+     pbsName = run1.pbs                                          
+     jobName = 3D_i20_C_SHINO                                    
+     outName = 3D_i20_C_SHINO.txt                                
+     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-20_SHINO_3D_C
+ -> Writing files
+     *PBS
+     *generation
+     *mesh
  -> runAll done

@@ -8,22 +8,22 @@ program main_AutoTest
     !USER
 
     logical :: weakScal = .true.
-    logical :: singleProc = .false.
+    logical :: singleProc = .true.
     character(len=200) :: execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe "
-    integer, parameter :: dimMin = 1, dimMax = 3
+    integer, parameter :: dimMin = 3, dimMax = 3
     integer, parameter :: methodMin = 2, methodMax = 2
-    integer :: seedStart = -1
+    integer :: seedStart = 0
     logical :: ignoreQ = .false.
-    integer :: nRuns = 2
-    integer :: independent = 0 !(0 = false, 1 = true (other numbers will be considered as false)
+    integer :: nRuns = 1 !How many times each iteration
+    integer :: independent = 0 !0 = false, 1 = true (other numbers will be considered as false)
     double precision :: overlap = 3.0
 
     !COMPUTATION
     integer :: memPerNTerm = 6 !mb
-    integer :: NTerm = 100000 !Terms
+    integer :: NTerm = 1000000000 !100000 !Terms
     double precision :: timePerTerm = 1.0D-7 !s
     integer :: memBase = 2 !mb
-    double precision, dimension(3) :: xMaxBase !xMax in each dimension
+    double precision, dimension(3), parameter :: xMaxBase = [1.0D0, 1.0D0, 1.0D0]!xMax in each dimension
     integer         , dimension(3) :: nIter !number of iterations in each dimension
     integer         , dimension(3) :: iterBase !initial iteration (multiply xMaxBase)
     !double precision :: xMaxStrong3D = 8.0D0
@@ -128,19 +128,23 @@ program main_AutoTest
         weakScal = .true.
         res_folder = "COMP"
         testTypeChar = "C"
-        xMaxBase = [1.0D0, 1.0D0, 1.0D0]
-        iterBase = [7, 5, 2]
-        nIter = [6, 7, 8]
+        !xMaxBase = [1.0D0, 1.0D0, 1.0D0]
+        iterBase = [1, 1, 1]
+        nIter = [20, 20, 7]
     else if(weakScal) then
         res_folder = "WEAK"
         testTypeChar = "W"
-        xMaxBase = [1.0D0, 1.0D0, 1.0D0]
+        !xMaxBase = [1.0D0, 1.0D0, 1.0D0]
         iterBase = [2, 2, 2]
         nIter = [10, 10, 10]
+        if (independent == 1) then
+            iterBase = [4, 7, 10]
+            nIter = [12, 15, 18]
+        end if
     else
         res_folder = "STRONG"
         testTypeChar = "S"
-        xMaxBase = [1.0D0, 1.0D0, 1.0D0]
+        !xMaxBase = [1.0D0, 1.0D0, 1.0D0]
         iterBase = [13, 12, 10]
         nIter = [10, 10, 10]
     end if
@@ -220,19 +224,30 @@ program main_AutoTest
                 meshMod = "automatic"
 
                 !xMax MODIFICATION
+                write(*,*) "xMax BEFORE = ", xMax
                 if(weakScal) then
-                    do i = 2, (nTests-1) + iterBase(nDim)
-                        pos  = mod(i-2+nDim,nDim) + 1
-                        xMax(pos) = 2* xMax(pos)
-                    end do
+                    xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
                 else
-                    do i = 2, iterBase(nDim)
-                        write(*,*) "i = ",i
-                        pos  = mod(i-2+nDim,nDim) + 1
-                        xMax(pos) = 2* xMax(pos)
-                        write(*,*) "xMax = ",xMax
-                    end do
+                    xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
                 end if
+
+                xMax(:) = 40 !Test
+
+                write(*,*) "xMax AFTER = ", xMax
+
+!                if(weakScal) then
+!                    do i = 2, (nTests-1) + iterBase(nDim)
+!                        pos  = mod(i-2+nDim,nDim) + 1
+!                        xMax(pos) = 2* xMax(pos)
+!                    end do
+!                else
+!                    do i = 2, iterBase(nDim)
+!                        write(*,*) "i = ",i
+!                        pos  = mod(i-2+nDim,nDim) + 1
+!                        xMax(pos) = 2* xMax(pos)
+!                        write(*,*) "xMax = ",xMax
+!                    end do
+!                end if
 
                 !-----Exigences-------------------------------------
                 !NUMBER OF TERMS
@@ -242,8 +257,12 @@ program main_AutoTest
                 !REQUIREMENTS
                 memTotal = memPerNTerm*kNTotal*(xNTotal/NTerm)
                 timeTotal = nint((dble(xNTotal)*timePerTerm)*dble(kNTotal))
+
+                memTotal = 20 * 1024 / 2**(nTests-1)!Test
+
                 if(memTotal < 10) memTotal = 10
-                if(timeTotal < 20*60) timeTotal = 20*60
+                if(timeTotal < 20*60)   timeTotal = 20*60
+                if(timeTotal > 24*3600) timeTotal = 24*3600
 
                 !NUMBER OF PROCS
                 nProcsTotal = 2**(nTests-1)
@@ -267,7 +286,7 @@ program main_AutoTest
                 !-----Meeting Exigences-------------------------------------
                 memPerProc  = ceiling(dble(memTotal)/dble(nProcsTotal))
                 timePerProc = nint(1.1D0*dble(timeTotal)/dble(nProcsTotal))
-                if(memPerProc < 512)  memPerProc = 512
+                if(memPerProc < 512)  memPerProc = 10 !memPerProc = 512
 
                 if(timePerProc < 20*60) then
                     timePerProc = 20*60
@@ -330,10 +349,11 @@ program main_AutoTest
                 write(*,*) "    jobName = ", jobName
                 write(*,*) "    outName = ", outName
 
-                Lchar = "L"
-                do i = 1, nDim
-                    Lchar = string_vec_join([Lchar, "-", numb2String(nint(xMax(i)/xMaxBase(nDim)))])
-                end do
+!                Lchar = "L"
+!                do i = 1, nDim
+!                    Lchar = string_vec_join([Lchar, "-", numb2String(nint(xMax(i)/xMaxBase(nDim)))])
+!                end do
+                Lchar = string_vec_join(["L-", numb2String(nTests)])
 
                 !Iteration folder creation
                 it_folder = string_vec_join([numb2String(nProcsTotal),"p_",Lchar,"_", methodTxt, "_", numb2String(nDim), "D_", testTypeChar])
@@ -558,7 +578,10 @@ contains
             else
                 wallTimeText(7:8) = numb2String(compTime)
             end if
+
+            wallTimeText(8:8) = "0"
         end if
+
 
     end function find_WallTime
 
