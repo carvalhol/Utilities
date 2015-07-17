@@ -9,7 +9,7 @@ Currently Loaded Modulefiles:
   3) intel-mkl/11.2.1        9) python/2.7.6
   4) intel-mpi/5.0.2        10) texlive/2014
   5) cmake/3.0.0            11) valgrind/3.7.0
-  6) hdf5/1.8.12
+  6) hdf5/1.8.12            12) fftw/3.2.2
 
 
 
@@ -22,663 +22,2711 @@ Currently Loaded Modulefiles:
            8
           -1
           -1
+ HUGES
   127
   32767
   2147483647
    9223372036854775807
  The next is cool
-  2147483647
+ MAX xNTotal
+   9223372036854775807
+ Directory is being created: 
+ ./../WEAK                                                                      
+                                                                                
+                                           
+ 
+ weakScal    =  T
+ singleProc  =  F
+ execPath    = 
+ /home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe                    
+                                                                                
+                                           
+ dimMin      =            3  dimMax =            3
+ methodMin   =            1  methodMax =            3
+ seedStart   =            0
+ nRuns       =            1
+ independent =            0
+ overlap     =    3.00000000000000     
+ res_folder   = WEAK                                              
+ testTypeChar = W
+ iterBase     =           16          14          10
+ nIter        =           13          13          13
  ----------------------------------------
  nDim =            3
  runAll_path = 
- ../COMP/runAll_3D.sh                                                           
+ ../WEAK/runAll_3D.sh                                                           
                                                                                 
                                            
- dim_path = ../COMP/3D_C
+ Directory is being created: 
+ ./../WEAK/3D_W                                                                 
+                                                                                
+                                           
+ dim_path = ../WEAK/3D_W
  
  
- method =            2
- methodTxt = SHINO
+ method =            1
+ methodTxt = ISO  
  
- method_path = ../COMP/3D_C/SHINO_3D_C
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W                                                        
+                                                                                
+                                           
+ method_path = ../WEAK/3D_W/ISO_3D_W
  Iteration =            1
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
  ----------------------------------------------------
  Iteration            1
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                  20480
-     |timeTotal(s) =                  86400
+     |xNTotal      =                 531441
+     |kNTotal      =                    941
      |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =        20480
      |nProcsTotal    =            1
+     |memPerChunk    =         2667
      |nChunks        =            1
      |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i1_C_SHINO                                     
-     outName = 3D_i1_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-1_SHINO_3D_C
+     |wallTime       = 10:00:00
+     pbsName = run1.slurm                                        
+     jobName = 3D_1_W_ISO                                        
+     outName = out_3D_1_W_ISO.txt                                
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/1p_L-1_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/1p_L-1_ISO_3D_W                                        
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            2
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
  ----------------------------------------------------
  Iteration            2
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                  10240
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                1054781
+     |kNTotal      =                   1765
+     |nProcsTotal  =            2
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =        10240
-     |nProcsTotal    =            1
+     |nProcsTotal    =            2
+     |memPerChunk    =         5334
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i2_C_SHINO                                     
-     outName = 3D_i2_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-2_SHINO_3D_C
+     |nProcsPerChunk =            2
+     |wallTime       = 10:00:00
+     pbsName = run2.slurm                                        
+     jobName = 3D_2_W_ISO                                        
+     outName = out_3D_2_W_ISO.txt                                
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/2p_L-2_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/2p_L-2_ISO_3D_W                                        
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            3
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
  ----------------------------------------------------
  Iteration            3
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                   5120
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                2096762
+     |kNTotal      =                   3354
+     |nProcsTotal  =            4
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =         5120
-     |nProcsTotal    =            1
+     |nProcsTotal    =            4
+     |memPerChunk    =        10667
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i3_C_SHINO                                     
-     outName = 3D_i3_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-3_SHINO_3D_C
+     |nProcsPerChunk =            4
+     |wallTime       = 10:00:00
+     pbsName = run4.slurm                                        
+     jobName = 3D_4_W_ISO                                        
+     outName = out_3D_4_W_ISO.txt                                
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/4p_L-3_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/4p_L-3_ISO_3D_W                                        
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            4
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
  ----------------------------------------------------
  Iteration            4
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                   2560
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                4173281
+     |kNTotal      =                   6434
+     |nProcsTotal  =            8
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =         2560
-     |nProcsTotal    =            1
+     |nProcsTotal    =            8
+     |memPerChunk    =        21334
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i4_C_SHINO                                     
-     outName = 3D_i4_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-4_SHINO_3D_C
+     |nProcsPerChunk =            8
+     |wallTime       = 10:00:00
+     pbsName = run8.slurm                                        
+     jobName = 3D_8_W_ISO                                        
+     outName = out_3D_8_W_ISO.txt                                
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/8p_L-4_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/8p_L-4_ISO_3D_W                                        
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            5
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
  ----------------------------------------------------
  Iteration            5
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                   1280
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                8314518
+     |kNTotal      =                  12446
+     |nProcsTotal  =           16
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =         1280
-     |nProcsTotal    =            1
+     |nProcsTotal    =           16
+     |memPerChunk    =        42667
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i5_C_SHINO                                     
-     outName = 3D_i5_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-5_SHINO_3D_C
+     |nProcsPerChunk =           16
+     |wallTime       = 10:00:00
+     pbsName = run16.slurm                                       
+     jobName = 3D_16_W_ISO                                       
+     outName = out_3D_16_W_ISO.txt                               
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/16p_L-5_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/16p_L-5_ISO_3D_W                                       
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            6
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
  ----------------------------------------------------
  Iteration            6
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                    640
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =               16578286
+     |kNTotal      =                  24233
+     |nProcsTotal  =           32
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =          640
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i6_C_SHINO                                     
-     outName = 3D_i6_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-6_SHINO_3D_C
+     |nProcsTotal    =           32
+     |memPerChunk    =        64000
+     |nChunks        =            2
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run32.slurm                                       
+     jobName = 3D_32_W_ISO                                       
+     outName = out_3D_32_W_ISO.txt                               
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/32p_L-6_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/32p_L-6_ISO_3D_W                                       
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            7
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
  ----------------------------------------------------
  Iteration            7
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                    320
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =               33076161
+     |kNTotal      =                  47437
+     |nProcsTotal  =           64
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i7_C_SHINO                                     
-     outName = 3D_i7_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-7_SHINO_3D_C
+     |nProcsTotal    =           64
+     |memPerChunk    =        64000
+     |nChunks        =            3
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run64.slurm                                       
+     jobName = 3D_64_W_ISO                                       
+     outName = out_3D_64_W_ISO.txt                               
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/64p_L-7_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/64p_L-7_ISO_3D_W                                       
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            8
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
  ----------------------------------------------------
  Iteration            8
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                    160
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =               66024860
+     |kNTotal      =                  93263
+     |nProcsTotal  =          128
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i8_C_SHINO                                     
-     outName = 3D_i8_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-8_SHINO_3D_C
+     |nProcsTotal    =          128
+     |memPerChunk    =        64000
+     |nChunks        =            6
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run128.slurm                                      
+     jobName = 3D_128_W_ISO                                      
+     outName = out_3D_128_W_ISO.txt                              
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/128p_L-8_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/128p_L-8_ISO_3D_W                                      
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =            9
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
  ----------------------------------------------------
  Iteration            9
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     80
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =              131847620
+     |kNTotal      =                 183992
+     |nProcsTotal  =          256
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i9_C_SHINO                                     
-     outName = 3D_i9_C_SHINO.txt                                 
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-9_SHINO_3D_C
+     |nProcsTotal    =          256
+     |memPerChunk    =        64000
+     |nChunks        =           11
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run256.slurm                                      
+     jobName = 3D_256_W_ISO                                      
+     outName = out_3D_256_W_ISO.txt                              
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/256p_L-9_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/256p_L-9_ISO_3D_W                                      
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =           10
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
  ----------------------------------------------------
  Iteration           10
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     40
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =              263374721
+     |kNTotal      =                 363994
+     |nProcsTotal  =          512
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i10_C_SHINO                                    
-     outName = 3D_i10_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-10_SHINO_3D_C
+     |nProcsTotal    =          512
+     |memPerChunk    =        64000
+     |nChunks        =           22
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run512.slurm                                      
+     jobName = 3D_512_W_ISO                                      
+     outName = out_3D_512_W_ISO.txt                              
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/512p_L-10_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/512p_L-10_ISO_3D_W                                     
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =           11
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
  ----------------------------------------------------
  Iteration           11
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     20
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =              526241018
+     |kNTotal      =                 721696
+     |nProcsTotal  =         1024
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i11_C_SHINO                                    
-     outName = 3D_i11_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-11_SHINO_3D_C
+     |nProcsTotal    =         1024
+     |memPerChunk    =        64000
+     |nChunks        =           43
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run1024.slurm                                     
+     jobName = 3D_1024_W_ISO                                     
+     outName = out_3D_1024_W_ISO.txt                             
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/1024p_L-11_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/1024p_L-11_ISO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =           12
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    101.593667325965        101.593667325965     
+   101.593667325965     
  ----------------------------------------------------
  Iteration           12
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    101.593667325965        101.593667325965     
+   101.593667325965     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =             1051675430
+     |kNTotal      =                1433457
+     |nProcsTotal  =         2048
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i12_C_SHINO                                    
-     outName = 3D_i12_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-12_SHINO_3D_C
+     |nProcsTotal    =         2048
+     |memPerChunk    =        64000
+     |nChunks        =           86
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run2048.slurm                                     
+     jobName = 3D_2048_W_ISO                                     
+     outName = out_3D_2048_W_ISO.txt                             
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/2048p_L-12_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/2048p_L-12_ISO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
  Iteration =           13
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    128.000000000000        128.000000000000     
+   128.000000000000     
  ----------------------------------------------------
  Iteration           13
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    128.000000000000        128.000000000000     
+   128.000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =             2102071041
+     |kNTotal      =                2851206
+     |nProcsTotal  =         4096
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i13_C_SHINO                                    
-     outName = 3D_i13_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-13_SHINO_3D_C
+     |nProcsTotal    =         4096
+     |memPerChunk    =        64000
+     |nChunks        =          171
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run4096.slurm                                     
+     jobName = 3D_4096_W_ISO                                     
+     outName = out_3D_4096_W_ISO.txt                             
+     Iteration path = ../WEAK/3D_W/ISO_3D_W/4096p_L-13_ISO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/ISO_3D_W/4096p_L-13_ISO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
- Iteration =           14
+ 
+ 
+ method =            2
+ methodTxt = SHINO
+ 
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/3D_W/SHINO_3D_W
+ Iteration =            1
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
  ----------------------------------------------------
- Iteration           14
+ Iteration            1
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
+     |xNTotal      =                 531441
+     |kNTotal      =                    941
      |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
      |nProcsTotal    =            1
+     |memPerChunk    =         2667
      |nChunks        =            1
      |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i14_C_SHINO                                    
-     outName = 3D_i14_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-14_SHINO_3D_C
+     |wallTime       = 10:00:00
+     pbsName = run1.slurm                                        
+     jobName = 3D_1_W_SHINO                                      
+     outName = out_3D_1_W_SHINO.txt                              
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/1p_L-1_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/1p_L-1_SHINO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
- Iteration =           15
+ Iteration =            2
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
  ----------------------------------------------------
- Iteration           15
+ Iteration            2
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                1054781
+     |kNTotal      =                   1765
+     |nProcsTotal  =            2
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
+     |nProcsTotal    =            2
+     |memPerChunk    =         5334
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i15_C_SHINO                                    
-     outName = 3D_i15_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-15_SHINO_3D_C
+     |nProcsPerChunk =            2
+     |wallTime       = 10:00:00
+     pbsName = run2.slurm                                        
+     jobName = 3D_2_W_SHINO                                      
+     outName = out_3D_2_W_SHINO.txt                              
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/2p_L-2_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/2p_L-2_SHINO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
- Iteration =           16
+ Iteration =            3
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
  ----------------------------------------------------
- Iteration           16
+ Iteration            3
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                2096762
+     |kNTotal      =                   3354
+     |nProcsTotal  =            4
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
+     |nProcsTotal    =            4
+     |memPerChunk    =        10667
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i16_C_SHINO                                    
-     outName = 3D_i16_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-16_SHINO_3D_C
+     |nProcsPerChunk =            4
+     |wallTime       = 10:00:00
+     pbsName = run4.slurm                                        
+     jobName = 3D_4_W_SHINO                                      
+     outName = out_3D_4_W_SHINO.txt                              
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/4p_L-3_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/4p_L-3_SHINO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
- Iteration =           17
+ Iteration =            4
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
  ----------------------------------------------------
- Iteration           17
+ Iteration            4
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                4173281
+     |kNTotal      =                   6434
+     |nProcsTotal  =            8
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
+     |nProcsTotal    =            8
+     |memPerChunk    =        21334
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i17_C_SHINO                                    
-     outName = 3D_i17_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-17_SHINO_3D_C
+     |nProcsPerChunk =            8
+     |wallTime       = 10:00:00
+     pbsName = run8.slurm                                        
+     jobName = 3D_8_W_SHINO                                      
+     outName = out_3D_8_W_SHINO.txt                              
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/8p_L-4_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/8p_L-4_SHINO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
- Iteration =           18
+ Iteration =            5
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
  ----------------------------------------------------
- Iteration           18
+ Iteration            5
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =                8314518
+     |kNTotal      =                  12446
+     |nProcsTotal  =           16
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
+     |nProcsTotal    =           16
+     |memPerChunk    =        42667
      |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i18_C_SHINO                                    
-     outName = 3D_i18_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-18_SHINO_3D_C
+     |nProcsPerChunk =           16
+     |wallTime       = 10:00:00
+     pbsName = run16.slurm                                       
+     jobName = 3D_16_W_SHINO                                     
+     outName = out_3D_16_W_SHINO.txt                             
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/16p_L-5_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/16p_L-5_SHINO_3D_W                                   
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
- Iteration =           19
+ Iteration =            6
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
  ----------------------------------------------------
- Iteration           19
+ Iteration            6
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
-     |nProcsTotal  =            1
+     |xNTotal      =               16578286
+     |kNTotal      =                  24233
+     |nProcsTotal  =           32
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
-     |nProcsTotal    =            1
-     |nChunks        =            1
-     |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i19_C_SHINO                                    
-     outName = 3D_i19_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-19_SHINO_3D_C
+     |nProcsTotal    =           32
+     |memPerChunk    =        64000
+     |nChunks        =            2
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run32.slurm                                       
+     jobName = 3D_32_W_SHINO                                     
+     outName = out_3D_32_W_SHINO.txt                             
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/32p_L-6_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/32p_L-6_SHINO_3D_W                                   
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
      *generation
      *mesh
- Iteration =           20
+ Iteration =            7
  xMax BEFORE =    1.00000000000000        1.00000000000000     
    1.00000000000000     
- xMax AFTER =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+ xMax AFTER =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
  ----------------------------------------------------
- Iteration           20
+ Iteration            7
      Inputs 
-     |xMax         =    40.0000000000000        40.0000000000000     
-   40.0000000000000     
+     |xMax         =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
      |xMin         =   0.000000000000000E+000  0.000000000000000E+000
   0.000000000000000E+000
-     |xNTotal      =     64481201
-     |kNTotal      =        91125
-     |memTotal     =                     10
-     |timeTotal(s) =                  86400
+     |xNTotal      =               33076161
+     |kNTotal      =                  47437
+     |nProcsTotal  =           64
+     Requirements 
+     |nProcsTotal    =           64
+     |memPerChunk    =        64000
+     |nChunks        =            3
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run64.slurm                                       
+     jobName = 3D_64_W_SHINO                                     
+     outName = out_3D_64_W_SHINO.txt                             
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/64p_L-7_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/64p_L-7_SHINO_3D_W                                   
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            8
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+ ----------------------------------------------------
+ Iteration            8
+     Inputs 
+     |xMax         =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               66024860
+     |kNTotal      =                  93263
+     |nProcsTotal  =          128
+     Requirements 
+     |nProcsTotal    =          128
+     |memPerChunk    =        64000
+     |nChunks        =            6
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run128.slurm                                      
+     jobName = 3D_128_W_SHINO                                    
+     outName = out_3D_128_W_SHINO.txt                            
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/128p_L-8_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/128p_L-8_SHINO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            9
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+ ----------------------------------------------------
+ Iteration            9
+     Inputs 
+     |xMax         =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              131847620
+     |kNTotal      =                 183992
+     |nProcsTotal  =          256
+     Requirements 
+     |nProcsTotal    =          256
+     |memPerChunk    =        64000
+     |nChunks        =           11
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run256.slurm                                      
+     jobName = 3D_256_W_SHINO                                    
+     outName = out_3D_256_W_SHINO.txt                            
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/256p_L-9_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/256p_L-9_SHINO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           10
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+ ----------------------------------------------------
+ Iteration           10
+     Inputs 
+     |xMax         =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              263374721
+     |kNTotal      =                 363994
+     |nProcsTotal  =          512
+     Requirements 
+     |nProcsTotal    =          512
+     |memPerChunk    =        64000
+     |nChunks        =           22
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run512.slurm                                      
+     jobName = 3D_512_W_SHINO                                    
+     outName = out_3D_512_W_SHINO.txt                            
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/512p_L-10_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/512p_L-10_SHINO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           11
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+ ----------------------------------------------------
+ Iteration           11
+     Inputs 
+     |xMax         =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              526241018
+     |kNTotal      =                 721696
+     |nProcsTotal  =         1024
+     Requirements 
+     |nProcsTotal    =         1024
+     |memPerChunk    =        64000
+     |nChunks        =           43
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run1024.slurm                                     
+     jobName = 3D_1024_W_SHINO                                   
+     outName = out_3D_1024_W_SHINO.txt                           
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/1024p_L-11_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/1024p_L-11_SHINO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           12
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    101.593667325965        101.593667325965     
+   101.593667325965     
+ ----------------------------------------------------
+ Iteration           12
+     Inputs 
+     |xMax         =    101.593667325965        101.593667325965     
+   101.593667325965     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             1051675430
+     |kNTotal      =                1433457
+     |nProcsTotal  =         2048
+     Requirements 
+     |nProcsTotal    =         2048
+     |memPerChunk    =        64000
+     |nChunks        =           86
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run2048.slurm                                     
+     jobName = 3D_2048_W_SHINO                                   
+     outName = out_3D_2048_W_SHINO.txt                           
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/2048p_L-12_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/2048p_L-12_SHINO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           13
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    128.000000000000        128.000000000000     
+   128.000000000000     
+ ----------------------------------------------------
+ Iteration           13
+     Inputs 
+     |xMax         =    128.000000000000        128.000000000000     
+   128.000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             2102071041
+     |kNTotal      =                2851206
+     |nProcsTotal  =         4096
+     Requirements 
+     |nProcsTotal    =         4096
+     |memPerChunk    =        64000
+     |nChunks        =          171
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run4096.slurm                                     
+     jobName = 3D_4096_W_SHINO                                   
+     outName = out_3D_4096_W_SHINO.txt                           
+     Iteration path = ../WEAK/3D_W/SHINO_3D_W/4096p_L-13_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/SHINO_3D_W/4096p_L-13_SHINO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ 
+ 
+ method =            3
+ methodTxt = RANDO
+ 
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W                                                      
+                                                                                
+                                           
+ method_path = ../WEAK/3D_W/RANDO_3D_W
+ Iteration =            1
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+ ----------------------------------------------------
+ Iteration            1
+     Inputs 
+     |xMax         =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                 531441
+     |kNTotal      =                    941
      |nProcsTotal  =            1
      Requirements 
-     |timePerProc    =        86400
-     |memPerProc     =           10
      |nProcsTotal    =            1
+     |memPerChunk    =         2667
      |nChunks        =            1
      |nProcsPerChunk =            1
-     |wallTime       = 24:00:00
-     pbsName = run1.pbs                                          
-     jobName = 3D_i20_C_SHINO                                    
-     outName = 3D_i20_C_SHINO.txt                                
-     Iteration path = ../COMP/3D_C/SHINO_3D_C/1p_L-20_SHINO_3D_C
+     |wallTime       = 10:00:00
+     pbsName = run1.slurm                                        
+     jobName = 3D_1_W_RANDO                                      
+     outName = out_3D_1_W_RANDO.txt                              
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/1p_L-1_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/1p_L-1_RANDO_3D_W                                    
+                                                                                
+                                           
  -> Writing files
-     *PBS
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            2
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+ ----------------------------------------------------
+ Iteration            2
+     Inputs 
+     |xMax         =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                1054781
+     |kNTotal      =                   1765
+     |nProcsTotal  =            2
+     Requirements 
+     |nProcsTotal    =            2
+     |memPerChunk    =         5334
+     |nChunks        =            1
+     |nProcsPerChunk =            2
+     |wallTime       = 10:00:00
+     pbsName = run2.slurm                                        
+     jobName = 3D_2_W_RANDO                                      
+     outName = out_3D_2_W_RANDO.txt                              
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/2p_L-2_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/2p_L-2_RANDO_3D_W                                    
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            3
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+ ----------------------------------------------------
+ Iteration            3
+     Inputs 
+     |xMax         =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                2096762
+     |kNTotal      =                   3354
+     |nProcsTotal  =            4
+     Requirements 
+     |nProcsTotal    =            4
+     |memPerChunk    =        10667
+     |nChunks        =            1
+     |nProcsPerChunk =            4
+     |wallTime       = 10:00:00
+     pbsName = run4.slurm                                        
+     jobName = 3D_4_W_RANDO                                      
+     outName = out_3D_4_W_RANDO.txt                              
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/4p_L-3_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/4p_L-3_RANDO_3D_W                                    
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            4
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+ ----------------------------------------------------
+ Iteration            4
+     Inputs 
+     |xMax         =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                4173281
+     |kNTotal      =                   6434
+     |nProcsTotal  =            8
+     Requirements 
+     |nProcsTotal    =            8
+     |memPerChunk    =        21334
+     |nChunks        =            1
+     |nProcsPerChunk =            8
+     |wallTime       = 10:00:00
+     pbsName = run8.slurm                                        
+     jobName = 3D_8_W_RANDO                                      
+     outName = out_3D_8_W_RANDO.txt                              
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/8p_L-4_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/8p_L-4_RANDO_3D_W                                    
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            5
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+ ----------------------------------------------------
+ Iteration            5
+     Inputs 
+     |xMax         =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                8314518
+     |kNTotal      =                  12446
+     |nProcsTotal  =           16
+     Requirements 
+     |nProcsTotal    =           16
+     |memPerChunk    =        42667
+     |nChunks        =            1
+     |nProcsPerChunk =           16
+     |wallTime       = 10:00:00
+     pbsName = run16.slurm                                       
+     jobName = 3D_16_W_RANDO                                     
+     outName = out_3D_16_W_RANDO.txt                             
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/16p_L-5_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/16p_L-5_RANDO_3D_W                                   
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            6
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+ ----------------------------------------------------
+ Iteration            6
+     Inputs 
+     |xMax         =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               16578286
+     |kNTotal      =                  24233
+     |nProcsTotal  =           32
+     Requirements 
+     |nProcsTotal    =           32
+     |memPerChunk    =        64000
+     |nChunks        =            2
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run32.slurm                                       
+     jobName = 3D_32_W_RANDO                                     
+     outName = out_3D_32_W_RANDO.txt                             
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/32p_L-6_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/32p_L-6_RANDO_3D_W                                   
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            7
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+ ----------------------------------------------------
+ Iteration            7
+     Inputs 
+     |xMax         =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               33076161
+     |kNTotal      =                  47437
+     |nProcsTotal  =           64
+     Requirements 
+     |nProcsTotal    =           64
+     |memPerChunk    =        64000
+     |nChunks        =            3
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run64.slurm                                       
+     jobName = 3D_64_W_RANDO                                     
+     outName = out_3D_64_W_RANDO.txt                             
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/64p_L-7_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/64p_L-7_RANDO_3D_W                                   
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            8
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+ ----------------------------------------------------
+ Iteration            8
+     Inputs 
+     |xMax         =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               66024860
+     |kNTotal      =                  93263
+     |nProcsTotal  =          128
+     Requirements 
+     |nProcsTotal    =          128
+     |memPerChunk    =        64000
+     |nChunks        =            6
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run128.slurm                                      
+     jobName = 3D_128_W_RANDO                                    
+     outName = out_3D_128_W_RANDO.txt                            
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/128p_L-8_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/128p_L-8_RANDO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            9
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+ ----------------------------------------------------
+ Iteration            9
+     Inputs 
+     |xMax         =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              131847620
+     |kNTotal      =                 183992
+     |nProcsTotal  =          256
+     Requirements 
+     |nProcsTotal    =          256
+     |memPerChunk    =        64000
+     |nChunks        =           11
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run256.slurm                                      
+     jobName = 3D_256_W_RANDO                                    
+     outName = out_3D_256_W_RANDO.txt                            
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/256p_L-9_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/256p_L-9_RANDO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           10
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+ ----------------------------------------------------
+ Iteration           10
+     Inputs 
+     |xMax         =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              263374721
+     |kNTotal      =                 363994
+     |nProcsTotal  =          512
+     Requirements 
+     |nProcsTotal    =          512
+     |memPerChunk    =        64000
+     |nChunks        =           22
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run512.slurm                                      
+     jobName = 3D_512_W_RANDO                                    
+     outName = out_3D_512_W_RANDO.txt                            
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/512p_L-10_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/512p_L-10_RANDO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           11
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+ ----------------------------------------------------
+ Iteration           11
+     Inputs 
+     |xMax         =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              526241018
+     |kNTotal      =                 721696
+     |nProcsTotal  =         1024
+     Requirements 
+     |nProcsTotal    =         1024
+     |memPerChunk    =        64000
+     |nChunks        =           43
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run1024.slurm                                     
+     jobName = 3D_1024_W_RANDO                                   
+     outName = out_3D_1024_W_RANDO.txt                           
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/1024p_L-11_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/1024p_L-11_RANDO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           12
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    101.593667325965        101.593667325965     
+   101.593667325965     
+ ----------------------------------------------------
+ Iteration           12
+     Inputs 
+     |xMax         =    101.593667325965        101.593667325965     
+   101.593667325965     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             1051675430
+     |kNTotal      =                1433457
+     |nProcsTotal  =         2048
+     Requirements 
+     |nProcsTotal    =         2048
+     |memPerChunk    =        64000
+     |nChunks        =           86
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run2048.slurm                                     
+     jobName = 3D_2048_W_RANDO                                   
+     outName = out_3D_2048_W_RANDO.txt                           
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/2048p_L-12_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/2048p_L-12_RANDO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           13
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    128.000000000000        128.000000000000     
+   128.000000000000     
+ ----------------------------------------------------
+ Iteration           13
+     Inputs 
+     |xMax         =    128.000000000000        128.000000000000     
+   128.000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             2102071041
+     |kNTotal      =                2851206
+     |nProcsTotal  =         4096
+     Requirements 
+     |nProcsTotal    =         4096
+     |memPerChunk    =        64000
+     |nChunks        =          171
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run4096.slurm                                     
+     jobName = 3D_4096_W_RANDO                                   
+     outName = out_3D_4096_W_RANDO.txt                           
+     Iteration path = ../WEAK/3D_W/RANDO_3D_W/4096p_L-13_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK/3D_W/RANDO_3D_W/4096p_L-13_RANDO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ -> runAll done
+ Directory is being created: 
+ ./../WEAK-i                                                                    
+                                                                                
+                                           
+ 
+ weakScal    =  T
+ singleProc  =  F
+ execPath    = 
+ /home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe                    
+                                                                                
+                                           
+ dimMin      =            3  dimMax =            3
+ methodMin   =            1  methodMax =            3
+ seedStart   =            0
+ nRuns       =            1
+ independent =            1
+ overlap     =    3.00000000000000     
+ res_folder   = WEAK-i                                            
+ testTypeChar = W
+ iterBase     =           16          14          10
+ nIter        =           13          13          13
+ ----------------------------------------
+ nDim =            3
+ runAll_path = 
+ ../WEAK-i/runAll_3D.sh                                                         
+                                                                                
+                                           
+ Directory is being created: 
+ ./../WEAK-i/3D_W                                                               
+                                                                                
+                                           
+ dim_path = ../WEAK-i/3D_W
+ 
+ 
+ method =            1
+ methodTxt = ISO-i
+ 
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W                                                    
+                                                                                
+                                           
+ method_path = ../WEAK-i/3D_W/ISO-i_3D_W
+ Iteration =            1
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+ ----------------------------------------------------
+ Iteration            1
+     Inputs 
+     |xMax         =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                 531441
+     |kNTotal      =                    941
+     |nProcsTotal  =            1
+     Requirements 
+     |nProcsTotal    =            1
+     |memPerChunk    =         2667
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 10:00:00
+     pbsName = run1.slurm                                        
+     jobName = 3D_1_W_ISO-i                                      
+     outName = out_3D_1_W_ISO-i.txt                              
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/1p_L-1_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/1p_L-1_ISO-i_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            2
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+ ----------------------------------------------------
+ Iteration            2
+     Inputs 
+     |xMax         =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                1054781
+     |kNTotal      =                   1765
+     |nProcsTotal  =            2
+     Requirements 
+     |nProcsTotal    =            2
+     |memPerChunk    =         5334
+     |nChunks        =            1
+     |nProcsPerChunk =            2
+     |wallTime       = 10:00:00
+     pbsName = run2.slurm                                        
+     jobName = 3D_2_W_ISO-i                                      
+     outName = out_3D_2_W_ISO-i.txt                              
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/2p_L-2_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/2p_L-2_ISO-i_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            3
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+ ----------------------------------------------------
+ Iteration            3
+     Inputs 
+     |xMax         =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                2096762
+     |kNTotal      =                   3354
+     |nProcsTotal  =            4
+     Requirements 
+     |nProcsTotal    =            4
+     |memPerChunk    =        10667
+     |nChunks        =            1
+     |nProcsPerChunk =            4
+     |wallTime       = 10:00:00
+     pbsName = run4.slurm                                        
+     jobName = 3D_4_W_ISO-i                                      
+     outName = out_3D_4_W_ISO-i.txt                              
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/4p_L-3_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/4p_L-3_ISO-i_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            4
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+ ----------------------------------------------------
+ Iteration            4
+     Inputs 
+     |xMax         =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                4173281
+     |kNTotal      =                   6434
+     |nProcsTotal  =            8
+     Requirements 
+     |nProcsTotal    =            8
+     |memPerChunk    =        21334
+     |nChunks        =            1
+     |nProcsPerChunk =            8
+     |wallTime       = 10:00:00
+     pbsName = run8.slurm                                        
+     jobName = 3D_8_W_ISO-i                                      
+     outName = out_3D_8_W_ISO-i.txt                              
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/8p_L-4_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/8p_L-4_ISO-i_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            5
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+ ----------------------------------------------------
+ Iteration            5
+     Inputs 
+     |xMax         =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                8314518
+     |kNTotal      =                  12446
+     |nProcsTotal  =           16
+     Requirements 
+     |nProcsTotal    =           16
+     |memPerChunk    =        42667
+     |nChunks        =            1
+     |nProcsPerChunk =           16
+     |wallTime       = 10:00:00
+     pbsName = run16.slurm                                       
+     jobName = 3D_16_W_ISO-i                                     
+     outName = out_3D_16_W_ISO-i.txt                             
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/16p_L-5_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/16p_L-5_ISO-i_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            6
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+ ----------------------------------------------------
+ Iteration            6
+     Inputs 
+     |xMax         =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               16578286
+     |kNTotal      =                  24233
+     |nProcsTotal  =           32
+     Requirements 
+     |nProcsTotal    =           32
+     |memPerChunk    =        64000
+     |nChunks        =            2
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run32.slurm                                       
+     jobName = 3D_32_W_ISO-i                                     
+     outName = out_3D_32_W_ISO-i.txt                             
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/32p_L-6_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/32p_L-6_ISO-i_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            7
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+ ----------------------------------------------------
+ Iteration            7
+     Inputs 
+     |xMax         =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               33076161
+     |kNTotal      =                  47437
+     |nProcsTotal  =           64
+     Requirements 
+     |nProcsTotal    =           64
+     |memPerChunk    =        64000
+     |nChunks        =            3
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run64.slurm                                       
+     jobName = 3D_64_W_ISO-i                                     
+     outName = out_3D_64_W_ISO-i.txt                             
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/64p_L-7_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/64p_L-7_ISO-i_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            8
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+ ----------------------------------------------------
+ Iteration            8
+     Inputs 
+     |xMax         =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               66024860
+     |kNTotal      =                  93263
+     |nProcsTotal  =          128
+     Requirements 
+     |nProcsTotal    =          128
+     |memPerChunk    =        64000
+     |nChunks        =            6
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run128.slurm                                      
+     jobName = 3D_128_W_ISO-i                                    
+     outName = out_3D_128_W_ISO-i.txt                            
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/128p_L-8_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/128p_L-8_ISO-i_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            9
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+ ----------------------------------------------------
+ Iteration            9
+     Inputs 
+     |xMax         =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              131847620
+     |kNTotal      =                 183992
+     |nProcsTotal  =          256
+     Requirements 
+     |nProcsTotal    =          256
+     |memPerChunk    =        64000
+     |nChunks        =           11
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run256.slurm                                      
+     jobName = 3D_256_W_ISO-i                                    
+     outName = out_3D_256_W_ISO-i.txt                            
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/256p_L-9_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/256p_L-9_ISO-i_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           10
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+ ----------------------------------------------------
+ Iteration           10
+     Inputs 
+     |xMax         =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              263374721
+     |kNTotal      =                 363994
+     |nProcsTotal  =          512
+     Requirements 
+     |nProcsTotal    =          512
+     |memPerChunk    =        64000
+     |nChunks        =           22
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run512.slurm                                      
+     jobName = 3D_512_W_ISO-i                                    
+     outName = out_3D_512_W_ISO-i.txt                            
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/512p_L-10_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/512p_L-10_ISO-i_3D_W                               
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           11
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+ ----------------------------------------------------
+ Iteration           11
+     Inputs 
+     |xMax         =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              526241018
+     |kNTotal      =                 721696
+     |nProcsTotal  =         1024
+     Requirements 
+     |nProcsTotal    =         1024
+     |memPerChunk    =        64000
+     |nChunks        =           43
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run1024.slurm                                     
+     jobName = 3D_1024_W_ISO-i                                   
+     outName = out_3D_1024_W_ISO-i.txt                           
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/1024p_L-11_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/1024p_L-11_ISO-i_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           12
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    101.593667325965        101.593667325965     
+   101.593667325965     
+ ----------------------------------------------------
+ Iteration           12
+     Inputs 
+     |xMax         =    101.593667325965        101.593667325965     
+   101.593667325965     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             1051675430
+     |kNTotal      =                1433457
+     |nProcsTotal  =         2048
+     Requirements 
+     |nProcsTotal    =         2048
+     |memPerChunk    =        64000
+     |nChunks        =           86
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run2048.slurm                                     
+     jobName = 3D_2048_W_ISO-i                                   
+     outName = out_3D_2048_W_ISO-i.txt                           
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/2048p_L-12_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/2048p_L-12_ISO-i_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           13
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    128.000000000000        128.000000000000     
+   128.000000000000     
+ ----------------------------------------------------
+ Iteration           13
+     Inputs 
+     |xMax         =    128.000000000000        128.000000000000     
+   128.000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             2102071041
+     |kNTotal      =                2851206
+     |nProcsTotal  =         4096
+     Requirements 
+     |nProcsTotal    =         4096
+     |memPerChunk    =        64000
+     |nChunks        =          171
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run4096.slurm                                     
+     jobName = 3D_4096_W_ISO-i                                   
+     outName = out_3D_4096_W_ISO-i.txt                           
+     Iteration path = ../WEAK-i/3D_W/ISO-i_3D_W/4096p_L-13_ISO-i_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/ISO-i_3D_W/4096p_L-13_ISO-i_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ 
+ 
+ method =            2
+ methodTxt = SHINO
+ 
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W                                                    
+                                                                                
+                                           
+ method_path = ../WEAK-i/3D_W/SHINO_3D_W
+ Iteration =            1
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+ ----------------------------------------------------
+ Iteration            1
+     Inputs 
+     |xMax         =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                 531441
+     |kNTotal      =                    941
+     |nProcsTotal  =            1
+     Requirements 
+     |nProcsTotal    =            1
+     |memPerChunk    =         2667
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 10:00:00
+     pbsName = run1.slurm                                        
+     jobName = 3D_1_W_SHINO                                      
+     outName = out_3D_1_W_SHINO.txt                              
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/1p_L-1_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/1p_L-1_SHINO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            2
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+ ----------------------------------------------------
+ Iteration            2
+     Inputs 
+     |xMax         =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                1054781
+     |kNTotal      =                   1765
+     |nProcsTotal  =            2
+     Requirements 
+     |nProcsTotal    =            2
+     |memPerChunk    =         5334
+     |nChunks        =            1
+     |nProcsPerChunk =            2
+     |wallTime       = 10:00:00
+     pbsName = run2.slurm                                        
+     jobName = 3D_2_W_SHINO                                      
+     outName = out_3D_2_W_SHINO.txt                              
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/2p_L-2_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/2p_L-2_SHINO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            3
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+ ----------------------------------------------------
+ Iteration            3
+     Inputs 
+     |xMax         =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                2096762
+     |kNTotal      =                   3354
+     |nProcsTotal  =            4
+     Requirements 
+     |nProcsTotal    =            4
+     |memPerChunk    =        10667
+     |nChunks        =            1
+     |nProcsPerChunk =            4
+     |wallTime       = 10:00:00
+     pbsName = run4.slurm                                        
+     jobName = 3D_4_W_SHINO                                      
+     outName = out_3D_4_W_SHINO.txt                              
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/4p_L-3_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/4p_L-3_SHINO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            4
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+ ----------------------------------------------------
+ Iteration            4
+     Inputs 
+     |xMax         =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                4173281
+     |kNTotal      =                   6434
+     |nProcsTotal  =            8
+     Requirements 
+     |nProcsTotal    =            8
+     |memPerChunk    =        21334
+     |nChunks        =            1
+     |nProcsPerChunk =            8
+     |wallTime       = 10:00:00
+     pbsName = run8.slurm                                        
+     jobName = 3D_8_W_SHINO                                      
+     outName = out_3D_8_W_SHINO.txt                              
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/8p_L-4_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/8p_L-4_SHINO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            5
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+ ----------------------------------------------------
+ Iteration            5
+     Inputs 
+     |xMax         =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                8314518
+     |kNTotal      =                  12446
+     |nProcsTotal  =           16
+     Requirements 
+     |nProcsTotal    =           16
+     |memPerChunk    =        42667
+     |nChunks        =            1
+     |nProcsPerChunk =           16
+     |wallTime       = 10:00:00
+     pbsName = run16.slurm                                       
+     jobName = 3D_16_W_SHINO                                     
+     outName = out_3D_16_W_SHINO.txt                             
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/16p_L-5_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/16p_L-5_SHINO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            6
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+ ----------------------------------------------------
+ Iteration            6
+     Inputs 
+     |xMax         =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               16578286
+     |kNTotal      =                  24233
+     |nProcsTotal  =           32
+     Requirements 
+     |nProcsTotal    =           32
+     |memPerChunk    =        64000
+     |nChunks        =            2
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run32.slurm                                       
+     jobName = 3D_32_W_SHINO                                     
+     outName = out_3D_32_W_SHINO.txt                             
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/32p_L-6_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/32p_L-6_SHINO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            7
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+ ----------------------------------------------------
+ Iteration            7
+     Inputs 
+     |xMax         =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               33076161
+     |kNTotal      =                  47437
+     |nProcsTotal  =           64
+     Requirements 
+     |nProcsTotal    =           64
+     |memPerChunk    =        64000
+     |nChunks        =            3
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run64.slurm                                       
+     jobName = 3D_64_W_SHINO                                     
+     outName = out_3D_64_W_SHINO.txt                             
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/64p_L-7_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/64p_L-7_SHINO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            8
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+ ----------------------------------------------------
+ Iteration            8
+     Inputs 
+     |xMax         =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               66024860
+     |kNTotal      =                  93263
+     |nProcsTotal  =          128
+     Requirements 
+     |nProcsTotal    =          128
+     |memPerChunk    =        64000
+     |nChunks        =            6
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run128.slurm                                      
+     jobName = 3D_128_W_SHINO                                    
+     outName = out_3D_128_W_SHINO.txt                            
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/128p_L-8_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/128p_L-8_SHINO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            9
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+ ----------------------------------------------------
+ Iteration            9
+     Inputs 
+     |xMax         =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              131847620
+     |kNTotal      =                 183992
+     |nProcsTotal  =          256
+     Requirements 
+     |nProcsTotal    =          256
+     |memPerChunk    =        64000
+     |nChunks        =           11
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run256.slurm                                      
+     jobName = 3D_256_W_SHINO                                    
+     outName = out_3D_256_W_SHINO.txt                            
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/256p_L-9_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/256p_L-9_SHINO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           10
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+ ----------------------------------------------------
+ Iteration           10
+     Inputs 
+     |xMax         =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              263374721
+     |kNTotal      =                 363994
+     |nProcsTotal  =          512
+     Requirements 
+     |nProcsTotal    =          512
+     |memPerChunk    =        64000
+     |nChunks        =           22
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run512.slurm                                      
+     jobName = 3D_512_W_SHINO                                    
+     outName = out_3D_512_W_SHINO.txt                            
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/512p_L-10_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/512p_L-10_SHINO_3D_W                               
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           11
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+ ----------------------------------------------------
+ Iteration           11
+     Inputs 
+     |xMax         =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              526241018
+     |kNTotal      =                 721696
+     |nProcsTotal  =         1024
+     Requirements 
+     |nProcsTotal    =         1024
+     |memPerChunk    =        64000
+     |nChunks        =           43
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run1024.slurm                                     
+     jobName = 3D_1024_W_SHINO                                   
+     outName = out_3D_1024_W_SHINO.txt                           
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/1024p_L-11_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/1024p_L-11_SHINO_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           12
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    101.593667325965        101.593667325965     
+   101.593667325965     
+ ----------------------------------------------------
+ Iteration           12
+     Inputs 
+     |xMax         =    101.593667325965        101.593667325965     
+   101.593667325965     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             1051675430
+     |kNTotal      =                1433457
+     |nProcsTotal  =         2048
+     Requirements 
+     |nProcsTotal    =         2048
+     |memPerChunk    =        64000
+     |nChunks        =           86
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run2048.slurm                                     
+     jobName = 3D_2048_W_SHINO                                   
+     outName = out_3D_2048_W_SHINO.txt                           
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/2048p_L-12_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/2048p_L-12_SHINO_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           13
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    128.000000000000        128.000000000000     
+   128.000000000000     
+ ----------------------------------------------------
+ Iteration           13
+     Inputs 
+     |xMax         =    128.000000000000        128.000000000000     
+   128.000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             2102071041
+     |kNTotal      =                2851206
+     |nProcsTotal  =         4096
+     Requirements 
+     |nProcsTotal    =         4096
+     |memPerChunk    =        64000
+     |nChunks        =          171
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run4096.slurm                                     
+     jobName = 3D_4096_W_SHINO                                   
+     outName = out_3D_4096_W_SHINO.txt                           
+     Iteration path = ../WEAK-i/3D_W/SHINO_3D_W/4096p_L-13_SHINO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/SHINO_3D_W/4096p_L-13_SHINO_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ 
+ 
+ method =            3
+ methodTxt = RANDO
+ 
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W                                                    
+                                                                                
+                                           
+ method_path = ../WEAK-i/3D_W/RANDO_3D_W
+ Iteration =            1
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+ ----------------------------------------------------
+ Iteration            1
+     Inputs 
+     |xMax         =    8.00000000000000        8.00000000000000     
+   8.00000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                 531441
+     |kNTotal      =                    941
+     |nProcsTotal  =            1
+     Requirements 
+     |nProcsTotal    =            1
+     |memPerChunk    =         2667
+     |nChunks        =            1
+     |nProcsPerChunk =            1
+     |wallTime       = 10:00:00
+     pbsName = run1.slurm                                        
+     jobName = 3D_1_W_RANDO                                      
+     outName = out_3D_1_W_RANDO.txt                              
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/1p_L-1_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/1p_L-1_RANDO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            2
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+ ----------------------------------------------------
+ Iteration            2
+     Inputs 
+     |xMax         =    10.0793683991590        10.0793683991590     
+   10.0793683991590     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                1054781
+     |kNTotal      =                   1765
+     |nProcsTotal  =            2
+     Requirements 
+     |nProcsTotal    =            2
+     |memPerChunk    =         5334
+     |nChunks        =            1
+     |nProcsPerChunk =            2
+     |wallTime       = 10:00:00
+     pbsName = run2.slurm                                        
+     jobName = 3D_2_W_RANDO                                      
+     outName = out_3D_2_W_RANDO.txt                              
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/2p_L-2_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/2p_L-2_RANDO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            3
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+ ----------------------------------------------------
+ Iteration            3
+     Inputs 
+     |xMax         =    12.6992084157456        12.6992084157456     
+   12.6992084157456     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                2096762
+     |kNTotal      =                   3354
+     |nProcsTotal  =            4
+     Requirements 
+     |nProcsTotal    =            4
+     |memPerChunk    =        10667
+     |nChunks        =            1
+     |nProcsPerChunk =            4
+     |wallTime       = 10:00:00
+     pbsName = run4.slurm                                        
+     jobName = 3D_4_W_RANDO                                      
+     outName = out_3D_4_W_RANDO.txt                              
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/4p_L-3_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/4p_L-3_RANDO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            4
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+ ----------------------------------------------------
+ Iteration            4
+     Inputs 
+     |xMax         =    16.0000000000000        16.0000000000000     
+   16.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                4173281
+     |kNTotal      =                   6434
+     |nProcsTotal  =            8
+     Requirements 
+     |nProcsTotal    =            8
+     |memPerChunk    =        21334
+     |nChunks        =            1
+     |nProcsPerChunk =            8
+     |wallTime       = 10:00:00
+     pbsName = run8.slurm                                        
+     jobName = 3D_8_W_RANDO                                      
+     outName = out_3D_8_W_RANDO.txt                              
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/8p_L-4_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/8p_L-4_RANDO_3D_W                                  
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            5
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+ ----------------------------------------------------
+ Iteration            5
+     Inputs 
+     |xMax         =    20.1587367983180        20.1587367983180     
+   20.1587367983180     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =                8314518
+     |kNTotal      =                  12446
+     |nProcsTotal  =           16
+     Requirements 
+     |nProcsTotal    =           16
+     |memPerChunk    =        42667
+     |nChunks        =            1
+     |nProcsPerChunk =           16
+     |wallTime       = 10:00:00
+     pbsName = run16.slurm                                       
+     jobName = 3D_16_W_RANDO                                     
+     outName = out_3D_16_W_RANDO.txt                             
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/16p_L-5_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/16p_L-5_RANDO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            6
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+ ----------------------------------------------------
+ Iteration            6
+     Inputs 
+     |xMax         =    25.3984168314912        25.3984168314912     
+   25.3984168314912     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               16578286
+     |kNTotal      =                  24233
+     |nProcsTotal  =           32
+     Requirements 
+     |nProcsTotal    =           32
+     |memPerChunk    =        64000
+     |nChunks        =            2
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run32.slurm                                       
+     jobName = 3D_32_W_RANDO                                     
+     outName = out_3D_32_W_RANDO.txt                             
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/32p_L-6_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/32p_L-6_RANDO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            7
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+ ----------------------------------------------------
+ Iteration            7
+     Inputs 
+     |xMax         =    32.0000000000000        32.0000000000000     
+   32.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               33076161
+     |kNTotal      =                  47437
+     |nProcsTotal  =           64
+     Requirements 
+     |nProcsTotal    =           64
+     |memPerChunk    =        64000
+     |nChunks        =            3
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run64.slurm                                       
+     jobName = 3D_64_W_RANDO                                     
+     outName = out_3D_64_W_RANDO.txt                             
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/64p_L-7_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/64p_L-7_RANDO_3D_W                                 
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            8
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+ ----------------------------------------------------
+ Iteration            8
+     Inputs 
+     |xMax         =    40.3174735966359        40.3174735966359     
+   40.3174735966359     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =               66024860
+     |kNTotal      =                  93263
+     |nProcsTotal  =          128
+     Requirements 
+     |nProcsTotal    =          128
+     |memPerChunk    =        64000
+     |nChunks        =            6
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run128.slurm                                      
+     jobName = 3D_128_W_RANDO                                    
+     outName = out_3D_128_W_RANDO.txt                            
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/128p_L-8_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/128p_L-8_RANDO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =            9
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+ ----------------------------------------------------
+ Iteration            9
+     Inputs 
+     |xMax         =    50.7968336629824        50.7968336629824     
+   50.7968336629824     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              131847620
+     |kNTotal      =                 183992
+     |nProcsTotal  =          256
+     Requirements 
+     |nProcsTotal    =          256
+     |memPerChunk    =        64000
+     |nChunks        =           11
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run256.slurm                                      
+     jobName = 3D_256_W_RANDO                                    
+     outName = out_3D_256_W_RANDO.txt                            
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/256p_L-9_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/256p_L-9_RANDO_3D_W                                
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           10
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+ ----------------------------------------------------
+ Iteration           10
+     Inputs 
+     |xMax         =    64.0000000000000        64.0000000000000     
+   64.0000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              263374721
+     |kNTotal      =                 363994
+     |nProcsTotal  =          512
+     Requirements 
+     |nProcsTotal    =          512
+     |memPerChunk    =        64000
+     |nChunks        =           22
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run512.slurm                                      
+     jobName = 3D_512_W_RANDO                                    
+     outName = out_3D_512_W_RANDO.txt                            
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/512p_L-10_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/512p_L-10_RANDO_3D_W                               
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           11
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+ ----------------------------------------------------
+ Iteration           11
+     Inputs 
+     |xMax         =    80.6349471932719        80.6349471932719     
+   80.6349471932719     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =              526241018
+     |kNTotal      =                 721696
+     |nProcsTotal  =         1024
+     Requirements 
+     |nProcsTotal    =         1024
+     |memPerChunk    =        64000
+     |nChunks        =           43
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run1024.slurm                                     
+     jobName = 3D_1024_W_RANDO                                   
+     outName = out_3D_1024_W_RANDO.txt                           
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/1024p_L-11_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/1024p_L-11_RANDO_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           12
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    101.593667325965        101.593667325965     
+   101.593667325965     
+ ----------------------------------------------------
+ Iteration           12
+     Inputs 
+     |xMax         =    101.593667325965        101.593667325965     
+   101.593667325965     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             1051675430
+     |kNTotal      =                1433457
+     |nProcsTotal  =         2048
+     Requirements 
+     |nProcsTotal    =         2048
+     |memPerChunk    =        64000
+     |nChunks        =           86
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run2048.slurm                                     
+     jobName = 3D_2048_W_RANDO                                   
+     outName = out_3D_2048_W_RANDO.txt                           
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/2048p_L-12_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/2048p_L-12_RANDO_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
+     *generation
+     *mesh
+ Iteration =           13
+ xMax BEFORE =    1.00000000000000        1.00000000000000     
+   1.00000000000000     
+ xMax AFTER =    128.000000000000        128.000000000000     
+   128.000000000000     
+ ----------------------------------------------------
+ Iteration           13
+     Inputs 
+     |xMax         =    128.000000000000        128.000000000000     
+   128.000000000000     
+     |xMin         =   0.000000000000000E+000  0.000000000000000E+000
+  0.000000000000000E+000
+     |xNTotal      =             2102071041
+     |kNTotal      =                2851206
+     |nProcsTotal  =         4096
+     Requirements 
+     |nProcsTotal    =         4096
+     |memPerChunk    =        64000
+     |nChunks        =          171
+     |nProcsPerChunk =           24
+     |wallTime       = 10:00:00
+     pbsName = run4096.slurm                                     
+     jobName = 3D_4096_W_RANDO                                   
+     outName = out_3D_4096_W_RANDO.txt                           
+     Iteration path = ../WEAK-i/3D_W/RANDO_3D_W/4096p_L-13_RANDO_3D_W
+ Directory is being created: 
+ ./../WEAK-i/3D_W/RANDO_3D_W/4096p_L-13_RANDO_3D_W                              
+                                                                                
+                                           
+ -> Writing files
+     *SLURM
      *generation
      *mesh
  -> runAll done

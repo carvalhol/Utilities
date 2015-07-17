@@ -8,31 +8,27 @@ program main_AutoTest
     !USER
 
     logical :: weakScal = .true.
-    logical :: singleProc = .true.
-    character(len=200) :: execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe "
+    logical :: singleProc = .false.
+    logical :: ISO_Test = .false.
+    integer :: cluster = 2 !1=Igloo, 2=Oxigen
+    integer :: independent = 1 !0 = false, 1 = true (other numbers will be considered as false)
     integer, parameter :: dimMin = 3, dimMax = 3
-    integer, parameter :: methodMin = 2, methodMax = 2
-    integer :: seedStart = 0
-    logical :: ignoreQ = .false.
+    integer :: methodMin = 1, methodMax = 3
     integer :: nRuns = 1 !How many times each iteration
-    integer :: independent = 0 !0 = false, 1 = true (other numbers will be considered as false)
+    integer :: seedStart = 0
+    !logical :: ignoreQ = .false.
+
     double precision :: overlap = 3.0
+    character(len=200) :: execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe "
 
     !COMPUTATION
-    integer :: memPerNTerm = 6 !mb
-    integer :: NTerm = 1000000000 !100000 !Terms
-    double precision :: timePerTerm = 1.0D-7 !s
+    integer :: memPerNTerm = 1000 !mb
+    integer :: NTerm = 1000000000 !Terms
     integer :: memBase = 2 !mb
-    double precision, dimension(3), parameter :: xMaxBase = [1.0D0, 1.0D0, 1.0D0]!xMax in each dimension
+    double precision :: timePerTerm = 1.0D-7 !s
+    double precision, dimension(3), parameter :: xMaxBase = [1.0D0, 1.0D0, 1.0D0]
     integer         , dimension(3) :: nIter !number of iterations in each dimension
     integer         , dimension(3) :: iterBase !initial iteration (multiply xMaxBase)
-    !double precision :: xMaxStrong3D = 8.0D0
-    double precision :: corrLBase = 1.0D0
-    double precision :: xStepBase = 0.1D0
-    integer :: memMax = 140000
-    integer :: procTotMax = 300
-    integer(kind=8) :: memTotal !mb
-    integer(kind=8) :: timeTotal !s
     
 
     !GENERAL NAMES AND PATHS
@@ -52,14 +48,6 @@ program main_AutoTest
     character(len=50) :: genName = "gen_input"
     character(len=50) :: meshName = "mesh_input"
 
-    !PBS
-    character(len=50) :: pbsName
-    character(len=50) :: jobName
-    character(len=50) :: outName
-    integer :: nProcsTotal
-    character(len=8) :: wallTime
-    character(len=5) :: queue, errorQ = "No_q"
-
     !GENERATION
     integer :: Nmc = 1
     character (len=15) :: corrMod = "gaussian"
@@ -68,6 +56,8 @@ program main_AutoTest
     double precision, dimension(:), allocatable :: corrL;
     integer :: nDim
     integer :: method !1 for Isotropic, 2 for Shinozuka, 3 for Randomization
+    double precision :: corrLBase = 1.0D0
+    double precision :: xStepBase = 0.1D0
 
     !MESH
     character (len=15) :: meshType = "unstructured"
@@ -75,20 +65,33 @@ program main_AutoTest
     double precision, dimension(:), allocatable :: xMax, xMin, xStep;
 
     !CONSTANTS
-    integer, parameter :: ISOTROPIC = 1, &
-        SHINOZUKA = 2, &
-        RANDOMIZATION = 3
-    integer, parameter :: nMaxProcPerChunk = 12
+    integer, parameter :: ISOTROPIC = 1, SHINOZUKA = 2, RANDOMIZATION = 3
+
+    !QUEUE MANAGEMENT
+    integer :: proc_per_chunk_Max, mem_per_chunk_Max, n_chunk_Max
+    integer :: nProcsTotal
+    character(len=8) :: wallTime
+    character(len=5) :: queue, errorQ = "No_q"
+    integer :: memMax = 140000
+    integer :: procTotMax = 512
+    integer(kind=8) :: memTotal !mb
+    integer(kind=8) :: timeTotal !s
+    integer :: maxProcReq !maximum of Processors Requested
+    logical :: qFound
+    !PBS
+    character(len=50) :: pbsName
+    character(len=50) :: jobName
+    character(len=50) :: outName
 
     !LOCAL
     integer :: fileId = 15
     integer :: compiler = 2 !1 for gfortran and 2 for ifort
     logical :: dirExists
-    integer :: xNTotal, kNTotal
+    integer(kind=8) :: xNTotal, kNTotal
     integer :: memPerProc, memPerChunk
     integer :: timePerProc !s
     integer :: runAll_Id = 17
-    integer :: nProcsPerChunk_chSz
+    integer :: nProcsPerChunk_chSz, nProcsTotal_chSz
     integer :: nChunks_chSz
     integer :: memPerChunk_chSz
     integer :: nDim_chSz
@@ -98,13 +101,23 @@ program main_AutoTest
     integer :: i, nTests, secur = 0
     character(len=5) :: methodTxt
     character(len=1) :: testTypeChar
-    logical :: qFound, initial
+    logical ::initial
+
 
     !FOR FILE CREATION
     character(len=200) :: results_path
     integer :: nProcsPerChunk
     integer :: nChunks
     integer :: pos
+
+!    !Size Test
+!    integer(kind=int8)  :: i8
+!    integer(kind=int16) :: i16
+!    integer(kind=int32) :: i32
+!    integer(kind=int64) :: i64
+!    integer(kind=selected_int_kind(6)) :: j6
+!    integer(kind=selected_int_kind(15)):: j15
+
 
     write(6,*) "Screen is 6"
 
@@ -116,42 +129,130 @@ program main_AutoTest
     print *, selected_int_kind(16)
     print *, selected_int_kind(32)
     print *, selected_int_kind(64)
+    print*, "HUGES"
     print *, huge(0_1)
     print *, huge(0_2)
     print *, huge(0_4)
-    write (*,*) huge(0_8)
+    print *, huge(0_8)
     print*, "The next is cool"
-    print *, huge(0)
+    !print *, huge(0_16)
 
-    !Master folder creation
+    print*, "MAX xNTotal"
+    print *, huge(xNTotal)
+
+
+!    print *,'Default:'
+!    print *, huge(i)
+!    print *,'Int8:'
+!    print *, huge(i8)
+!    print *,'Int16:'
+!    print *, huge(i16)
+!    print *,'Int32:'
+!    print *, huge(i32)
+!    print *,'Int64:'
+!    print *, huge(i64)
+!    print *,'Selected Integer Kind 6:'
+!    print *, huge(j6)
+!    print *,'Selected Integer Kind 15:'
+!    print *, huge(j15)
+
+    do independent = 0, 1
+
+    if(ISO_Test) then
+        methodMin = 1;
+        methodMax = 1;
+    end if
+
+    !Iteration according to test type
     if(singleProc) then
-        weakScal = .true.
         res_folder = "COMP"
         testTypeChar = "C"
-        !xMaxBase = [1.0D0, 1.0D0, 1.0D0]
-        iterBase = [1, 1, 1]
-        nIter = [20, 20, 7]
+        weakScal = .true.
+        iterBase = [1, 1, 1] !Size of the first iteration for each dimension
+        nIter = [18, 16, 13] !Number of iterations in each dimension
+        if (independent == 1) then
+            res_folder = "COMP-i"
+        end if
     else if(weakScal) then
         res_folder = "WEAK"
         testTypeChar = "W"
-        !xMaxBase = [1.0D0, 1.0D0, 1.0D0]
-        iterBase = [2, 2, 2]
-        nIter = [10, 10, 10]
+        iterBase = [16, 14, 10] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+        if(ISO_Test) then
+            iterBase = iterBase + 8 !Test for ISOGeneration
+            res_folder = "WEAK_ISO"
+        end if
+        !res_folder = "WEAK_ISO"
+        nIter = 13 ![10, 10, 10]
         if (independent == 1) then
-            iterBase = [4, 7, 10]
-            nIter = [12, 15, 18]
+            !iterBase = [16, 14, 9] !MAX [18, 16, 13]
+            !nIter = 10 ![9, 9, 9]
+            res_folder = "WEAK-i"
+
+            if(ISO_Test) then
+                !iterBase = iterBase + 8 !Test for ISOGeneration
+                res_folder = "WEAK-i_ISO"
+            end if
         end if
     else
         res_folder = "STRONG"
         testTypeChar = "S"
-        !xMaxBase = [1.0D0, 1.0D0, 1.0D0]
-        iterBase = [13, 12, 10]
-        nIter = [10, 10, 10]
+        iterBase = [17, 15, 12]
+        nIter = 8 ![10, 10, 10]
+        if (independent == 1) then
+            res_folder = "STRONG-i"
+        end if
+    end if
+
+
+    maxProcReq = maxval(2**(nIter-1))
+
+    if (cluster==2) then
+        queue = "NOT" !Don't apply
+        proc_per_chunk_Max = 24
+        mem_per_chunk_Max = 64000 !Don't apply
+        n_chunk_Max = 2106
+        wallTime = "10:00:00"
+    else
+        if(singleProc) then
+            queue = "uvq"
+            proc_per_chunk_Max = 1
+            mem_per_chunk_Max = 128000
+            n_chunk_Max = 1
+            wallTime = "20:00:00"
+        else if (maxProcReq < 385) then
+            queue = "icexq"
+            proc_per_chunk_Max = 24
+            mem_per_chunk_Max = 32000
+            n_chunk_Max = 16
+            wallTime = "04:00:00"
+        else
+            queue = "iceq"
+            proc_per_chunk_Max = 12
+            mem_per_chunk_Max = 24000
+            n_chunk_Max = 56
+            wallTime = "04:00:00"
+        end if
     end if
 
     res_path = string_vec_join(["../", res_folder])
     call check_folder_existence(res_path, ".", compiler, dirExists)
     if(.not. dirExists) call create_folder(res_path, ".")
+
+    write(*,*)
+
+    write(*,*) "weakScal    = ", weakScal
+    write(*,*) "singleProc  = ", singleProc
+    write(*,*) "execPath    = ", execPath
+    write(*,*) "dimMin      = ", dimMin, " dimMax = ", dimMax
+    write(*,*) "methodMin   = ", methodMin, " methodMax = ", methodMax
+    write(*,*) "seedStart   = ", seedStart
+    write(*,*) "nRuns       = ", nRuns
+    write(*,*) "independent = ", independent
+    write(*,*) "overlap     = ", overlap
+    write(*,*) "res_folder   = ", res_folder
+    write(*,*) "testTypeChar = ", testTypeChar
+    write(*,*) "iterBase     = ", iterBase
+    write(*,*) "nIter        = ", nIter
 
     dimLoop : do nDim = dimMin, dimMax
         write(*,*) "----------------------------------------"
@@ -159,7 +260,7 @@ program main_AutoTest
 
         initial = .true.
 
-        !runAll_file creation
+        !runAll file creation
         runAll_path = string_vec_join([res_path, "/runAll_",numb2String(nDim),"D.sh"])
         write(*,*) "runAll_path = ", runAll_path
         open (unit = runAll_Id , file = runAll_path, action = 'write')
@@ -169,11 +270,10 @@ program main_AutoTest
         write(runAll_Id,"(A)")
         write(runAll_Id,"(A)")
         write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
-
         write(runAll_Id,"(A)") "do"
         write(runAll_Id,"(A)") '   echo "Running $i"'
 
-
+        !Dimension folder creation
         dim_folder = string_vec_join([numb2String(nDim),"D_", testTypeChar])
         dim_path = string_vec_join([res_path,"/",dim_folder])
         call check_folder_existence(dim_path, ".", compiler, dirExists)
@@ -187,6 +287,10 @@ program main_AutoTest
             if(method == ISOTROPIC) methodTxt = "ISO  "
             if(method == SHINOZUKA) methodTxt = "SHINO"
             if(method == RANDOMIZATION) methodTxt = "RANDO"
+            if(method == ISOTROPIC .and. independent) methodTxt = "ISO-i  "
+            if(method == SHINOZUKA .and. independent) methodTxt = "SHINO-i"
+            if(method == RANDOMIZATION .and. independent) methodTxt = "RANDO-i"
+
 
             write(*,*) ""
             write(*,*) ""
@@ -194,14 +298,14 @@ program main_AutoTest
             write(*,*) "methodTxt = ", methodTxt
             write(*,*) ""
 
-            !Type_of_test folder creation\
+            !Method folder creation
             method_folder = string_vec_join([methodTxt, "_", numb2String(nDim), "D_", testTypeChar])
             method_path = string_vec_join([dim_path,"/", method_folder])
             call check_folder_existence(method_path, ".", compiler, dirExists)
             if(.not. dirExists) call create_folder(method_path, ".")
             write(*,*) 'method_path = ', trim(method_path)
 
-            !Running iterations
+            !Creating iterations
             iterationLoop : do nTests = 1, nIter(nDim)
 
                 write(*,*) "Iteration = ",nTests
@@ -215,10 +319,8 @@ program main_AutoTest
                 fieldVar = 1.0D0
 
                 !MESH FILE
-                !if(.not. weakScal) xMaxBase = (xMaxStrong3D)**(4.0D0-nDim)
-
-                call set_vec(xMax, [(xMaxBase(nDim), i=1, nDim)])
-                call set_vec(xMin, [(0.0D0, i=1, nDim)])
+                call set_vec(xMax, [(1.0D0, i=1, nDim)]) !Starts xMax in 1
+                call set_vec(xMin, [(0.0D0, i=1, nDim)])  !Starts xMin in 0
                 call set_vec(xStep, [(xStepBase, i=1, nDim)])
                 meshType = "unstructured"
                 meshMod = "automatic"
@@ -231,45 +333,32 @@ program main_AutoTest
                     xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
                 end if
 
-                xMax(:) = 40 !Test
-
                 write(*,*) "xMax AFTER = ", xMax
-
-!                if(weakScal) then
-!                    do i = 2, (nTests-1) + iterBase(nDim)
-!                        pos  = mod(i-2+nDim,nDim) + 1
-!                        xMax(pos) = 2* xMax(pos)
-!                    end do
-!                else
-!                    do i = 2, iterBase(nDim)
-!                        write(*,*) "i = ",i
-!                        pos  = mod(i-2+nDim,nDim) + 1
-!                        xMax(pos) = 2* xMax(pos)
-!                        write(*,*) "xMax = ",xMax
-!                    end do
-!                end if
 
                 !-----Exigences-------------------------------------
                 !NUMBER OF TERMS
-                xNTotal = ceiling(product(1+(xMax-xMin)/xStep))
-                kNTotal = product(kAdjust*(ceiling(periodMult*(xMax-xMin)/corrL) + 1))
+                xNTotal = product(1+(xMax-xMin)/xStep)
+                kNTotal = product(kAdjust*(periodMult*(xMax-xMin)/corrL + 1))
 
                 !REQUIREMENTS
-                memTotal = memPerNTerm*kNTotal*(xNTotal/NTerm)
-                timeTotal = nint((dble(xNTotal)*timePerTerm)*dble(kNTotal))
+                !if(independent == 1) then
+                    !memTotal = nint(dble(memPerNTerm)*2.0D0 *(dble(kNTotal)+dble(xNTotal))/dble(NTerm))
+                !else
+                !    memTotal = nint(dble(memPerNTerm)*(dble(kNTotal)*(dble(xNTotal))/dble(NTerm)))
+                !end if
+                !timeTotal = nint(dble(xNTotal)*dble(timePerTerm)*dble(kNTotal))
 
-                memTotal = 20 * 1024 / 2**(nTests-1)!Test
-
-                if(memTotal < 10) memTotal = 10
-                if(timeTotal < 20*60)   timeTotal = 20*60
-                if(timeTotal > 24*3600) timeTotal = 24*3600
+                !if(memTotal < 10 .and. memTotal > 0) memTotal = 10
+                !if(timeTotal < 20*60)   timeTotal = 20*60
+                !if(timeTotal > 24*3600) timeTotal = 24*3600
 
                 !NUMBER OF PROCS
                 nProcsTotal = 2**(nTests-1)
                 if(singleProc) nProcsTotal = 1
 
-                !CLUSTER LIMITATION
-                if(memTotal > memMax .or. nProcsTotal > procTotMax) cycle
+!                !MEMORY
+!                memPerProc  = ceiling(dble(memTotal)/dble(nProcsTotal))
+!                if(memPerProc < 128)  memPerProc = 128
 
                 !PRINTING
                 write(*,*) "----------------------------------------------------"
@@ -279,71 +368,66 @@ program main_AutoTest
                 write(*,*) "    |xMin         = ", xMin
                 write(*,*) "    |xNTotal      = ", xNTotal
                 write(*,*) "    |kNTotal      = ", kNTotal
-                write(*,*) "    |memTotal     = ", memTotal
-                write(*,*) "    |timeTotal(s) = ", timeTotal
+                !write(*,*) "    |memTotal     = ", memTotal
+                !write(*,*) "    |timeTotal(s) = ", timeTotal
                 write(*,*) "    |nProcsTotal  = ", nProcsTotal
 
-                !-----Meeting Exigences-------------------------------------
-                memPerProc  = ceiling(dble(memTotal)/dble(nProcsTotal))
-                timePerProc = nint(1.1D0*dble(timeTotal)/dble(nProcsTotal))
-                if(memPerProc < 512)  memPerProc = 10 !memPerProc = 512
+                !CLUSTER LIMITATION
+                !if(memTotal < 0)  then
+                !    write(*,*) "memTotal < 0, folder will not be writen"
+                !    cycle
+                !end if
 
-                if(timePerProc < 20*60) then
-                    timePerProc = 20*60
-                else if(timePerProc < 4*3600) then
-                    timePerProc = 4*3600
-                else
-                    timePerProc = 24*3600
+                !INTEGER LIMITATION
+                if(xNTotal < 1 .or. kNTotal<1) then
+                    write(*,*) "xNTotal or kNTotal < 1, folder will not be writen"
+                    cycle
                 end if
 
-                wallTime = find_WallTime(timePerProc)
-
-                nProcsPerChunk = nProcsTotal
-                if(nProcsPerChunk > 8) then
-                    nProcsPerChunk = 8
+                !EXIGENCES
+                nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                if(nChunks > n_chunk_Max) then
+                    write(*,*) "You asked for too many chunks"
+                    write(*,*) "nChunks     = ", nChunks
+                    write(*,*) "n_chunk_Max = ", n_chunk_Max
+                    cycle
                 end if
-                nChunks     = nint(dble(nProcsTotal)/dble(nProcsPerChunk))
-                memPerChunk = nProcsPerChunk * memPerProc
+
+!                memPerChunk = memPerProc * nProcsTotal * 10;
+                memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
+                if(memPerChunk > mem_per_chunk_Max) then
+                    write(*,*) "You asked for too much memory"
+                    write(*,*) "memPerChunk       = ", memPerChunk
+                    write(*,*) "mem_per_chunk_Max = ", mem_per_chunk_Max
+                    cycle
+                end if
+
+                nProcsPerChunk = nProcsTotal;
+                if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
 
                 if(nChunks < 1)     nChunks = 1
                 if(memPerChunk < 1) memPerChunk = 1
 
                 write(*,*) "    Requirements "
-                write(*,*) "    |timePerProc    = ", timePerProc
-                write(*,*) "    |memPerProc     = ", memPerProc
+                !write(*,*) "    |timePerProc    = ", timePerProc
                 write(*,*) "    |nProcsTotal    = ", nProcsTotal
+                write(*,*) "    |memPerChunk    = ", memPerChunk
                 write(*,*) "    |nChunks        = ", nChunks
                 write(*,*) "    |nProcsPerChunk = ", nProcsPerChunk
                 write(*,*) "    |wallTime       = ", wallTime
 
 
-                if(.not. ignoreQ) then
-                    !-----Defining adapted queue-------------------------------------
-                    if(singleProc) then
-                        queue = 'uvq'
-                    else
-                        queue = 'icexq'
-                    end if
 
-                    !qFound = choose_queue()
-
-                    if(queue  == errorQ .or. trim(adjustL(wallTime)) == "--------") then
-                        write(*,*) "WARNING!! This Iteration won't be created"
-                        write(*,*) "    |queue        = ", queue
-                        write(*,*) "    |wallTime     = ", wallTime
-                        cycle
-                    end if
-                end if
-
-!
                 !Defining Names
                 pbsName = string_vec_join(["run", numb2String(nProcsTotal), ".pbs"])
+                if (cluster==2) pbsName = string_vec_join(["run", numb2String(nProcsTotal), ".slurm"])
                 if(singleProc)then
                     jobName = string_vec_join([numb2String(nDim),"D_i", numb2String(nTests),"_",testTypeChar,"_",methodTxt])
-                    outName = string_vec_join([numb2String(nDim),"D_i", numb2String(nTests),"_",testTypeChar,"_",methodTxt, ".txt"])
+                    outName = string_vec_join(["out_",numb2String(nDim),"D_i", numb2String(nTests),"_",testTypeChar,"_",methodTxt, ".txt"])
                 else
                     jobName = string_vec_join([numb2String(nDim),"D_", numb2String(nProcsTotal),"_",testTypeChar,"_",methodTxt])
-                    outName = string_vec_join([numb2String(nDim),"D_", numb2String(nProcsTotal),"_",testTypeChar,"_",methodTxt, ".txt"])
+                    outName = string_vec_join(["out_",numb2String(nDim),"D_", numb2String(nProcsTotal),"_",testTypeChar,"_",methodTxt, ".txt"])
                 end if
                 write(*,*) "    pbsName = ", pbsName
                 write(*,*) "    jobName = ", jobName
@@ -377,8 +461,14 @@ program main_AutoTest
 
                 write(*,*) "-> Writing files"
 
-                write(*,*) "    *PBS"
-                call writePBSfile()
+                if (cluster==2) then
+                    write(*,*) "    *SLURM"
+                    call writeSlurmfile()
+                else
+                    write(*,*) "    *PBS"
+                    call writePBSfile()
+                end if
+
                 write(*,*) "    *generation"
                 call write_gen_file()
                 write(*,*) "    *mesh"
@@ -392,7 +482,11 @@ program main_AutoTest
                     !write(runAll_Id,"(A)") "cd "//trim(method_folder)
                     write(runAll_Id,"(A)") "cd "//trim(it_folder)
                 end if
-                write(runAll_Id,"(A)") "qsub "//trim(pbsName)
+                if (cluster==2) then
+                    write(runAll_Id,"(A)") "sbatch "//trim(pbsName)
+                else
+                    write(runAll_Id,"(A)") "qsub "//trim(pbsName)
+                end if
                 initial = .false.
 
             end do iterationLoop
@@ -409,6 +503,8 @@ program main_AutoTest
         call system("chmod a+r "//trim(runAll_path))
 
     end do dimLoop
+
+    end do
 
 contains
     !-----------------------------------------------------------------------------------------------
@@ -437,7 +533,7 @@ contains
         !write(*,*) "format = ", format
         write(fileId,format) "#PBS -l select=", numb2String(nChunks), ":ncpus=",numb2String(nProcsPerChunk),":mpiprocs=",numb2String(nProcsPerChunk),":mem=", numb2String(memPerChunk), "mb"
         !write(fileId,"(A15,A1,A7,A1, A10, A1, A5, A2, A1  )") "#PBS -l select=", numb2String(nChunks), ":ncpus=",numb2String(nProcsPerChunk),":mpiprocs=",numb2String(nProcsPerChunk),":mem=", numb2String(memPerChunk), "gb"
-        if(.not. ignoreQ) write(fileId,"(A)") "#PBS -q "//queue
+        write(fileId,"(A)") "#PBS -q "//queue
         write(fileId,"(A)") "#PBS -M lucianopaludoecp@gmail.com"
         write(fileId,"(A)") ""
         write(fileId,"(A)") "# chargement des modules"
@@ -514,9 +610,9 @@ contains
         write(fileId,*) "$$nDim ", nDim
         write(fileId,*) "$$meshType ", meshType
         write(fileId,*) "$$meshMod ", meshMod
-        write(fileId,*) "          $Min           $Max          $Step"
+        write(fileId,*) "          $Min            $Max           $Step"
         do i = 1, nDim
-            write(fileId, "(3F15.5)") xMin(i), xMax(i), xStep(i)
+            write(fileId, "(3(F15.5, A))") xMin(i), " ", xMax(i), " ", xStep(i), " "
         end do
 
         close(fileId)
@@ -524,6 +620,71 @@ contains
         call system("chmod a+r "//trim(mesh_path))
 
     end subroutine write_mesh_file
+
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    subroutine writeSlurmfile()
+
+        nDim_chSz = findCharSize(nDim)
+        nProcsPerChunk_chSz = findCharSize(nProcsPerChunk)
+        nChunks_chSz = findCharSize(nChunks)
+        memPerChunk_chSz = findCharSize(memPerChunk)
+        nProcsTotal_chSz = findCharSize(nProcsTotal)
+
+        PBS_path = string_vec_join([it_path, "/", pbsName])
+
+        open (unit = fileId , file = PBS_path, action = 'write')
+
+!#!/bin/bash
+!
+!#SBATCH -J Mesh_SEM
+!#SBATCH --nodes=1
+!#SBATCH --ntasks=1
+!#SBATCH --ntasks-per-node=1
+!#SBATCH --threads-per-core=1
+!#SBATCH --time=00:01:00
+!#SBATCH --output output.txt
+!#SBATCH --mail-type=ALL
+!#SBATCH --mail-user=lucio.a.c@gmail.com
+!
+!module purge
+!module load intel/15.0.0.090
+!module load bullxmpi/1.2.8.4
+!module load hdf5/1.8.14
+!srun --mpi=pmi2 -K1 --resv-ports -n $SLURM_NTASKS /panfs/panasas/cnt0025/mss7417/abreul/SEM/build/MESH/mesher<mesh.input
+        !,",A7,A",numb2String(nProcsPerChunk_chSz),", A10, A", numb2String(nProcsPerChunk_chSz),", A5, A", numb2String(memPerChunk_chSz),", A2  )"])
+
+        write(fileId,"(A)") "#!/bin/bash"
+        write(fileId,"(A)") ""
+        write(fileId,"(A11,A50)") "#SBATCH -J ", jobName
+        format = string_vec_join(["(A16,A",numb2String(nChunks_chSz),")"])
+        write(fileId,format) "#SBATCH --nodes=", numb2String(nChunks)
+        format = string_vec_join(["(A17,A",numb2String(nProcsTotal_chSz),")"])
+        write(fileId,format) "#SBATCH --ntasks=", trim(numb2String(nProcsTotal))
+        format = string_vec_join(["(A26,A",numb2String(nProcsPerChunk_chSz),")"])
+        write(fileId,format) "#SBATCH --ntasks-per-node=", numb2String(nProcsPerChunk)
+        write(fileId,"(A)") "#SBATCH --threads-per-core=1"
+        write(fileId,"(A15,A8)") "#SBATCH --time=", wallTime
+        write(fileId,"(A17,A)") "#SBATCH --output ", trim(outName)
+        write(fileId,"(A)") "#SBATCH --mail-type=ALL"
+        write(fileId,"(A)") "#SBATCH --mail-user=lucio.a.c@gmail.com"
+        write(fileId,"(A)") ""
+        !format = string_vec_join(["(A15,A",numb2String(nChunks_chSz),",A7,A",numb2String(nProcsPerChunk_chSz),", A10, A", numb2String(nProcsPerChunk_chSz),", A5, A", numb2String(memPerChunk_chSz),", A2  )"])
+
+        write(fileId,"(A)") "module load intel-compiler/15.0.0.090"
+        !write(fileId,"(A)") "module load intel-mkl/11.2.1"
+        write(fileId,"(A)") "module load bullxmpi/1.2.8.4"
+        write(fileId,"(A)") "module load hdf5/1.8.14"
+        write(fileId,"(A)") "srun --mpi=pmi2 -K1 --resv-ports -n $SLURM_NTASKS "//trim(execPath)
+        !write(fileId,"(A)") "mpirun --rsh=ssh -n $nb_nodes -f mpd.hosts -np "//trim(numb2String(nProcsTotal))//" "//trim(execPath)
+
+        close(fileId)
+
+        call system("chmod a+r "//trim(PBS_path))
+
+    end subroutine writeSlurmfile
 
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
