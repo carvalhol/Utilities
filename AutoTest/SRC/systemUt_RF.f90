@@ -19,8 +19,8 @@ contains
 
             fullName = trim(adjustL(path)) // "/" // trim(adjustL(folder))
             !write(*,*) "fullName = ", fullName
-            write(*,*) "Directory is being created: ", fullName
-            command = 'mkdir '// trim(adjustL(fullName))
+            !write(*,*) "Directory is being created: ", fullName
+            command = 'mkdir -p '// trim(adjustL(fullName))
             call system(command)
 
 
@@ -43,8 +43,8 @@ contains
         fullName = trim(adjustL(path)) // "/" // trim(adjustL(folder))
 
 
-            write (*,*) "WARNING!!! Directory: '", trim(fullName) ,"' will be deleted"
-            command = 'rm -r '// trim(adjustL(fullName))
+            !write (*,*) "WARNING!!! Directory: '", trim(fullName) ,"' will be deleted"
+            command = 'rm -fr '// trim(adjustL(fullName))
             call system(command)
 
 
@@ -90,9 +90,9 @@ contains
         character(len = 200) fullName
 
         fullName = trim(adjustL(path)) // "/" // trim(adjustL(folder))
-
-        if(compiler == 1) inquire( file=trim(fullName)//'/.', exist=dirExists )  ! Works with gfortran, but not ifort
-        if(compiler == 2) inquire( directory=fullName, exist=dirExists )         ! Works with ifort, but not gfortran
+        dirExists = .true.
+        !if(compiler == 1) inquire( file=trim(fullName)//'/.', exist=dirExists )  ! Works with gfortran, but not ifort
+        !if(compiler == 2) inquire( directory=fullName, exist=dirExists )         ! Works with ifort, but not gfortran
 
     end subroutine check_folder_existence
 
