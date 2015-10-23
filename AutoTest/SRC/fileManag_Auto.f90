@@ -15,7 +15,7 @@ contains
                         seedStart, independent, overlap, &
                         xMinGlob, xMaxGlob, pointsPerCorrL, &
                         nProcsTotal, nProcsPerChunk, nChunks, &
-                        memPerChunk, queue, wallTime, folderPath)
+                        memPerChunk, queue, wallTime, folderPath, runPath)
         implicit none
         !INPUT
         integer, intent(in) :: nDim, Nmc, corrMod, margiFirst, method, seedStart, independent
@@ -28,7 +28,7 @@ contains
         character(len=*), intent(in) :: queue
         character(len=tSize) :: folderPath
         !OUTPUT
-
+        character(len=*), intent(out), optional :: runPath
         !LOCAL
         character(len=tSize) :: PBS_path
         character(len=tSize) :: gen_path
@@ -37,8 +37,8 @@ contains
 
         write(*,*) "Making case on: ", folderPath
 
-        PBS_path = string_join_many(folderPath,"/","run.pbs", verbose=.false.)
-        gen_path = string_join_many(folderPath,"/","gen_input")
+        PBS_path  = string_join_many(folderPath,"/","run.pbs")
+        gen_path  = string_join_many(folderPath,"/","gen_input")
         mesh_path = string_join_many(folderPath,"/","mesh_input")
 
         call write_mesh_file(nDim, xMinGlob, xMaxGlob, pointsPerCorrL, mesh_path)
@@ -48,6 +48,8 @@ contains
 
         call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
                           memPerChunk, wallTime, queue, PBS_path)
+
+        if(present(runPath)) runPath = PBS_path
 
     end subroutine makeCase
 
@@ -200,6 +202,7 @@ contains
         call system("chmod a+r "//trim(PBS_path))
 
     end subroutine writePBSfile
+
 
 !    !-----------------------------------------------------------------------------------------------
 !    !-----------------------------------------------------------------------------------------------

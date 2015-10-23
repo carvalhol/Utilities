@@ -13,11 +13,9 @@ program main_AutoTest
     logical :: constant_Domain_size = .false.
     integer :: cluster = 1 !1=Igloo, 2=Oxigen
     integer :: independent = 1 !0 = false, 1 = true (other numbers will be considered as false)
-    integer :: dimMin = 3, dimMax = 3
-    integer :: methodMin = 4, methodMax = 4
+    integer :: dimMin = 2, dimMax = 3
+    integer :: methodMin = 3, methodMax = 4
     integer :: nRuns = 1 !How many times each iteration
-
-    double precision :: overlap = 3.0
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -33,11 +31,12 @@ program main_AutoTest
     integer :: corrMod = cm_GAUSSIAN
     integer :: margiFirst = fom_GAUSSIAN
     double precision   :: fieldAvg = 0.0D0, fieldVar=1.0D0;
-    double precision, dimension(:), allocatable :: corrL;
+    double precision, dimension(:), allocatable :: corrL, overlap;
     integer :: nDim
     integer :: method !1 for Isotropic, 2 for Shinozuka, 3 for Randomization
     double precision :: corrLBase = 1.0D0
-    double precision :: xStepBase = 0.1D0
+    double precision :: overlapBase = 5.0D0
+    integer :: pointsPerCorrLBase = 10
     integer :: seedStart = 0
 
     !GENERAL NAMES AND PATHS
@@ -60,11 +59,14 @@ program main_AutoTest
     character(len=1) :: testTypeChar
     character(len=1) :: indepChar
     character(len=tSize) :: full_path
+    character(len=tSize) :: run_path
+    character(len=tSize) :: temp_path
     character(len=200) :: iterChar
 
     !MESH
     character (len=15) :: meshMod  = "automatic";
-    double precision, dimension(:), allocatable :: xMax, xMin, xStep;
+    double precision, dimension(:), allocatable :: xMax, xMin;
+    integer, dimension(:), allocatable :: pointsPerCorrL
 
 
 
@@ -91,7 +93,7 @@ program main_AutoTest
     integer(kind=8) :: xNTotal, kNTotal
     integer :: memPerProc, memPerChunk
     integer :: timePerProc !s
-    integer :: runAll_Id = 17
+    integer :: runAll_Id = 100
 
     character(len=200) :: format
     double precision :: kAdjust    = 1.0D0 !"kNStep minimum" multiplier
@@ -112,16 +114,14 @@ program main_AutoTest
     write(*,*) "Running on: "
     call system("pwd")
 
-
-
-
-
-
     !Iteration according to test type
     !
     !iterBase -> Initial size of the domain will be the basic size doubled "iterBase" times (define in 1D, 2D and 3D)
     !nIter    -> Number od iterations (define in 1D, 2D and 3D)
     !
+    indepChar = "g" !g for Global
+    if (independent == 1) indepChar = "l" !l for Local (using localization)
+
     if(singleProc) then
         if (independent == 1) then
             res_folder = "COMP-i"
@@ -162,69 +162,183 @@ program main_AutoTest
         end if
     end if
 
-    indepChar = "g" !g for Global
-    if (independent == 1) indepChar = "l" !l for Local (using localization)
-
     !Global folders and files creation
     call delete_folder(res_folder, "./genTests/")
+    call create_folder(res_folder, "./genTests/")
+
+    !Global exigences
+    maxProcReq = maxval(2**(nIter-1))
+    if(singleProc) then
+        queue = "uvq"
+        proc_per_chunk_Max = 1
+        mem_per_chunk_Max = 128000
+        n_chunk_Max = 1
+        wallTime = "20:00:00"
+    else if (maxProcReq < 385) then
+        queue = "icexq"
+        proc_per_chunk_Max = 24
+        mem_per_chunk_Max = 32000
+        n_chunk_Max = 16
+        wallTime = "04:00:00"
+    else
+        queue = "iceq"
+        proc_per_chunk_Max = 12
+        mem_per_chunk_Max = 24000
+        n_chunk_Max = 56
+        wallTime = "04:00:00"
+    end if
+
 
     do nDim = dimMin, dimMax
+
+        !runAll file creation
+        !initial = .true.
+        runAll_path = string_join_many("./genTests/", res_folder, &
+                                       "/runAll_",numb2String(nDim),"D.sh")
+        write(*,*) "runAll_path = ", runAll_path
+        open (unit = runAll_Id , file = runAll_path, action = 'write')
+        write(runAll_Id,"(A)") "#!/bin/bash"
+        write(runAll_Id,"(A)") ""
+        write(runAll_Id,"(A)") "clear"
+        write(runAll_Id,"(A)")
+        write(runAll_Id,"(A)")
+        write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
+        write(runAll_Id,"(A)") "do"
+        write(runAll_Id,"(A)") '   echo "Running $i"'
 
         do method = methodMin, methodMax
 
             if(method == ISOTROPIC .and. nDim == 1) cycle !No isotropic 1D
 
             if(method == ISOTROPIC) methodTxt = "ISO  "
-            if(method == SHINOZUKA) methodTxt = "SHINO"
-            if(method == RANDOMIZATION) methodTxt = "RANDO"
+            if(method == SHINOZUKA) methodTxt = "SHI"
+            if(method == RANDOMIZATION) methodTxt = "RAN"
             if(method == FFT) methodTxt = "FFT"
             methodTxt = trim(adjustl(string_join_many(methodTxt,"-",indepChar)))
-!            write(*,*) "methodTxt = ", methodTxt
-!            write(*,*) "method = ", method
-!            write(*,*) "methodTxt = ", methodTxt
 
             !Creating iterations
             do nTests = 1, nIter(nDim)
+
                 !Creating folder
-                it_path   = string_join_many("./genTests/", res_folder,"/", methodTxt,"/",  &
-                                             numb2String(nDim),"D")
-                !write(*,*) "it_path = ", it_path
+                it_path   = string_join_many("./genTests/", res_folder,"/",     &
+                                             numb2String(nDim),"D/", methodTxt)
                 it_folder = numb2String(nTests, 3)
-                !write(*,*) "it_folder = ", it_folder
-                !write(*,*) "len(trim(it_folder)) = ", len(trim(it_folder))
-                !it_folder = numb2String(nTests)
-                !write(*,*) "it_folder = ", it_folder
-                !write(*,*) "len(trim(it_folder)) = ", len(trim(it_folder))
                 call create_folder(it_folder, it_path)
                 full_path = string_join_many(it_path,"/",it_folder)
-                !write(*,*) "full_path = ", full_path
-                !write(*,*) "len(trim(full_path)) = ", len(trim(full_path))
-                !write(*,*) 'method_path = ', trim(method_path)
 
-                call makeCase(nDim=nDim,               &
-                              Nmc=1,                   &
-                              corrMod=cm_GAUSSIAN,     &
-                              margiFirst=fom_GAUSSIAN, &
-                              corrL=[2.0D0, 2.0D0],    &
-                              fieldAvg=0.0D0,          &
-                              fieldVar=1.0D0,          &
-                              method=method,           &
-                              seedStart=0,             &
-                              independent=independent, &
-                              overlap=[3.0D0, 3.0D0],  &
-                              xMinGlob=[0.0D0, 0.0D0], &
-                              xMaxGlob=[1.0D0, 1.0D0], &
-                              pointsPerCorrL=[10, 10], &
-                              nProcsTotal=24,          &
-                              nProcsPerChunk=12,       &
-                              nChunks=2,               &
-                              memPerChunk=2000,        &
-                              queue="OIA",             &
-                              wallTime="04:00:00",     &
-                              folderPath=full_path)
+                !Setting Case properties
+                !GENERATION FILE
+                Nmc = 1
+                corrMod = cm_GAUSSIAN
+                margiFirst = fom_GAUSSIAN
+                fieldAvg = 0.0D0
+                fieldVar = 1.0D0
+                call set_vec(corrL, [(corrLBase, i=1, nDim)])
+                call set_vec(overlap, [(overlapBase, i=1, nDim)])
+
+                !MESH FILE
+                call set_vec(xMax, [(1.0D0, i=1, nDim)]) !Starts xMax in 1
+                call set_vec(xMin, [(0.0D0, i=1, nDim)])  !Starts xMin in 0
+                call set_vec_Int(pointsPerCorrL, [(pointsPerCorrLBase, i=1, nDim)])
+                if(constant_Domain_size) then
+                    xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
+                else
+                    xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
+                end if
+
+                !DEFINE NUMBER OF CLUSTERS
+                if(singleProc) then
+                    nProcsTotal = 1
+                    nProcsPerChunk = 1
+                    nChunks = 1
+                    memPerChunk=mem_per_chunk_Max
+                else
+                    nProcsTotal = 2**(nTests-1)
+                    if (cluster==2) then
+                        !OCCYGEN
+                        stop("This cluster is not implemented yet")
+                    else
+                        !IGLOO
+                        nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                        memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                        if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
+                        nProcsPerChunk = nProcsTotal;
+                        if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
+                        if(nChunks < 1) nChunks = 1
+                        if(memPerChunk < 512) memPerChunk = 512
+                    end if
+                end if
+
+                !VERIFICATIONS
+                if(nChunks > n_chunk_Max) then
+                    write(*,*) "You asked for too many chunks"
+                    write(*,*) "nChunks     = ", nChunks
+                    write(*,*) "n_chunk_Max = ", n_chunk_Max
+                    cycle
+                end if
+                if(memPerChunk > mem_per_chunk_Max) then
+                    write(*,*) "You asked for too much memory"
+                    write(*,*) "memPerChunk       = ", memPerChunk
+                    write(*,*) "mem_per_chunk_Max = ", mem_per_chunk_Max
+                    cycle
+                end if
+
+                call makeCase(nDim=nDim,                     &
+                              Nmc=Nmc,                       &
+                              corrMod=corrMod,               &
+                              margiFirst=margiFirst,         &
+                              corrL=corrL,                   &
+                              fieldAvg=fieldAvg,             &
+                              fieldVar=fieldVar,             &
+                              method=method,                 &
+                              seedStart=0,                   &
+                              independent=independent,       &
+                              overlap=overlap,               &
+                              xMinGlob=xMin,                 &
+                              xMaxGlob=xMax,                 &
+                              pointsPerCorrL=pointsPerCorrL, &
+                              nProcsTotal=nProcsTotal,       &
+                              nProcsPerChunk=nProcsPerChunk, &
+                              nChunks=nChunks,               &
+                              memPerChunk=memPerChunk,       &
+                              queue=queue,                   &
+                              wallTime=wallTime,             &
+                              folderPath=full_path,          &
+                              runPath=run_path)
+
+                temp_path = string_join_many("./", numb2String(nDim),"D/", methodTxt)
+
+                if (cluster==2) then
+                    write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
+                    write(runAll_Id,"(A)") string_join_many("sbatch "//trim(temp_path),"/",it_folder,"/run.pbs")
+                    write(runAll_Id,"(A)") "cd ../../../"
+                else
+                    write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
+                    write(runAll_Id,"(A)") "qsub run.pbs"
+                    write(runAll_Id,"(A)") "cd ../../../"
+                end if
+                !initial = .false.
             end do
+
         end do
+
+        !write(runAll_Id,"(A)") "cd ../../../"
+        write(runAll_Id,"(A)") "sleep 1"
+        write(runAll_Id,"(A)") "done"
+        write(runAll_Id,"(A)") ""
+        write(runAll_Id,"(A)") "qstat -u carvalhol"
+        close (runAll_Id)
+        write(*,*) "-> runAll done"
+        call system("chmod u+x "//trim(runAll_path))
+        call system("chmod a+r "//trim(runAll_path))
+
     end do
+
+    if(allocated(pointsPerCorrL)) deallocate(pointsPerCorrL)
+    if(allocated(corrL)) deallocate(corrL)
+    if(allocated(overlap)) deallocate(overlap)
+    if(allocated(xMin)) deallocate(xMin)
+    if(allocated(xMax)) deallocate(xMax)
 
 
 !    if(ISO_Test) then
@@ -803,5 +917,20 @@ contains
         variable = values
 
     end subroutine set_vec
+
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    subroutine set_vec_Int(variable, values)
+        !INPUT
+        integer, dimension(:) :: values
+        integer, dimension(:), allocatable :: variable
+
+        if(allocated(variable)) deallocate(variable)
+        allocate(variable(size(values)))
+        variable = values
+
+    end subroutine set_vec_Int
 
 end program main_AutoTest
