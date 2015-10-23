@@ -122,7 +122,7 @@ contains
         write(fileId,*) seedStart
         write(fileId,*) "$$independent"
         write(fileId,*) independent
-        write(fileId,*) "$$overlap"
+        write(fileId,*) "$overlap"
         write(fileId,*) overlap
 
         close(fileId)
