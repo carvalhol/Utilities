@@ -6,7 +6,7 @@
 #PBS -j oe
 #PBS -l walltime=23:45:00
 #PBS -l select=1:ncpus=1:mpiprocs=1:mem=20gb
-#PBS -q iceq 
+#PBS -q uvq 
 #PBS -M lucianopaludoecp@gmail.com
 
 # chargement des modules

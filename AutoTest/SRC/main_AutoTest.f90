@@ -13,10 +13,12 @@ program main_AutoTest
     logical :: constant_Domain_size = .false.
     integer :: cluster = 1 !1=Igloo, 2=Oxigen
     integer :: independent = 1 !0 = false, 1 = true (other numbers will be considered as false)
-    integer :: dimMin = 2, dimMax = 3
-    integer :: methodMin = 3, methodMax = 4
+    logical, dimension(3) :: runDim = [.false., .false., .true.] !1D, 2D, 3D
+    logical, dimension(4) :: runMethod = [.false., .true., .false., .true.] !ISO, SHINO, RANDO, FFT
     integer :: nRuns = 1 !How many times each iteration
 
+    integer :: dimMin = 1, dimMax = 3
+    integer :: methodMin = 1, methodMax = 4
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
     integer :: NTerm = 1000000000 !Terms
@@ -127,12 +129,12 @@ program main_AutoTest
             res_folder = "COMP-i"
             testTypeChar = "C"
             iterBase = [1, 1, 1]
-            nIter = [18, 16, 13]
+            nIter = [18, 16, 10]
         else
             res_folder = "COMP"
             testTypeChar = "C"
             iterBase = [1, 1, 1]
-            nIter = [18, 16, 13]
+            nIter = [18, 16, 16]
         end if
 
     else if(constant_Domain_size) then
@@ -171,7 +173,7 @@ program main_AutoTest
     if(singleProc) then
         queue = "uvq"
         proc_per_chunk_Max = 1
-        mem_per_chunk_Max = 128000
+        mem_per_chunk_Max = 125000
         n_chunk_Max = 1
         wallTime = "20:00:00"
     else if (maxProcReq < 385) then
@@ -191,6 +193,8 @@ program main_AutoTest
 
     do nDim = dimMin, dimMax
 
+        if(.not. runDim(nDim)) cycle
+
         !runAll file creation
         !initial = .true.
         runAll_path = string_join_many("./genTests/", res_folder, &
@@ -207,6 +211,8 @@ program main_AutoTest
         write(runAll_Id,"(A)") '   echo "Running $i"'
 
         do method = methodMin, methodMax
+
+            if(.not. runMethod(method)) cycle
 
             if(method == ISOTROPIC .and. nDim == 1) cycle !No isotropic 1D
 
@@ -251,7 +257,7 @@ program main_AutoTest
                     nProcsTotal = 1
                     nProcsPerChunk = 1
                     nChunks = 1
-                    memPerChunk=mem_per_chunk_Max
+                    memPerChunk=(mem_per_chunk_Max*nTests)/nIter(nDim)
                 else
                     nProcsTotal = 2**(nTests-1)
                     if (cluster==2) then
