@@ -11,11 +11,11 @@ program main_AutoTest
 
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 1 !1=Igloo, 2=Oxigen
-    integer :: independent = 1 !0 = false, 1 = true (other numbers will be considered as false)
-    integer :: dimMin = 2, dimMax = 3
-    integer :: methodMin = 3, methodMax = 4
+    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
+    logical, dimension(3) :: activeDim = [.false., .true., .true.] !1D, 2D and 3D
+    logical, dimension(4) :: activeMethod = [.false., .true., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
+    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -33,11 +33,15 @@ program main_AutoTest
     double precision   :: fieldAvg = 0.0D0, fieldVar=1.0D0;
     double precision, dimension(:), allocatable :: corrL, overlap;
     integer :: nDim
-    integer :: method !1 for Isotropic, 2 for Shinozuka, 3 for Randomization
+    integer :: method !1 for Isotropic, 2 for Shinozuka, 3 for Randomization, 4 for FFT
+    integer :: indep
     double precision :: corrLBase = 1.0D0
     double precision :: overlapBase = 5.0D0
     integer :: pointsPerCorrLBase = 10
     integer :: seedStart = 0
+    integer :: dimMin = 1, dimMax = 3
+    integer :: methodMin = 1, methodMax = 4
+    integer :: independent !0 = false, 1 = true (other numbers will be considered as false)
 
     !GENERAL NAMES AND PATHS
     character(len=50) :: res_folder
@@ -109,8 +113,11 @@ program main_AutoTest
     integer :: nChunks
     integer :: pos
 
-    execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe "
-
+    if(cluster == 3) then
+        execPath = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe"
+    else
+        execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe "
+    end if
     write(*,*) "Running on: "
     call system("pwd")
 
@@ -119,8 +126,6 @@ program main_AutoTest
     !iterBase -> Initial size of the domain will be the basic size doubled "iterBase" times (define in 1D, 2D and 3D)
     !nIter    -> Number od iterations (define in 1D, 2D and 3D)
     !
-    indepChar = "g" !g for Global
-    if (independent == 1) indepChar = "l" !l for Local (using localization)
 
     if(singleProc) then
         if (independent == 1) then
@@ -150,15 +155,17 @@ program main_AutoTest
 
     else
         if (independent == 1) then
-            res_folder = "WEAK-i"
+            res_folder = "WEAK"
             testTypeChar = "W"
             iterBase = [16, 14, 10] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
-            nIter = [10, 10, 10]
+            !nIter = [10, 10, 10]
+            nIter = [10, 2, 2]
         else
             res_folder = "WEAK"
             testTypeChar = "W"
             iterBase = [16, 14, 10] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
-            nIter = [10, 10, 10]
+            !nIter = [10, 10, 10]
+            nIter = [10, 2, 2]
         end if
     end if
 
@@ -188,76 +195,89 @@ program main_AutoTest
         wallTime = "04:00:00"
     end if
 
+    do indep = 1, size(activeApproach)
 
-    do nDim = dimMin, dimMax
+        !independent = 0
+        if(.not activeApproach(indep)) cycle
 
-        !runAll file creation
-        !initial = .true.
-        runAll_path = string_join_many("./genTests/", res_folder, &
-                                       "/runAll_",numb2String(nDim),"D.sh")
-        write(*,*) "runAll_path = ", runAll_path
-        open (unit = runAll_Id , file = runAll_path, action = 'write')
-        write(runAll_Id,"(A)") "#!/bin/bash"
-        write(runAll_Id,"(A)") ""
-        write(runAll_Id,"(A)") "clear"
-        write(runAll_Id,"(A)")
-        write(runAll_Id,"(A)")
-        write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
-        write(runAll_Id,"(A)") "do"
-        write(runAll_Id,"(A)") '   echo "Running $i"'
+        independent = indep - 1
+        indepChar = "g" !g for Global
+        if (independent == 1) indepChar = "l" !l for Local (using localization)
 
-        do method = methodMin, methodMax
+        do nDim = 1, size(activeDim)
 
-            if(method == ISOTROPIC .and. nDim == 1) cycle !No isotropic 1D
+            if(.not. activeDim(nDim)) cycle
 
-            if(method == ISOTROPIC) methodTxt = "ISO  "
-            if(method == SHINOZUKA) methodTxt = "SHI"
-            if(method == RANDOMIZATION) methodTxt = "RAN"
-            if(method == FFT) methodTxt = "FFT"
-            methodTxt = trim(adjustl(string_join_many(methodTxt,"-",indepChar)))
+            !runAll file creation
+            !initial = .true.
+            runAll_path = string_join_many("./genTests/", res_folder, &
+                "/runAll_",numb2String(nDim),"D-",indepChar,".sh")
+            write(*,*) "runAll_path = ", runAll_path
+            open (unit = runAll_Id , file = runAll_path, action = 'write')
+            write(runAll_Id,"(A)") "#!/bin/bash"
+            write(runAll_Id,"(A)") ""
+            write(runAll_Id,"(A)") "clear"
+            write(runAll_Id,"(A)")
+            write(runAll_Id,"(A)")
+            write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
+            write(runAll_Id,"(A)") "do"
+            write(runAll_Id,"(A)") '   echo "Running $i"'
 
-            !Creating iterations
-            do nTests = 1, nIter(nDim)
+            do method = 1, size(activeMethod)
 
-                !Creating folder
-                it_path   = string_join_many("./genTests/", res_folder,"/",     &
-                                             numb2String(nDim),"D/", methodTxt)
-                it_folder = numb2String(nTests, 3)
-                call create_folder(it_folder, it_path)
-                full_path = string_join_many(it_path,"/",it_folder)
+                if(.not. activeMethod(method)) cycle
 
-                !Setting Case properties
-                !GENERATION FILE
-                Nmc = 1
-                corrMod = cm_GAUSSIAN
-                margiFirst = fom_GAUSSIAN
-                fieldAvg = 0.0D0
-                fieldVar = 1.0D0
-                call set_vec(corrL, [(corrLBase, i=1, nDim)])
-                call set_vec(overlap, [(overlapBase, i=1, nDim)])
+                if(method == ISOTROPIC .and. nDim == 1) cycle !No isotropic 1D
 
-                !MESH FILE
-                call set_vec(xMax, [(1.0D0, i=1, nDim)]) !Starts xMax in 1
-                call set_vec(xMin, [(0.0D0, i=1, nDim)])  !Starts xMin in 0
-                call set_vec_Int(pointsPerCorrL, [(pointsPerCorrLBase, i=1, nDim)])
-                if(constant_Domain_size) then
-                    xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
-                else
-                    xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
-                end if
+                if(method == ISOTROPIC) methodTxt = "ISO  "
+                if(method == SHINOZUKA) methodTxt = "SHI"
+                if(method == RANDOMIZATION) methodTxt = "RAN"
+                if(method == FFT) methodTxt = "FFT"
 
-                !DEFINE NUMBER OF CLUSTERS
-                if(singleProc) then
-                    nProcsTotal = 1
-                    nProcsPerChunk = 1
-                    nChunks = 1
-                    memPerChunk=mem_per_chunk_Max
-                else
-                    nProcsTotal = 2**(nTests-1)
-                    if (cluster==2) then
-                        !OCCYGEN
-                        stop("This cluster is not implemented yet")
+                methodTxt = trim(adjustl(string_join_many(methodTxt,"-",indepChar)))
+
+                !Creating iterations
+                do nTests = 1, nIter(nDim)
+
+                    !Creating folder
+                    it_path   = string_join_many("./genTests/", res_folder,"/",     &
+                        numb2String(nDim),"D/", methodTxt)
+                    it_folder = numb2String(nTests, 3)
+                    call create_folder(it_folder, it_path)
+                    full_path = string_join_many(it_path,"/",it_folder)
+
+                    !Setting Case properties
+                    !GENERATION FILE
+                    Nmc = 1
+                    corrMod = cm_GAUSSIAN
+                    margiFirst = fom_GAUSSIAN
+                    fieldAvg = 0.0D0
+                    fieldVar = 1.0D0
+                    call set_vec(corrL, [(corrLBase, i=1, nDim)])
+                    call set_vec(overlap, [(overlapBase, i=1, nDim)])
+
+                    !MESH FILE
+                    call set_vec(xMax, [(1.0D0, i=1, nDim)]) !Starts xMax in 1
+                    call set_vec(xMin, [(0.0D0, i=1, nDim)])  !Starts xMin in 0
+                    call set_vec_Int(pointsPerCorrL, [(pointsPerCorrLBase, i=1, nDim)])
+                    if(constant_Domain_size) then
+                        xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
                     else
+                        xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
+                    end if
+
+                    !DEFINE NUMBER OF CLUSTERS
+                    if(singleProc) then
+                        nProcsTotal = 1
+                        nProcsPerChunk = 1
+                        nChunks = 1
+                        memPerChunk=mem_per_chunk_Max
+                    else
+                        nProcsTotal = 2**(nTests-1)
+                        if (cluster==2) then
+                            !OCCYGEN
+                            stop("This cluster is not implemented yet")
+                        else
                         !IGLOO
                         nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
                         memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
@@ -284,352 +304,68 @@ program main_AutoTest
                 end if
 
                 call makeCase(nDim=nDim,                     &
-                              Nmc=Nmc,                       &
-                              corrMod=corrMod,               &
-                              margiFirst=margiFirst,         &
-                              corrL=corrL,                   &
-                              fieldAvg=fieldAvg,             &
-                              fieldVar=fieldVar,             &
-                              method=method,                 &
-                              seedStart=0,                   &
-                              independent=independent,       &
-                              overlap=overlap,               &
-                              xMinGlob=xMin,                 &
-                              xMaxGlob=xMax,                 &
-                              pointsPerCorrL=pointsPerCorrL, &
-                              nProcsTotal=nProcsTotal,       &
-                              nProcsPerChunk=nProcsPerChunk, &
-                              nChunks=nChunks,               &
-                              memPerChunk=memPerChunk,       &
-                              queue=queue,                   &
-                              wallTime=wallTime,             &
-                              folderPath=full_path,          &
-                              runPath=run_path)
+                    Nmc=Nmc,                       &
+                    corrMod=corrMod,               &
+                    margiFirst=margiFirst,         &
+                    corrL=corrL,                   &
+                    fieldAvg=fieldAvg,             &
+                    fieldVar=fieldVar,             &
+                    method=method,                 &
+                    seedStart=0,                   &
+                    independent=independent,       &
+                    overlap=overlap,               &
+                    xMinGlob=xMin,                 &
+                    xMaxGlob=xMax,                 &
+                    pointsPerCorrL=pointsPerCorrL, &
+                    nProcsTotal=nProcsTotal,       &
+                    nProcsPerChunk=nProcsPerChunk, &
+                    nChunks=nChunks,               &
+                    memPerChunk=memPerChunk,       &
+                    queue=queue,                   &
+                    wallTime=wallTime,             &
+                    cluster=cluster,               &
+                    folderPath=full_path,          &
+                    runPath=run_path)
 
                 temp_path = string_join_many("./", numb2String(nDim),"D/", methodTxt)
 
-                if (cluster==2) then
+                if (cluster==1) then
+                    write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
+                    write(runAll_Id,"(A)") "qsub run.pbs"
+                    write(runAll_Id,"(A)") "cd ../../../"
+                else if (cluster==2) then
                     write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
                     write(runAll_Id,"(A)") string_join_many("sbatch "//trim(temp_path),"/",it_folder,"/run.pbs")
                     write(runAll_Id,"(A)") "cd ../../../"
                 else
                     write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
-                    write(runAll_Id,"(A)") "qsub run.pbs"
+                    write(runAll_Id,"(A)") "./run.command"
                     write(runAll_Id,"(A)") "cd ../../../"
                 end if
                 !initial = .false.
-            end do
+                end do !Tests
 
-        end do
+            end do !Methods
 
-        !write(runAll_Id,"(A)") "cd ../../../"
-        write(runAll_Id,"(A)") "sleep 1"
-        write(runAll_Id,"(A)") "done"
-        write(runAll_Id,"(A)") ""
-        write(runAll_Id,"(A)") "qstat -u carvalhol"
-        close (runAll_Id)
-        write(*,*) "-> runAll done"
-        call system("chmod u+x "//trim(runAll_path))
-        call system("chmod a+r "//trim(runAll_path))
+            !write(runAll_Id,"(A)") "cd ../../../"
+            write(runAll_Id,"(A)") "sleep 1"
+            write(runAll_Id,"(A)") "done"
+            write(runAll_Id,"(A)") ""
+            write(runAll_Id,"(A)") "qstat -u carvalhol"
+            close (runAll_Id)
+            write(*,*) "-> runAll done"
+            call system("chmod u+x "//trim(runAll_path))
+            call system("chmod a+r "//trim(runAll_path))
 
-    end do
+        end do !Dimension
+
+    end do !Independent
 
     if(allocated(pointsPerCorrL)) deallocate(pointsPerCorrL)
     if(allocated(corrL)) deallocate(corrL)
     if(allocated(overlap)) deallocate(overlap)
     if(allocated(xMin)) deallocate(xMin)
     if(allocated(xMax)) deallocate(xMax)
-
-
-!    if(ISO_Test) then
-!        methodMin = 1;
-!        methodMax = 1;
-!    end if
-!
-
-!
-!
-!    maxProcReq = maxval(2**(nIter-1))
-!
-!    if (cluster==2) then
-!        queue = "NOT" !Don't apply
-!        proc_per_chunk_Max = 24
-!        mem_per_chunk_Max = 64000 !Don't apply
-!        n_chunk_Max = 2106
-!        wallTime = "10:00:00"
-!    else
-!        if(singleProc) then
-!            queue = "uvq"
-!            proc_per_chunk_Max = 1
-!            mem_per_chunk_Max = 128000
-!            n_chunk_Max = 1
-!            wallTime = "20:00:00"
-!        else if (maxProcReq < 385) then
-!            queue = "icexq"
-!            proc_per_chunk_Max = 24
-!            mem_per_chunk_Max = 32000
-!            n_chunk_Max = 16
-!            wallTime = "04:00:00"
-!        else
-!            queue = "iceq"
-!            proc_per_chunk_Max = 12
-!            mem_per_chunk_Max = 24000
-!            n_chunk_Max = 56
-!            wallTime = "04:00:00"
-!        end if
-!    end if
-!
-!    res_path = string_join_many("../", res_folder)
-!    call check_folder_existence(res_path, ".", compiler, dirExists)
-!    if(.not. dirExists) call create_folder(res_path, ".")
-!
-!    write(*,*)
-!
-!    write(*,*) "weakScal    = ", weakScal
-!    write(*,*) "singleProc  = ", singleProc
-!    write(*,*) "execPath    = ", execPath
-!    write(*,*) "dimMin      = ", dimMin, " dimMax = ", dimMax
-!    write(*,*) "methodMin   = ", methodMin, " methodMax = ", methodMax
-!    write(*,*) "seedStart   = ", seedStart
-!    write(*,*) "nRuns       = ", nRuns
-!    write(*,*) "independent = ", independent
-!    write(*,*) "overlap     = ", overlap
-!    write(*,*) "res_folder   = ", res_folder
-!    write(*,*) "testTypeChar = ", testTypeChar
-!    write(*,*) "iterBase     = ", iterBase
-!    write(*,*) "nIter        = ", nIter
-
-!    dimLoop : do nDim = dimMin, dimMax
-!        write(*,*) "----------------------------------------"
-!        write(*,*) "nDim = ", nDim
-!
-!        initial = .true.
-!
-!        !runAll file creation
-!        runAll_path = string_join_many(res_path, "/runAll_",numb2String(nDim),"D.sh")
-!        write(*,*) "runAll_path = ", runAll_path
-!        open (unit = runAll_Id , file = runAll_path, action = 'write')
-!        write(runAll_Id,"(A)") "#!/bin/bash"
-!        write(runAll_Id,"(A)") ""
-!        write(runAll_Id,"(A)") "clear"
-!        write(runAll_Id,"(A)")
-!        write(runAll_Id,"(A)")
-!        write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
-!        write(runAll_Id,"(A)") "do"
-!        write(runAll_Id,"(A)") '   echo "Running $i"'
-!
-!        !Dimension folder creation
-!        dim_folder = string_join_many(numb2String(nDim),"D_", testTypeChar)
-!        dim_path = string_join_many(res_path,"/",dim_folder)
-!        call check_folder_existence(dim_path, ".", compiler, dirExists)
-!        if(.not. dirExists) call create_folder(dim_path, ".")
-!        write(*,*) 'dim_path = ', trim(dim_path)
-!
-!        methodLoop : do method = methodMin, methodMax
-!
-!            if(method == ISOTROPIC .and. nDim == 1) cycle !No isotropic 1D
-!
-!            if(method == ISOTROPIC) methodTxt = "ISO  "
-!            if(method == SHINOZUKA) methodTxt = "SHINO"
-!            if(method == RANDOMIZATION) methodTxt = "RANDO"
-!            if(method == ISOTROPIC .and. independent == 1) methodTxt = "ISO-i  "
-!            if(method == SHINOZUKA .and. independent == 1) methodTxt = "SHINO-i"
-!            if(method == RANDOMIZATION .and. independent == 1) methodTxt = "RANDO-i"
-!
-!
-!            write(*,*) ""
-!            write(*,*) ""
-!            write(*,*) "method = ", method
-!            write(*,*) "methodTxt = ", methodTxt
-!            write(*,*) ""
-!
-!            !Method folder creation
-!            method_folder = string_join_many(methodTxt, "_", numb2String(nDim), "D_", testTypeChar)
-!            method_path = string_join_many(dim_path,"/", method_folder)
-!            call check_folder_existence(method_path, ".", compiler, dirExists)
-!            if(.not. dirExists) call create_folder(method_path, ".")
-!            write(*,*) 'method_path = ', trim(method_path)
-!
-!            !Creating iterations
-!            iterationLoop : do nTests = 1, nIter(nDim)
-!
-!                write(*,*) "Iteration = ",nTests
-!
-!                !GENERATION FILE
-!                Nmc = 1
-!                corrMod = "gaussian"
-!                margiFirst = "lognormal"
-!                call set_vec(corrL, [(corrLBase, i=1, nDim)])
-!                fieldAvg = 0.5D0
-!                fieldVar = 1.0D0
-!
-!                !MESH FILE
-!                call set_vec(xMax, [(1.0D0, i=1, nDim)]) !Starts xMax in 1
-!                call set_vec(xMin, [(0.0D0, i=1, nDim)])  !Starts xMin in 0
-!                call set_vec(xStep, [(xStepBase, i=1, nDim)])
-!                meshType = "unstructured"
-!                meshMod = "automatic"
-!
-!                !xMax MODIFICATION
-!                write(*,*) "xMax BEFORE = ", xMax
-!                if(weakScal) then
-!                    xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
-!                else
-!                    xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
-!                end if
-!
-!                write(*,*) "xMax AFTER = ", xMax
-!
-!                !-----Exigences-------------------------------------
-!                !NUMBER OF TERMS
-!                xNTotal = product(1+(xMax-xMin)/xStep)
-!                kNTotal = product(kAdjust*(periodMult*(xMax-xMin)/corrL + 1))
-!
-!                !NUMBER OF PROCS
-!                nProcsTotal = 2**(nTests-1)
-!                if(singleProc) nProcsTotal = 1
-!
-!                !PRINTING
-!                write(*,*) "----------------------------------------------------"
-!                write(*,*) "Iteration ", nTests
-!                write(*,*) "    Inputs "
-!                write(*,*) "    |xMax         = ", xMax
-!                write(*,*) "    |xMin         = ", xMin
-!                write(*,*) "    |xNTotal      = ", xNTotal
-!                write(*,*) "    |kNTotal      = ", kNTotal
-!                !write(*,*) "    |memTotal     = ", memTotal
-!                !write(*,*) "    |timeTotal(s) = ", timeTotal
-!                write(*,*) "    |nProcsTotal  = ", nProcsTotal
-!
-!                !CLUSTER LIMITATION
-!                !if(memTotal < 0)  then
-!                !    write(*,*) "memTotal < 0, folder will not be writen"
-!                !    cycle
-!                !end if
-!
-!                !INTEGER LIMITATION
-!                if(xNTotal < 1 .or. kNTotal<1) then
-!                    write(*,*) "xNTotal or kNTotal < 1, folder will not be writen"
-!                    cycle
-!                end if
-!
-!                !EXIGENCES
-!                nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
-!                if(nChunks > n_chunk_Max) then
-!                    write(*,*) "You asked for too many chunks"
-!                    write(*,*) "nChunks     = ", nChunks
-!                    write(*,*) "n_chunk_Max = ", n_chunk_Max
-!                    cycle
-!                end if
-!
-!                memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
-!                if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
-!                if(memPerChunk > mem_per_chunk_Max) then
-!                    write(*,*) "You asked for too much memory"
-!                    write(*,*) "memPerChunk       = ", memPerChunk
-!                    write(*,*) "mem_per_chunk_Max = ", mem_per_chunk_Max
-!                    cycle
-!                end if
-!
-!                nProcsPerChunk = nProcsTotal;
-!                if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
-!
-!                if(nChunks < 1)     nChunks = 1
-!                if(memPerChunk < 1) memPerChunk = 1
-!
-!                write(*,*) "    Requirements "
-!                !write(*,*) "    |timePerProc    = ", timePerProc
-!                write(*,*) "    |nProcsTotal    = ", nProcsTotal
-!                write(*,*) "    |memPerChunk    = ", memPerChunk
-!                write(*,*) "    |nChunks        = ", nChunks
-!                write(*,*) "    |nProcsPerChunk = ", nProcsPerChunk
-!                write(*,*) "    |wallTime       = ", wallTime
-!
-!
-!
-!                !Defining Names
-!                pbsName = string_join_many("run", numb2String(nProcsTotal), ".pbs")
-!                if (cluster==2) pbsName = string_join_many("run", numb2String(nProcsTotal), ".slurm")
-!                if(singleProc)then
-!                    jobName = string_join_many(numb2String(nDim),"D_i", numb2String(nTests),"_",testTypeChar,"_",methodTxt)
-!                    outName = string_join_many("out_",numb2String(nDim),"D_i", numb2String(nTests),"_", &
-!                                               testTypeChar,"_",methodTxt, ".txt")
-!                else
-!                    jobName = string_join_many(numb2String(nDim),"D_", numb2String(nProcsTotal),"_",testTypeChar,"_",methodTxt)
-!                    outName = string_join_many("out_",numb2String(nDim),"D_", numb2String(nProcsTotal),"_", &
-!                                                testTypeChar,"_",methodTxt, ".txt")
-!                end if
-!                write(*,*) "    pbsName = ", pbsName
-!                write(*,*) "    jobName = ", jobName
-!                write(*,*) "    outName = ", outName
-!
-!                Lchar = string_join_many("L-", numb2String(nTests))
-!
-!                !Iteration folder creation
-!                it_folder = string_join_many(numb2String(nProcsTotal),"p_",Lchar,"_", methodTxt, "_", &
-!                                             numb2String(nDim), "D_", testTypeChar)
-!                it_path = string_join_many(method_path,"/", it_folder)
-!                !folder_name = string_join_many(numb2String(nProcsTotal),"_", numb2String(nDim),"D_",methodTxt)
-!                write(*,*) "    Iteration path = ", trim(it_path)
-!                call check_folder_existence(it_path, ".", compiler, dirExists)
-!                if(.not. dirExists) call create_folder(it_path, ".")
-!
-!                !WRITING FILES
-!                if(size(corrL) /= nDim .or. size(xMax) /= nDim .or. &
-!                    size(xMin) /= nDim  .or. size(xStep) /= nDim) then
-!                    write(*,*) "ERROR!!!"
-!                    write(*,*) "nDim = ",nDim
-!                    write(*,*) "corrL = ",corrL
-!                    write(*,*) "xMax = ",xMax
-!                    write(*,*) "xMin = ",xMin
-!                    write(*,*) "xStep = ",xStep
-!                    stop "Dimensions are not compatible"
-!                end if
-!
-!                write(*,*) "-> Writing files"
-!
-!                if (cluster==2) then
-!                    write(*,*) "    *SLURM"
-!                    call writeSlurmfile()
-!                else
-!                    write(*,*) "    *PBS"
-!                    call writePBSfile()
-!                end if
-!
-!                write(*,*) "    *generation"
-!                call write_gen_file()
-!                write(*,*) "    *mesh"
-!                call write_mesh_file()
-!                if(initial) then
-!                    write(runAll_Id,"(A)") "cd "//trim(dim_folder)
-!                    write(runAll_Id,"(A)") "cd "//trim(method_folder)
-!                    write(runAll_Id,"(A)") "cd "//trim(it_folder)
-!                else
-!                    write(runAll_Id,"(A)") "cd ../../"//trim(method_folder)
-!                    !write(runAll_Id,"(A)") "cd "//trim(method_folder)
-!                    write(runAll_Id,"(A)") "cd "//trim(it_folder)
-!                end if
-!                if (cluster==2) then
-!                    write(runAll_Id,"(A)") "sbatch "//trim(pbsName)
-!                else
-!                    write(runAll_Id,"(A)") "qsub "//trim(pbsName)
-!                end if
-!                initial = .false.
-!
-!            end do iterationLoop
-!
-!        end do methodLoop
-!        write(runAll_Id,"(A)") "cd ../../../"
-!        write(runAll_Id,"(A)") "sleep 1"
-!        write(runAll_Id,"(A)") "done"
-!        write(runAll_Id,"(A)") ""
-!        write(runAll_Id,"(A)") "qstat -u carvalhol"
-!        close (runAll_Id)
-!        write(*,*) "-> runAll done"
-!        call system("chmod u+x "//trim(runAll_path))
-!        call system("chmod a+r "//trim(runAll_path))
-!
-!    end do dimLoop
 
 contains
 
@@ -709,10 +445,10 @@ contains
         queue  = errorQ
 
 
-    !MONOCHUNK-----------------------------------------------------------------------------
+        !MONOCHUNK-----------------------------------------------------------------------------
         !START TEST
         if((timePerProc < 24*h .and. memPerProc < 100*gb .and. nChunks == 1 .and. nProcsTotal < 12) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             queue = "uvq"
             qFound = .true.
         !Queue uvq
@@ -726,7 +462,7 @@ contains
         end if
         !END TEST
         if((timePerProc < 24*h .and. memPerProc < 32*gb .and. nChunks == 1 .and. nProcsTotal < 24) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             queue = "icexq"
             qFound = .true.
         !    la queue d’exécution icexmemq :
@@ -740,7 +476,7 @@ contains
 
         end if
         if((timePerProc < 24*h .and. memPerProc < 46*gb .and. nChunks == 1 .and. nProcsTotal < 12) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             queue = "iceq"
             qFound = .true.
         !    la queue d’exécution icemem48gbq :
@@ -754,7 +490,7 @@ contains
 
         end if
         if((timePerProc < 24*h .and. memPerProc < 70*gb .and. nChunks == 1 .and. nProcsTotal < 12) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             queue = "iceq"
             qFound = .true.
         !     la queue d’exécution icemem72gbq :
@@ -766,8 +502,8 @@ contains
         !        jobs cibles : jobs séquentiels et de type OpenMP necessitant plus de 46 Gio
         !        nœuds cibles : 4 nœuds de 72 Gio
 
-!        else if(timePerProc < 24*h .and. memPerProc < 128*gb .and. nChunks == 1 .and. nProcsTotal < 12) then
-!            queue = "uvq"
+        !        else if(timePerProc < 24*h .and. memPerProc < 128*gb .and. nChunks == 1 .and. nProcsTotal < 12) then
+        !            queue = "uvq"
         !Queue uvq
         !
         !    ressources limites :
@@ -778,9 +514,9 @@ contains
         !
         end if
 
-    !MULTICHUNK 20m-------------------------------------------------------------------
+        !MULTICHUNK 20m-------------------------------------------------------------------
         if((timePerProc < 20*m .and. nProcsTotal < 24) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             memMaxPerChunk = 24*gb
             nProcsMaxPerChunk = memMaxPerChunk / memPerProc
             if(nProcsPerChunk <= nProcsMaxPerChunk) then
@@ -799,7 +535,7 @@ contains
 
         end if
         if((timePerProc < 20*m .and. nProcsTotal < 36) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             memMaxPerChunk = 32*gb
             nProcsMaxPerChunk = memMaxPerChunk / memPerProc
             if(nProcsPerChunk <= nProcsMaxPerChunk) then
@@ -818,9 +554,9 @@ contains
         end if
 
 
-    !MULTICHUNK 4h-------------------------------------------------------------------
+        !MULTICHUNK 4h-------------------------------------------------------------------
         if((timePerProc < 4*h .and. nProcsTotal < 144) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             memMaxPerChunk = 32*gb
             nProcsMaxPerChunk = memMaxPerChunk / memPerProc
             if(nProcsPerChunk <= nProcsMaxPerChunk) then
@@ -838,7 +574,7 @@ contains
 
         end if
         if((timePerProc < 4*h .and. nProcsTotal < 156) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             memMaxPerChunk = 24*gb
             nProcsMaxPerChunk = memMaxPerChunk / memPerProc
             if(nProcsPerChunk <= nProcsMaxPerChunk) then
@@ -856,7 +592,7 @@ contains
 
         end if
         if((timePerProc < 4*h .and. nProcsTotal < 241) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             memMaxPerChunk = 32*gb
             nProcsMaxPerChunk = memMaxPerChunk / memPerProc
             if(nProcsPerChunk <= nProcsMaxPerChunk) then
@@ -876,7 +612,7 @@ contains
             !        nœuds cibles : 10 nœuds de l'ICEX
         end if
         if((timePerProc < 4*h .and. nProcsTotal < 516) &
-           .and. (.not. qFound)) then
+            .and. (.not. qFound)) then
             memMaxPerChunk = 24*gb
             nProcsMaxPerChunk = memMaxPerChunk / memPerProc
             if(nProcsPerChunk <= nProcsMaxPerChunk) then

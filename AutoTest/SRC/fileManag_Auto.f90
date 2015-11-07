@@ -15,7 +15,8 @@ contains
                         seedStart, independent, overlap, &
                         xMinGlob, xMaxGlob, pointsPerCorrL, &
                         nProcsTotal, nProcsPerChunk, nChunks, &
-                        memPerChunk, queue, wallTime, folderPath, runPath)
+                        memPerChunk, queue, wallTime, cluster, &
+                        folderPath, runPath)
         implicit none
         !INPUT
         integer, intent(in) :: nDim, Nmc, corrMod, margiFirst, method, seedStart, independent
@@ -23,7 +24,7 @@ contains
         double precision, dimension(:), intent(in) :: xMinGlob, xMaxGlob
         integer, dimension(:), intent(in) :: pointsPerCorrL
         double precision, intent(in) :: fieldAvg, fieldVar
-        integer, intent(in) :: nProcsTotal, nProcsPerChunk, nChunks, memPerChunk
+        integer, intent(in) :: nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, cluster
         character(len=*), intent(in) :: wallTime
         character(len=*), intent(in) :: queue
         character(len=tSize) :: folderPath
@@ -33,11 +34,13 @@ contains
         character(len=tSize) :: PBS_path
         character(len=tSize) :: gen_path
         character(len=tSize) :: mesh_path
+        character(len=tSize) :: command_path
         integer :: i
 
         write(*,*) "Making case on: ", folderPath
 
         PBS_path  = string_join_many(folderPath,"/","run.pbs")
+        command_path = string_join_many(folderPath,"/","run.command")
         gen_path  = string_join_many(folderPath,"/","gen_input")
         mesh_path = string_join_many(folderPath,"/","mesh_input")
 
@@ -46,13 +49,62 @@ contains
         call write_gen_file(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
                             seedStart, independent, overlap, gen_path)
 
-        call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
-                          memPerChunk, wallTime, queue, PBS_path)
+        if(cluster == 1) then
+            call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
+                              memPerChunk, wallTime, queue, PBS_path)
+        else if (cluster == 2)  then
+        else if (cluster == 3) then
+            call write_command_file(nProcsTotal, command_path)
+        end if
 
         if(present(runPath)) runPath = PBS_path
 
     end subroutine makeCase
 
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    subroutine write_command_file(nProcsTotal, folderPath)
+
+        implicit none
+        !INPUT
+        integer, intent(in) :: nProcsTotal
+        character(len=*), intent(in) :: folderPath
+        !LOCAL
+        integer :: i
+        integer :: fileId
+        character(len=20) :: NP
+
+        fileID = 18
+
+        open (unit = fileId , file = folderPath, action = 'write')
+
+        NP = string_join_many("NP=",numb2String(nProcsTotal))
+
+        write(fileId,"(A)") "#!/bin/bash"
+        write(fileId,"(A)") NP
+        write(fileId,"(A)") "(cd /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build; make all)"
+        write(fileId,"(A)") 'echo ""'
+        write(fileId,"(A)") 'echo "---------------------------------"'
+        write(fileId,"(A)") 'echo ""'
+        !write(fileId,"(A)") 'make all'
+        !write(fileId,"(A)") 'cd '//folderPath
+        write(fileId,"(A)") 'rm  log*'
+        write(fileId,"(A)") 'rm  fort.*'
+        write(fileId,"(A)") 'rm  -r results'
+        !write(fileId,"(A)") '#sleep 1'
+        write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe'
+        write(fileId,"(A)") '#mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe'
+        write(fileId,"(A)") ' '
+        write(fileId,"(A)") 'ls'
+
+        close(fileId)
+
+        call system("chmod u+x "//trim(folderPath))
+        call system("chmod a+r "//trim(folderPath))
+
+    end subroutine write_command_file
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
