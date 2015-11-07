@@ -11,11 +11,11 @@ program main_AutoTest
 
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
     logical, dimension(3) :: activeDim = [.false., .true., .true.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .true., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
+    logical, dimension(2) :: activeApproach = [.true., .true.] !Global, Local
 
 
     !COMPUTATION
@@ -130,7 +130,7 @@ program main_AutoTest
 
     if(singleProc) then
         if (independent == 1) then
-            res_folder = "COMP-i"
+            res_folder = "COMP"
             testTypeChar = "C"
             iterBase = [1, 1, 1]
             nIter = [18, 16, 10]
@@ -143,7 +143,7 @@ program main_AutoTest
 
     else if(constant_Domain_size) then
         if (independent == 1) then
-            res_folder = "STRONG-i"
+            res_folder = "STRONG"
             testTypeChar = "S"
             iterBase = [17, 15, 12]
             nIter = [10, 10, 10]
@@ -158,13 +158,13 @@ program main_AutoTest
         if (independent == 1) then
             res_folder = "WEAK"
             testTypeChar = "W"
-            iterBase = [16, 14, 10] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+            iterBase = [16, 1, 1] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
             !nIter = [10, 10, 10]
             nIter = [10, 2, 2]
         else
             res_folder = "WEAK"
             testTypeChar = "W"
-            iterBase = [16, 14, 10] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+            iterBase = [16, 1, 1] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
             !nIter = [10, 10, 10]
             nIter = [10, 2, 2]
         end if
@@ -353,7 +353,7 @@ program main_AutoTest
             write(runAll_Id,"(A)") "sleep 1"
             write(runAll_Id,"(A)") "done"
             write(runAll_Id,"(A)") ""
-            write(runAll_Id,"(A)") "qstat -u carvalhol"
+            if(cluster == 1) write(runAll_Id,"(A)") "qstat -u carvalhol"
             close (runAll_Id)
             write(*,*) "-> runAll done"
             call system("chmod u+x "//trim(runAll_path))
