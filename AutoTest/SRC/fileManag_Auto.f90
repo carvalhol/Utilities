@@ -16,10 +16,10 @@ contains
                         xMinGlob, xMaxGlob, pointsPerCorrL, &
                         nProcsTotal, nProcsPerChunk, nChunks, &
                         memPerChunk, queue, wallTime, cluster, &
-                        folderPath, runPath)
+                        folderPath, runPath, iter)
         implicit none
         !INPUT
-        integer, intent(in) :: nDim, Nmc, corrMod, margiFirst, method, seedStart, independent
+        integer, intent(in) :: nDim, Nmc, corrMod, margiFirst, method, seedStart, independent, iter
         double precision, dimension(:), intent(in) :: corrL, overlap
         double precision, dimension(:), intent(in) :: xMinGlob, xMaxGlob
         integer, dimension(:), intent(in) :: pointsPerCorrL
@@ -35,7 +35,9 @@ contains
         character(len=tSize) :: gen_path
         character(len=tSize) :: mesh_path
         character(len=tSize) :: command_path
+        character(len=tSize) :: jobName
         integer :: i
+        character :: indepChar
 
         write(*,*) "Making case on: ", folderPath
 
@@ -49,10 +51,14 @@ contains
         call write_gen_file(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
                             seedStart, independent, overlap, gen_path)
 
+        indepChar = "g"
+        if(independent == 1) indepChar = "l"
+        jobName = string_join_many("M",numb2String(method),"-",indepChar,"_",numb2String(iter,2))
+
 
         if(cluster == 1) then
             call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
-                              memPerChunk, wallTime, queue, PBS_path)
+                              memPerChunk, wallTime, queue, PBS_path, jobName)
         else if (cluster == 2)  then
         else if (cluster == 3) then
             call write_command_file(nProcsTotal, command_path)
@@ -188,7 +194,7 @@ contains
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
-    subroutine writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, wallTime, queue, PBS_path, name)
+    subroutine writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, wallTime, queue, PBS_path, jobName)
 
         implicit none
         !INPUT
@@ -196,7 +202,8 @@ contains
         character(len=8), intent(in) :: wallTime
         character(len=200) :: PBS_path
         character(len=*), intent(in) :: queue
-        character(len=50) :: name
+        !character(len=50) :: name
+        character(len=50), intent(in) :: jobName
 
         !LOCAL
         integer :: nProcsPerChunk_chSz, nProcsTotal_chSz
@@ -205,12 +212,10 @@ contains
         integer :: nDim_chSz
         integer :: fileId
         character(len=200) :: format
-        character(len=50) :: jobName
         character(len=50) :: outName
         integer :: i
 
         fileID = 28
-        jobName = name
         outName = "out_RF"
         nDim_chSz = findCharSize(nDim)
         nProcsPerChunk_chSz = findCharSize(nProcsPerChunk)
