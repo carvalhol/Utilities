@@ -49,6 +49,7 @@ contains
         call write_gen_file(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
                             seedStart, independent, overlap, gen_path)
 
+
         if(cluster == 1) then
             call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
                               memPerChunk, wallTime, queue, PBS_path)
@@ -187,7 +188,7 @@ contains
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
-    subroutine writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, wallTime, queue, PBS_path)
+    subroutine writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, wallTime, queue, PBS_path, name)
 
         implicit none
         !INPUT
@@ -195,6 +196,7 @@ contains
         character(len=8), intent(in) :: wallTime
         character(len=200) :: PBS_path
         character(len=*), intent(in) :: queue
+        character(len=50) :: name
 
         !LOCAL
         integer :: nProcsPerChunk_chSz, nProcsTotal_chSz
@@ -208,8 +210,8 @@ contains
         integer :: i
 
         fileID = 28
-        jobName = "jobRFGeneric"
-        outName = "outRFGeneric"
+        jobName = name
+        outName = "out_RF"
         nDim_chSz = findCharSize(nDim)
         nProcsPerChunk_chSz = findCharSize(nProcsPerChunk)
         nChunks_chSz = findCharSize(nChunks)

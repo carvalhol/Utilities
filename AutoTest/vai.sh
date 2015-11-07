@@ -6,7 +6,8 @@ echo "---------------------------------"
 echo ""
 make all
 cd ..
-qsub run.pbs
+#qsub run.pbs
+./build/autoTest.exe 
 #qsub all_1.pbs
 #qstat -u carvalhol
 # INSTRUCIONS TO CREATE A BASH FILE

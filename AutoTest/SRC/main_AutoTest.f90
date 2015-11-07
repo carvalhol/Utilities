@@ -11,12 +11,21 @@ program main_AutoTest
 
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
+<<<<<<< HEAD
     integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
+=======
+    integer :: cluster = 1 !1=Igloo, 2=Oxigen
+    integer :: independent = 1 !0 = false, 1 = true (other numbers will be considered as false)
+    logical, dimension(3) :: runDim = [.false., .false., .true.] !1D, 2D, 3D
+    logical, dimension(4) :: runMethod = [.false., .true., .false., .true.] !ISO, SHINO, RANDO, FFT
+>>>>>>> 92a1cacc63380a6592295e7ff55c41c9c170ccd1
     integer :: nRuns = 1 !How many times each iteration
     logical, dimension(3) :: activeDim = [.false., .true., .true.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .true., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
     logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
 
+    integer :: dimMin = 1, dimMax = 3
+    integer :: methodMin = 1, methodMax = 4
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
     integer :: NTerm = 1000000000 !Terms
@@ -132,12 +141,12 @@ program main_AutoTest
             res_folder = "COMP-i"
             testTypeChar = "C"
             iterBase = [1, 1, 1]
-            nIter = [18, 16, 13]
+            nIter = [18, 16, 10]
         else
             res_folder = "COMP"
             testTypeChar = "C"
             iterBase = [1, 1, 1]
-            nIter = [18, 16, 13]
+            nIter = [18, 16, 16]
         end if
 
     else if(constant_Domain_size) then
@@ -178,7 +187,7 @@ program main_AutoTest
     if(singleProc) then
         queue = "uvq"
         proc_per_chunk_Max = 1
-        mem_per_chunk_Max = 128000
+        mem_per_chunk_Max = 125000
         n_chunk_Max = 1
         wallTime = "20:00:00"
     else if (maxProcReq < 385) then
