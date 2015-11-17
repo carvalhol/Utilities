@@ -133,7 +133,7 @@ contains
         open (unit = fileId , file = mesh_path, action = 'write')
 
         write(fileId,*) "$$nDim ", nDim
-        write(fileId,*) "$$meshMod automatic"
+        write(fileId,*) "$$meshMod 1"
         write(fileId,*) "          $Min            $Max           $pointsPerCorrL"
         do i = 1, nDim
             write(fileId, "(2(F15.5, A), (I15))") xMinGlob(i), " ", xMaxGlob(i), " ", pointsPerCorrL(i)

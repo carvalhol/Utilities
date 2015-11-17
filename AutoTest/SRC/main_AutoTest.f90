@@ -129,45 +129,25 @@ program main_AutoTest
     !
 
     if(singleProc) then
-        if (independent == 1) then
-            res_folder = "COMP"
-            testTypeChar = "C"
-            iterBase = [1, 1, 1]
-            nIter = [18, 16, 10]
-        else
-            res_folder = "COMP"
-            testTypeChar = "C"
-            iterBase = [1, 1, 1]
-            nIter = [18, 16, 16]
-        end if
+
+        res_folder = "COMP"
+        testTypeChar = "C"
+        iterBase = [1, 1, 1]
+        nIter = [18, 16, 10]
 
     else if(constant_Domain_size) then
-        if (independent == 1) then
-            res_folder = "STRONG"
-            testTypeChar = "S"
-            iterBase = [17, 15, 12]
-            nIter = [10, 10, 10]
-        else
-            res_folder = "STRONG"
-            testTypeChar = "S"
-            iterBase = [17, 15, 12]
-            nIter = [10, 10, 10]
-        end if
+        res_folder = "STRONG"
+        testTypeChar = "S"
+        iterBase = [17, 15, 12]
+        nIter = [10, 10, 10]
 
     else
-        if (independent == 1) then
-            res_folder = "WEAK"
-            testTypeChar = "W"
-            iterBase = [16, 1, 1] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
-            !nIter = [10, 10, 10]
-            nIter = [10, 2, 2]
-        else
-            res_folder = "WEAK"
-            testTypeChar = "W"
-            iterBase = [16, 1, 1] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
-            !nIter = [10, 10, 10]
-            nIter = [10, 2, 2]
-        end if
+        res_folder = "WEAK"
+        testTypeChar = "W"
+        iterBase = [16, 7, 7] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+        !nIter = [10, 10, 10]
+        nIter = [10, 2, 2]
+
     end if
 
     !Global folders and files creation
