@@ -2,19 +2,15 @@
 
 NP=1
 
-cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build
+(cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build)
 echo ""
 echo "---------------------------------"
 echo ""
 make all
-cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest
-rm  log*
-rm  fort.*
-rm  -r results
+(cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/genTest rm  -r *)
 #sleep 1
 
 mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build/autoTest.exe
-#mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe
 ls
 
 # INSTRUCIONS TO CREATE A BASH FILE

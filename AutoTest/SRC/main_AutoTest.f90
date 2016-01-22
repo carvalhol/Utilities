@@ -11,11 +11,11 @@ program main_AutoTest
 
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: cluster = 2 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
-    logical, dimension(3) :: activeDim = [.false., .true., .true.] !1D, 2D and 3D
-    logical, dimension(4) :: activeMethod = [.false., .true., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.true., .true.] !Global, Local
+    logical, dimension(3) :: activeDim = [.false., .false., .true.] !1D, 2D and 3D
+    logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
+    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
 
 
     !COMPUTATION
@@ -114,10 +114,15 @@ program main_AutoTest
     integer :: nChunks
     integer :: pos
 
-    if(cluster == 3) then
+    if(cluster == 1) then
+        execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe"
+        exec2Path = "/home/carvalhol/Projects/RANDOM_FIELD/build/statistics.exe"
+    else if(cluster == 3) then
         execPath = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe"
+        exec2Path = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe"
     else
-        execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe "
+        execPath = "/LUCIO/RANDOM_FIELD/build/randomField.exe"
+        exec2Path = "/LUCIO/RANDOM_FIELD/build/statistics.exe"
     end if
     write(*,*) "Running on: "
     call system("pwd")
@@ -146,7 +151,7 @@ program main_AutoTest
         testTypeChar = "W"
         iterBase = [16, 7, 7] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
         !nIter = [10, 10, 10]
-        nIter = [10, 2, 2]
+        nIter = [10, 2, 1]
 
     end if
 
@@ -257,18 +262,24 @@ program main_AutoTest
                         nProcsTotal = 2**(nTests-1)
                         if (cluster==2) then
                             !OCCYGEN
-                            stop("This cluster is not implemented yet")
+                            nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                            memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                            if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
+                            nProcsPerChunk = nProcsTotal;
+                            if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
+                            if(nChunks < 1) nChunks = 1
+                            if(memPerChunk < 512) memPerChunk = 512
                         else
-                        !IGLOO
-                        nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
-                        memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
-                        if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
-                        nProcsPerChunk = nProcsTotal;
-                        if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
-                        if(nChunks < 1) nChunks = 1
-                        if(memPerChunk < 512) memPerChunk = 512
+                            !IGLOO
+                            nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                            memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
+                            if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
+                            nProcsPerChunk = nProcsTotal;
+                            if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
+                            if(nChunks < 1) nChunks = 1
+                            if(memPerChunk < 512) memPerChunk = 512
+                        end if
                     end if
-                end if
 
                 !VERIFICATIONS
                 if(nChunks > n_chunk_Max) then
