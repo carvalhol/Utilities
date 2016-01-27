@@ -106,7 +106,8 @@ contains
         write(fileId,"(A)") 'rm  -r results'
         !write(fileId,"(A)") '#sleep 1'
         write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe'
-        write(fileId,"(A)") '#mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
+        write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe &&
+                             <stat_input'
         write(fileId,"(A)") ' '
         write(fileId,"(A)") 'ls'
 
@@ -290,17 +291,21 @@ contains
         integer :: memPerChunk_chSz
         integer :: nDim_chSz
         integer :: fileId
+        integer :: memTot, memTot_chSz
         character(len=200) :: format
         character(len=50) :: outName
         integer :: i
 
         fileID = 28
         outName = "out_RF"
+        !memTot = memPerChunk*nChunks/1000
+        memTot = 64
         nDim_chSz = findCharSize(nDim)
         nProcsPerChunk_chSz = findCharSize(nProcsPerChunk)
         nChunks_chSz = findCharSize(nChunks)
         memPerChunk_chSz = findCharSize(memPerChunk)
         nProcsTotal_chSz = findCharSize(nProcsTotal)
+        memTot_chSz = findCharSize(memTot)
 
         open (unit = fileId , file = QManagerFile_path, action = 'write')
 
@@ -323,16 +328,39 @@ contains
     !srun --mpi=pmi2 -K1 --resv-ports -n $SLURM_NTASKS /panfs/panasas/cnt0025/mss7417/abreul/SEM/build/MESH/mesher<mesh.input
             !,",A7,A",numb2String(nProcsPerChunk_chSz),", A10, A", numb2String(nProcsPerChunk_chSz),", A5, A", numb2String(memPerChunk_chSz),", A2  )"])
 
+
+!#!/bin/bash
+!
+!#SBATCH -J M4-l_01
+!#SBATCH --nodes=1
+!#SBATCH --ntasks=24
+!#SBATCH --ntasks-per-node=24
+!#SBATCH --threads-per-core=1
+!#SBATCH --time=04:00:00
+!#SBATCH --mem=64GB
+!#SBATCH --output out_RF
+!#SBATCH --mail-type=ALL
+!#SBATCH --mail-user=lucio.a.c@gmail.com
+!
+!module load intel-compiler/15.0.3.187
+!module load intelmpi/5.0.3.048
+!module load hdf5/1.8.14
+!module load fftw3/3.3.4
+!srun --mpi=pmi2 -K1 --resv-ports -n $SLURM_NTASKS /home/abreul/RF/Novo/build/randomField.exe
+!##srun --mpi=pmi2 -K1 --resv-ports -n 1 /home/abreul/RF/Novo/build/statistics.exe<stat_input
+
+
         write(fileId,"(A)") "#!/bin/bash"
         write(fileId,"(A)") ""
         write(fileId,"(A11,A50)") "#SBATCH -J ", jobName
         format = string_join_many("(A16,A",numb2String(nChunks_chSz),")")
         write(fileId,format) "#SBATCH --nodes=", numb2String(nChunks)
         format = string_join_many("(A17,A",numb2String(nProcsTotal_chSz),")")
-        write(fileId,*) format
         write(fileId,format) "#SBATCH --ntasks=", trim(numb2String(nProcsTotal))
         format = string_join_many("(A26,A",numb2String(nProcsPerChunk_chSz),")")
         write(fileId,format) "#SBATCH --ntasks-per-node=", numb2String(nProcsPerChunk)
+        format = string_join_many("(A14,A",numb2String(memTot_chSz),",A2)")
+        write(fileId,format) "#SBATCH --mem=", numb2String(memTot),"GB"
         write(fileId,"(A)") "#SBATCH --threads-per-core=1"
         write(fileId,"(A15,A8)") "#SBATCH --time=", wallTime
         write(fileId,"(A17,A)") "#SBATCH --output ", trim(outName)
@@ -341,12 +369,12 @@ contains
         write(fileId,"(A)") ""
         !format = string_join_many("(A15,A",numb2String(nChunks_chSz),",A7,A",numb2String(nProcsPerChunk_chSz),", A10, A", numb2String(nProcsPerChunk_chSz),", A5, A", numb2String(memPerChunk_chSz),", A2  )")
 
-        write(fileId,"(A)") "module load intel-compiler/15.0.0.090"
-        !write(fileId,"(A)") "module load intel-mkl/11.2.1"
-        write(fileId,"(A)") "module load bullxmpi/1.2.8.4"
+        write(fileId,"(A)") "module load intel-compiler/15.0.3.187"
+        write(fileId,"(A)") "module load intelmpi/5.0.3.048"
         write(fileId,"(A)") "module load hdf5/1.8.14"
+        write(fileId,"(A)") "module load fftw3/3.3.4"
         write(fileId,"(A)") "srun --mpi=pmi2 -K1 --resv-ports -n $SLURM_NTASKS "//trim(execPath)
-        write(fileId,"(A)") "srun --mpi=pmi2 -K1 --resv-ports -n $SLURM_NTASKS "//trim(exec2Path)//"<stat_input"
+        write(fileId,"(A)") "#srun --mpi=pmi2 -K1 --resv-ports -n $SLURM_NTASKS "//trim(exec2Path)//"<stat_input"
         !write(fileId,"(A)") "mpirun --rsh=ssh -n $nb_nodes -f mpd.hosts -np "//trim(numb2String(nProcsTotal))//" "//trim(execPath)
 
         close(fileId)

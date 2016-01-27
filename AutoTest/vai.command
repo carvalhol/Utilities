@@ -2,12 +2,11 @@
 
 NP=1
 
-(cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build)
+(cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build; make all)
 echo ""
 echo "---------------------------------"
 echo ""
-make all
-(cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/genTest rm  -r *)
+(cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/genTest; rm -r WEAK)
 #sleep 1
 
 mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build/autoTest.exe

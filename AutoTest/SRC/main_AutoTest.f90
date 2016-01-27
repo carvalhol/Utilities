@@ -33,6 +33,7 @@ program main_AutoTest
     integer :: margiFirst = fom_GAUSSIAN
     double precision   :: fieldAvg = 0.0D0, fieldVar=1.0D0;
     double precision, dimension(:), allocatable :: corrL, overlap;
+    integer, dimension(3) :: ignore_Till_Iteration = [0, 0, 0];
     integer :: nDim
     integer :: method !1 for Isotropic, 2 for Shinozuka, 3 for Randomization, 4 for FFT
     integer :: indep
@@ -121,8 +122,8 @@ program main_AutoTest
         execPath = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe"
         exec2Path = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe"
     else
-        execPath = "/LUCIO/RANDOM_FIELD/build/randomField.exe"
-        exec2Path = "/LUCIO/RANDOM_FIELD/build/statistics.exe"
+        execPath = "/home/abreul/RF/Novo/build/randomField.exe"
+        exec2Path = "/home/abreul/RF/Novo/build/statistics.exe"
     end if
     write(*,*) "Running on: "
     call system("pwd")
@@ -149,10 +150,23 @@ program main_AutoTest
     else
         res_folder = "WEAK"
         testTypeChar = "W"
-        iterBase = [16, 7, 7] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
-        !nIter = [10, 10, 10]
-        nIter = [10, 2, 1]
 
+        iterBase = [16, 7, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+        !nIter = [10, 10, 10]
+        nIter = [10, 2, 10]
+        if(.true.) then
+            ignore_Till_Iteration = [0, 0, 10]
+            nIter = [10, 2, 14]
+        end if
+
+        if(cluster == 3) then
+            iterBase = [16, 7, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+            nIter = [10, 2, 10]
+            if(.true.) then
+                ignore_Till_Iteration = [0, 0, 10]
+                nIter = [10, 2, 14]
+            end if
+        end if
     end if
 
     !Global folders and files creation
@@ -161,24 +175,33 @@ program main_AutoTest
 
     !Global exigences
     maxProcReq = maxval(2**(nIter-1))
-    if(singleProc) then
-        queue = "uvq"
-        proc_per_chunk_Max = 1
-        mem_per_chunk_Max = 125000
-        n_chunk_Max = 1
-        wallTime = "20:00:00"
-    else if (maxProcReq < 385) then
-        queue = "icexq"
+
+    if(cluster == 1) then
+        if(singleProc) then
+            queue = "uvq"
+            proc_per_chunk_Max = 1
+            mem_per_chunk_Max = 125000
+            n_chunk_Max = 1
+            wallTime = "20:00:00"
+        else if (maxProcReq < 385) then
+            queue = "icexq"
+            proc_per_chunk_Max = 24
+            mem_per_chunk_Max = 32000
+            n_chunk_Max = 16
+            wallTime = "04:00:00"
+        else
+            queue = "iceq"
+            proc_per_chunk_Max = 12
+            mem_per_chunk_Max = 24000
+            n_chunk_Max = 56
+            wallTime = "04:00:00"
+        end if
+
+    else if (cluster == 2) then
         proc_per_chunk_Max = 24
-        mem_per_chunk_Max = 32000
-        n_chunk_Max = 16
-        wallTime = "04:00:00"
-    else
-        queue = "iceq"
-        proc_per_chunk_Max = 12
-        mem_per_chunk_Max = 24000
-        n_chunk_Max = 56
-        wallTime = "04:00:00"
+        mem_per_chunk_Max = 64000
+        n_chunk_Max = 80000/24
+        wallTime = "04:00:00" !Max "24:00:00"
     end if
 
     do indep = 1, size(activeApproach)
@@ -224,6 +247,8 @@ program main_AutoTest
 
                 !Creating iterations
                 do nTests = 1, nIter(nDim)
+
+                    if(nTests <= ignore_Till_Iteration(nDim)) cycle
 
                     !Creating folder
                     it_path   = string_join_many("./genTests/", res_folder,"/",     &
@@ -328,7 +353,7 @@ program main_AutoTest
                     write(runAll_Id,"(A)") "cd ../../../"
                 else if (cluster==2) then
                     write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
-                    write(runAll_Id,"(A)") string_join_many("sbatch "//trim(temp_path),"/",it_folder,"/run.pbs")
+                    write(runAll_Id,"(A)") "sbatch run.slurm"
                     write(runAll_Id,"(A)") "cd ../../../"
                 else
                     write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
