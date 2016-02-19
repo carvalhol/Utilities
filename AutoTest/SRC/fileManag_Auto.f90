@@ -14,8 +14,9 @@ contains
     subroutine makeCase(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
                         seedStart, independent, overlap, &
                         xMinGlob, xMaxGlob, pointsPerCorrL, &
-                        nProcsTotal, nProcsPerChunk, nChunks, &
-                        memPerChunk, queue, wallTime, cluster, &
+                        nProcsTotal, nProcsPerChunk, &
+                        localizationLevel, nProcPerField, nFields, &
+                        nChunks, memPerChunk, queue, wallTime, cluster, &
                         folderPath, runPath, iter)
         implicit none
         !INPUT
@@ -28,6 +29,8 @@ contains
         character(len=*), intent(in) :: wallTime
         character(len=*), intent(in) :: queue
         character(len=tSize) :: folderPath
+        integer, intent(in) :: localizationLevel, nProcPerField
+        integer, dimension(:), intent(in) :: nFields
         !OUTPUT
         character(len=*), intent(out), optional :: runPath
         !LOCAL
@@ -49,7 +52,8 @@ contains
         call write_mesh_file(nDim, xMinGlob, xMaxGlob, pointsPerCorrL, mesh_path)
 
         call write_gen_file(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
-                            seedStart, independent, overlap, gen_path)
+                            seedStart, independent, overlap, gen_path, &
+                            localizationLevel, nProcPerField, nFields)
 
         indepChar = "g"
         if(independent == 1) indepChar = "l"
@@ -155,7 +159,8 @@ contains
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     subroutine write_gen_file(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
-                              seedStart, independent, overlap, gen_path)
+                              seedStart, independent, overlap, gen_path,                         &
+                              localizationLevel, nProcPerField, nFields)
 
         implicit none
         !INPUT
@@ -163,6 +168,8 @@ contains
         double precision, dimension(:), intent(in) :: corrL, overlap
         double precision, intent(in) :: fieldAvg, fieldVar
         character(len=*), intent(in) :: gen_path
+        integer, intent(in) :: localizationLevel, nProcPerField
+        integer, dimension(:), intent(in) :: nFields
         !LOCAL
         integer :: fileId
 
@@ -174,6 +181,10 @@ contains
         write(fileId,*) "$$Nmc ", Nmc
         write(fileId,*) "$$corrMod ", corrMod
         write(fileId,*) "$$margiFirst ", margiFirst
+        write(fileId,*) "$$nProcPerField ", nProcPerField
+        write(fileId,*) "$$localizationLevel ", localizationLevel
+        write(fileId,*) "$nFields "
+        write(fileId,*) nFields
         write(fileId,*) "$corrL "
         write(fileId,*) corrL
         write(fileId,*) "$$fieldAvg "
@@ -184,8 +195,8 @@ contains
         write(fileId,*) method
         write(fileId,*) "$$seedStart"
         write(fileId,*) seedStart
-        write(fileId,*) "$$independent"
-        write(fileId,*) independent
+        !write(fileId,*) "$$independent"
+        !write(fileId,*) independent
         write(fileId,*) "$overlap"
         write(fileId,*) overlap
 
@@ -364,8 +375,8 @@ contains
         write(fileId,"(A)") "#SBATCH --threads-per-core=1"
         write(fileId,"(A15,A8)") "#SBATCH --time=", wallTime
         write(fileId,"(A17,A)") "#SBATCH --output ", trim(outName)
-        write(fileId,"(A)") "#SBATCH --mail-type=ALL"
-        write(fileId,"(A)") "#SBATCH --mail-user=lucio.a.c@gmail.com"
+        !write(fileId,"(A)") "#SBATCH --mail-type=ALL"
+        !write(fileId,"(A)") "#SBATCH --mail-user=lucio.a.c@gmail.com"
         write(fileId,"(A)") ""
         !format = string_join_many("(A15,A",numb2String(nChunks_chSz),",A7,A",numb2String(nProcsPerChunk_chSz),", A10, A", numb2String(nProcsPerChunk_chSz),", A5, A", numb2String(memPerChunk_chSz),", A2  )")
 

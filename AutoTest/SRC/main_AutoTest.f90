@@ -8,14 +8,13 @@ program main_AutoTest
     implicit none
 
     !USER
-
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 2 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
     logical, dimension(3) :: activeDim = [.false., .false., .true.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
+    logical, dimension(2) :: activeApproach = [.true., .false.] !Global, Local
 
 
     !COMPUTATION
@@ -44,6 +43,10 @@ program main_AutoTest
     integer :: dimMin = 1, dimMax = 3
     integer :: methodMin = 1, methodMax = 4
     integer :: independent !0 = false, 1 = true (other numbers will be considered as false)
+
+    integer :: localizationLevel = 1
+    integer :: nProcPerField = 1
+    integer, dimension(:), allocatable :: nFields
 
     !GENERAL NAMES AND PATHS
     character(len=50) :: res_folder
@@ -74,8 +77,6 @@ program main_AutoTest
     double precision, dimension(:), allocatable :: xMax, xMin;
     integer, dimension(:), allocatable :: pointsPerCorrL
 
-
-
     !QUEUE MANAGEMENT
     integer :: proc_per_chunk_Max, mem_per_chunk_Max, n_chunk_Max
     integer :: nProcsTotal
@@ -104,7 +105,7 @@ program main_AutoTest
     character(len=200) :: format
     double precision :: kAdjust    = 1.0D0 !"kNStep minimum" multiplier
     double precision :: periodMult = 1.1D0 !"range" multiplier
-    integer :: i, nTests, secur = 0
+    integer :: i, nTests, secur = 0, pos
 
     logical ::initial
 
@@ -113,7 +114,6 @@ program main_AutoTest
     character(len=200) :: results_path
     integer :: nProcsPerChunk
     integer :: nChunks
-    integer :: pos
 
     if(cluster == 1) then
         execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe"
@@ -153,18 +153,18 @@ program main_AutoTest
 
         iterBase = [16, 7, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
         !nIter = [10, 10, 10]
-        nIter = [10, 2, 10]
-        if(.true.) then
+        nIter = [10, 2, 4]
+        if(.false.) then
             ignore_Till_Iteration = [0, 0, 10]
             nIter = [10, 2, 14]
         end if
 
-        if(cluster == 3) then
-            iterBase = [16, 7, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
-            nIter = [10, 2, 10]
-            if(.true.) then
+        if(cluster == 2) then
+            iterBase = [16, 7, 7] !MAX [18, 16, 7], Occygen
+            nIter = [10, 2, 14]
+            if(.false.) then
                 ignore_Till_Iteration = [0, 0, 10]
-                nIter = [10, 2, 14]
+                nIter = [10, 2, 4]
             end if
         end if
     end if
@@ -202,6 +202,11 @@ program main_AutoTest
         mem_per_chunk_Max = 64000
         n_chunk_Max = 80000/24
         wallTime = "04:00:00" !Max "24:00:00"
+    else if (cluster == 3) then
+        proc_per_chunk_Max = 16
+        mem_per_chunk_Max = 4000
+        n_chunk_Max = 1000
+        wallTime = "04:00:00"
     end if
 
     do indep = 1, size(activeApproach)
@@ -214,6 +219,9 @@ program main_AutoTest
         if (independent == 1) indepChar = "l" !l for Local (using localization)
 
         do nDim = 1, size(activeDim)
+
+            if(allocated(nFields)) deallocate(nFields)
+            allocate(nFields(nDim))
 
             if(.not. activeDim(nDim)) cycle
 
@@ -306,6 +314,14 @@ program main_AutoTest
                         end if
                     end if
 
+                    !Defining nFields
+                    nFields(:) = 1
+
+                    do i = 2, nTests
+                        pos = mod(i-2,nDim) + 1
+                        nFields(pos) = nFields(pos) * 2
+                    end do
+
                 !VERIFICATIONS
                 if(nChunks > n_chunk_Max) then
                     write(*,*) "You asked for too many chunks"
@@ -336,6 +352,9 @@ program main_AutoTest
                     pointsPerCorrL=pointsPerCorrL, &
                     nProcsTotal=nProcsTotal,       &
                     nProcsPerChunk=nProcsPerChunk, &
+                    localizationLevel=localizationLevel, &
+                    nProcPerField=nProcPerField,    &
+                    nFields = nFields,              &
                     nChunks=nChunks,               &
                     memPerChunk=memPerChunk,       &
                     queue=queue,                   &
@@ -384,6 +403,7 @@ program main_AutoTest
     if(allocated(overlap)) deallocate(overlap)
     if(allocated(xMin)) deallocate(xMin)
     if(allocated(xMax)) deallocate(xMax)
+    if(allocated(nFields)) deallocate(nFields)
 
 contains
 

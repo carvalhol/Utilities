@@ -6,7 +6,7 @@ NP=1
 echo ""
 echo "---------------------------------"
 echo ""
-(cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/genTest; rm -r WEAK)
+# (cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/genTest; rm -r WEAK)
 #sleep 1
 
 mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build/autoTest.exe
