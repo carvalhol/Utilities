@@ -1,11 +1,6 @@
 #!/bin/bash
 
-cd /home/carvalhol/Projects/Utilities/AutoTest/build
-echo ""
-echo "---------------------------------"
-echo ""
-make all
-cd ..
+(cd /home/carvalhol/Projects/Utilities/AutoTest/build; make all)
 #qsub run.pbs
 ./build/autoTest.exe 
 #qsub all_1.pbs

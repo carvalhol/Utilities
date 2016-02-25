@@ -10,12 +10,11 @@ program main_AutoTest
     !USER
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
-    logical, dimension(3) :: activeDim = [.false., .false., .true.] !1D, 2D and 3D
+    logical, dimension(3) :: activeDim = [.false., .true., .false.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.true., .false.] !Global, Local
-
+    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -38,14 +37,14 @@ program main_AutoTest
     integer :: indep
     double precision :: corrLBase = 1.0D0
     double precision :: overlapBase = 5.0D0
-    integer :: pointsPerCorrLBase = 10
+    integer :: pointsPerCorrLBase = 5
     integer :: seedStart = 0
     integer :: dimMin = 1, dimMax = 3
     integer :: methodMin = 1, methodMax = 4
     integer :: independent !0 = false, 1 = true (other numbers will be considered as false)
 
     integer :: localizationLevel = 1
-    integer :: nProcPerField = 1
+    integer :: nProcPerField_indep = 1
     integer, dimension(:), allocatable :: nFields
 
     !GENERAL NAMES AND PATHS
@@ -98,9 +97,10 @@ program main_AutoTest
     integer :: compiler = 2 !1 for gfortran and 2 for ifort
     logical :: dirExists
     integer(kind=8) :: xNTotal, kNTotal
-    integer :: memPerProc, memPerChunk
+    integer :: memPerProc, memPerChunk = -1
     integer :: timePerProc !s
     integer :: runAll_Id = 100
+    integer :: nProcPerField
 
     character(len=200) :: format
     double precision :: kAdjust    = 1.0D0 !"kNStep minimum" multiplier
@@ -139,21 +139,22 @@ program main_AutoTest
         res_folder = "COMP"
         testTypeChar = "C"
         iterBase = [1, 1, 1]
-        nIter = [18, 16, 10]
+        nIter = [18, 40, 10] !MAX in FFT [*, 21, *]
+        memPerChunk = 1000
 
     else if(constant_Domain_size) then
         res_folder = "STRONG"
         testTypeChar = "S"
-        iterBase = [17, 15, 12]
+        iterBase = [17, 21, 12]
         nIter = [10, 10, 10]
 
     else
         res_folder = "WEAK"
         testTypeChar = "W"
 
-        iterBase = [16, 7, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+        iterBase = [16, 17, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
         !nIter = [10, 10, 10]
-        nIter = [10, 2, 4]
+        nIter = [10, 10, 4] !10 = 512 proc
         if(.false.) then
             ignore_Till_Iteration = [0, 0, 10]
             nIter = [10, 2, 14]
@@ -282,7 +283,12 @@ program main_AutoTest
                     if(constant_Domain_size) then
                         xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
                     else
-                        xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
+                        !xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
+
+                        do i = 2, ((nTests-1) + iterBase(nDim))
+                            pos = mod(i-2,nDim) + 1
+                            xMax(pos) = xMax(pos)*2.0D0
+                        end do
                     end if
 
                     !DEFINE NUMBER OF CLUSTERS
@@ -290,7 +296,7 @@ program main_AutoTest
                         nProcsTotal = 1
                         nProcsPerChunk = 1
                         nChunks = 1
-                        memPerChunk=mem_per_chunk_Max
+                        if(memPerChunk < 0) memPerChunk=mem_per_chunk_Max
                     else
                         nProcsTotal = 2**(nTests-1)
                         if (cluster==2) then
@@ -316,11 +322,16 @@ program main_AutoTest
 
                     !Defining nFields
                     nFields(:) = 1
+                    nProcPerField = nProcsTotal
 
-                    do i = 2, nTests
-                        pos = mod(i-2,nDim) + 1
-                        nFields(pos) = nFields(pos) * 2
-                    end do
+                    if(independent == 1) then
+                        do i = 2, nTests
+                            pos = mod(i-2,nDim) + 1
+                            nFields(pos) = nFields(pos) * 2
+                        end do
+                        nProcPerField = nProcPerField_indep
+                    end if
+
 
                 !VERIFICATIONS
                 if(nChunks > n_chunk_Max) then

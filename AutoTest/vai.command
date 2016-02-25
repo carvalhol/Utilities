@@ -3,6 +3,7 @@
 NP=1
 
 (cd /Users/carvalhol/Desktop/GITs/Utilities/AutoTest/build; make all)
+rm -r genTests
 echo ""
 echo "---------------------------------"
 echo ""
