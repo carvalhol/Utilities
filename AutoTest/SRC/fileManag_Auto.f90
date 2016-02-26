@@ -107,11 +107,11 @@ contains
         !write(fileId,"(A)") 'cd '//folderPath
         write(fileId,"(A)") 'rm  log*'
         write(fileId,"(A)") 'rm  fort.*'
-        write(fileId,"(A)") 'rm  -r results'
+        !write(fileId,"(A)") 'rm  -r results'
         !write(fileId,"(A)") '#sleep 1'
         write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe'
-        write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe &&
-                             <stat_input'
+        write(fileId,"(A)") &
+        'mpirun --allow-run-as-root -np 1 /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
         write(fileId,"(A)") ' '
         write(fileId,"(A)") 'ls'
 

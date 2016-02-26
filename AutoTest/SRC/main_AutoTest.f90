@@ -10,11 +10,11 @@ program main_AutoTest
     !USER
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
-    integer :: nRuns = 1 !How many times each iteration
+    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: nRuns = 200 !How many times each iteration
     logical, dimension(3) :: activeDim = [.false., .true., .false.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
+    logical, dimension(2) :: activeApproach = [.true., .false.] !Global, Local
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -38,7 +38,7 @@ program main_AutoTest
     double precision :: corrLBase = 1.0D0
     double precision :: overlapBase = 5.0D0
     integer :: pointsPerCorrLBase = 5
-    integer :: seedStart = 0
+    integer :: seedStart = -1
     integer :: dimMin = 1, dimMax = 3
     integer :: methodMin = 1, methodMax = 4
     integer :: independent !0 = false, 1 = true (other numbers will be considered as false)
@@ -152,9 +152,9 @@ program main_AutoTest
         res_folder = "WEAK"
         testTypeChar = "W"
 
-        iterBase = [16, 17, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+        iterBase = [16, 10, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
         !nIter = [10, 10, 10]
-        nIter = [10, 10, 4] !10 = 512 proc
+        nIter = [10, 5, 4] !10 = 512 proc
         if(.false.) then
             ignore_Till_Iteration = [0, 0, 10]
             nIter = [10, 2, 14]
@@ -355,7 +355,7 @@ program main_AutoTest
                     fieldAvg=fieldAvg,             &
                     fieldVar=fieldVar,             &
                     method=method,                 &
-                    seedStart=0,                   &
+                    seedStart=seedStart,           &
                     independent=independent,       &
                     overlap=overlap,               &
                     xMinGlob=xMin,                 &
