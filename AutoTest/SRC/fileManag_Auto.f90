@@ -15,7 +15,7 @@ contains
                         seedStart, independent, overlap, &
                         xMinGlob, xMaxGlob, pointsPerCorrL, &
                         nProcsTotal, nProcsPerChunk, &
-                        localizationLevel, nProcPerField, nFields, &
+                        localizationLevel, nFields, &
                         nChunks, memPerChunk, queue, wallTime, cluster, &
                         folderPath, runPath, iter)
         implicit none
@@ -29,7 +29,7 @@ contains
         character(len=*), intent(in) :: wallTime
         character(len=*), intent(in) :: queue
         character(len=tSize) :: folderPath
-        integer, intent(in) :: localizationLevel, nProcPerField
+        integer, intent(in) :: localizationLevel
         integer, dimension(:), intent(in) :: nFields
         !OUTPUT
         character(len=*), intent(out), optional :: runPath
@@ -53,7 +53,7 @@ contains
 
         call write_gen_file(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
                             seedStart, independent, overlap, gen_path, &
-                            localizationLevel, nProcPerField, nFields)
+                            localizationLevel, nFields)
 
         indepChar = "g"
         if(independent == 1) indepChar = "l"
@@ -76,51 +76,6 @@ contains
 
     end subroutine makeCase
 
-    !-----------------------------------------------------------------------------------------------
-    !-----------------------------------------------------------------------------------------------
-    !-----------------------------------------------------------------------------------------------
-    !-----------------------------------------------------------------------------------------------
-    subroutine write_command_file(nProcsTotal, folderPath)
-
-        implicit none
-        !INPUT
-        integer, intent(in) :: nProcsTotal
-        character(len=*), intent(in) :: folderPath
-        !LOCAL
-        integer :: i
-        integer :: fileId
-        character(len=20) :: NP
-
-        fileID = 18
-
-        open (unit = fileId , file = folderPath, action = 'write')
-
-        NP = string_join_many("NP=",numb2String(nProcsTotal))
-
-        write(fileId,"(A)") "#!/bin/bash"
-        write(fileId,"(A)") NP
-        write(fileId,"(A)") "(cd /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build; make all)"
-        write(fileId,"(A)") 'echo ""'
-        write(fileId,"(A)") 'echo "---------------------------------"'
-        write(fileId,"(A)") 'echo ""'
-        !write(fileId,"(A)") 'make all'
-        !write(fileId,"(A)") 'cd '//folderPath
-        write(fileId,"(A)") 'rm  log*'
-        write(fileId,"(A)") 'rm  fort.*'
-        !write(fileId,"(A)") 'rm  -r results'
-        !write(fileId,"(A)") '#sleep 1'
-        write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe'
-        write(fileId,"(A)") &
-        'mpirun --allow-run-as-root -np 1 /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
-        write(fileId,"(A)") ' '
-        write(fileId,"(A)") 'ls'
-
-        close(fileId)
-
-        call system("chmod u+x "//trim(folderPath))
-        call system("chmod a+r "//trim(folderPath))
-
-    end subroutine write_command_file
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
@@ -160,7 +115,7 @@ contains
     !-----------------------------------------------------------------------------------------------
     subroutine write_gen_file(nDim, Nmc, corrMod, margiFirst, corrL, fieldAvg, fieldVar, method, &
                               seedStart, independent, overlap, gen_path,                         &
-                              localizationLevel, nProcPerField, nFields)
+                              localizationLevel, nFields)
 
         implicit none
         !INPUT
@@ -168,7 +123,7 @@ contains
         double precision, dimension(:), intent(in) :: corrL, overlap
         double precision, intent(in) :: fieldAvg, fieldVar
         character(len=*), intent(in) :: gen_path
-        integer, intent(in) :: localizationLevel, nProcPerField
+        integer, intent(in) :: localizationLevel
         integer, dimension(:), intent(in) :: nFields
         !LOCAL
         integer :: fileId
@@ -181,7 +136,6 @@ contains
         write(fileId,*) "$$Nmc ", Nmc
         write(fileId,*) "$$corrMod ", corrMod
         write(fileId,*) "$$margiFirst ", margiFirst
-        write(fileId,*) "$$nProcPerField ", nProcPerField
         write(fileId,*) "$$localizationLevel ", localizationLevel
         write(fileId,*) "$nFields "
         write(fileId,*) nFields
@@ -205,6 +159,52 @@ contains
         call system("chmod a+r "//trim(gen_path))
 
     end subroutine write_gen_file
+
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    subroutine write_command_file(nProcsTotal, folderPath)
+
+        implicit none
+        !INPUT
+        integer, intent(in) :: nProcsTotal
+        character(len=*), intent(in) :: folderPath
+        !LOCAL
+        integer :: i
+        integer :: fileId
+        character(len=20) :: NP
+
+        fileID = 18
+
+        open (unit = fileId , file = folderPath, action = 'write')
+
+        NP = string_join_many("NP=",numb2String(nProcsTotal))
+
+        write(fileId,"(A)") "#!/bin/bash"
+        write(fileId,"(A)") NP
+        write(fileId,"(A)") "(cd /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build; make all)"
+        write(fileId,"(A)") 'echo ""'
+        write(fileId,"(A)") 'echo "---------------------------------"'
+        write(fileId,"(A)") 'echo ""'
+        !write(fileId,"(A)") 'make all'
+        !write(fileId,"(A)") 'cd '//folderPath
+        write(fileId,"(A)") 'rm  log*'
+        write(fileId,"(A)") 'rm  out_.*'
+        !write(fileId,"(A)") 'rm  -r results'
+        !write(fileId,"(A)") '#sleep 1'
+        write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe'
+        write(fileId,"(A)") &
+        'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
+        write(fileId,"(A)") ' '
+        write(fileId,"(A)") 'ls'
+
+        close(fileId)
+
+        call system("chmod u+x "//trim(folderPath))
+        call system("chmod a+r "//trim(folderPath))
+
+    end subroutine write_command_file
 
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------

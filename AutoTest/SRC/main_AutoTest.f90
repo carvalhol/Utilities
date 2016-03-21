@@ -10,11 +10,11 @@ program main_AutoTest
     !USER
     logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
-    integer :: nRuns = 200 !How many times each iteration
+    integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: nRuns = 1 !How many times each iteration
     logical, dimension(3) :: activeDim = [.false., .true., .false.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.true., .false.] !Global, Local
+    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -44,7 +44,6 @@ program main_AutoTest
     integer :: independent !0 = false, 1 = true (other numbers will be considered as false)
 
     integer :: localizationLevel = 1
-    integer :: nProcPerField_indep = 1
     integer, dimension(:), allocatable :: nFields
 
     !GENERAL NAMES AND PATHS
@@ -58,9 +57,6 @@ program main_AutoTest
     character(len=200) :: method_path
     character(len=tSize) :: it_path
     character(len=tSize) :: runAll_path
-    !character(len=200) :: PBS_path
-    !character(len=200) :: mesh_path
-    !character(len=200) :: gen_path
     character(len=50) :: genName = "gen_input"
     character(len=50) :: meshName = "mesh_input"
     character(len=10) :: methodTxt
@@ -100,7 +96,6 @@ program main_AutoTest
     integer :: memPerProc, memPerChunk = -1
     integer :: timePerProc !s
     integer :: runAll_Id = 100
-    integer :: nProcPerField
 
     character(len=200) :: format
     double precision :: kAdjust    = 1.0D0 !"kNStep minimum" multiplier
@@ -131,7 +126,7 @@ program main_AutoTest
     !Iteration according to test type
     !
     !iterBase -> Initial size of the domain will be the basic size doubled "iterBase" times (define in 1D, 2D and 3D)
-    !nIter    -> Number od iterations (define in 1D, 2D and 3D)
+    !nIter    -> Number of iterations (define in 1D, 2D and 3D)
     !
 
     if(singleProc) then
@@ -139,7 +134,7 @@ program main_AutoTest
         res_folder = "COMP"
         testTypeChar = "C"
         iterBase = [1, 1, 1]
-        nIter = [18, 40, 10] !MAX in FFT [*, 21, *]
+        nIter = [18, 40, 40] !MAX in FFT [*, 21, *]
         memPerChunk = 1000
 
     else if(constant_Domain_size) then
@@ -152,9 +147,9 @@ program main_AutoTest
         res_folder = "WEAK"
         testTypeChar = "W"
 
-        iterBase = [16, 10, 9] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+        iterBase = [16, 10, 7] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
         !nIter = [10, 10, 10]
-        nIter = [10, 5, 4] !10 = 512 proc
+        nIter = [10, 10, 10] !10 = 512 proc
         if(.false.) then
             ignore_Till_Iteration = [0, 0, 10]
             nIter = [10, 2, 14]
@@ -183,7 +178,9 @@ program main_AutoTest
             proc_per_chunk_Max = 1
             mem_per_chunk_Max = 125000
             n_chunk_Max = 1
-            wallTime = "20:00:00"
+            !wallTime = "20:00:00"
+            queue = "icexq"
+            wallTime = "02:00:00" !FOR TESTS
         else if (maxProcReq < 385) then
             queue = "icexq"
             proc_per_chunk_Max = 24
@@ -322,14 +319,12 @@ program main_AutoTest
 
                     !Defining nFields
                     nFields(:) = 1
-                    nProcPerField = nProcsTotal
 
                     if(independent == 1) then
                         do i = 2, nTests
                             pos = mod(i-2,nDim) + 1
                             nFields(pos) = nFields(pos) * 2
                         end do
-                        nProcPerField = nProcPerField_indep
                     end if
 
 
@@ -364,7 +359,6 @@ program main_AutoTest
                     nProcsTotal=nProcsTotal,       &
                     nProcsPerChunk=nProcsPerChunk, &
                     localizationLevel=localizationLevel, &
-                    nProcPerField=nProcPerField,    &
                     nFields = nFields,              &
                     nChunks=nChunks,               &
                     memPerChunk=memPerChunk,       &
