@@ -42,7 +42,13 @@ contains
         integer :: i
         character :: indepChar
 
-        write(*,*) "Making case on: ", folderPath
+        write(*,*) " "
+        write(*,*) "------------------------------------------------------"
+        write(*,*) "Making case on: ", trim(adjustL(folderPath))
+        write(*,*) "        xRange: ", xMaxGlob-xMinGlob
+        write(*,*) "   nProcsTotal: ", nProcsTotal
+        write(*,*) "    memPerProc: ", dble(memPerChunk)/dble(nProcsPerChunk)
+        write(*,*) "       nFields: ", nFields
 
 
         command_path = string_join_many(folderPath,"/","run.command")
@@ -257,11 +263,37 @@ contains
         write(fileId,"(A)") "#PBS -q "//queue
         write(fileId,"(A)") "#PBS -M lucianopaludoecp@gmail.com"
         write(fileId,"(A)") ""
+        write(fileId,"(A)") 'if [ $NP ]'
+        write(fileId,"(A)") 'then'
+        write(fileId,"(A)") '    echo "NP = " $NP'
+        write(fileId,"(A)") 'else'
+        write(fileId,"(A)") '    NP='//trim(numb2String(nProcsTotal))
+        write(fileId,"(A)") 'fi'
+        write(fileId,"(A)") ' '
+        write(fileId,"(A)") 'if [ $Run_Stat ]'
+        write(fileId,"(A)") 'then'
+        write(fileId,"(A)") '    echo "Run_Stat_in = " $Run_Stat'
+        write(fileId,"(A)") 'else'
+        write(fileId,"(A)") '    Run_Stat=1'
+        write(fileId,"(A)") 'fi'
+        write(fileId,"(A)") ' '
+        write(fileId,"(A)") 'if [ $Run_RF ]'
+        write(fileId,"(A)") 'then'
+        write(fileId,"(A)") '    echo "Run_RF_in = " $Run_RF'
+        write(fileId,"(A)") 'else'
+        write(fileId,"(A)") '    Run_RF=1'
+        write(fileId,"(A)") 'fi'
+        write(fileId,"(A)") ''
+        write(fileId,"(A)") 'echo "NP       = " $NP'
+        write(fileId,"(A)") 'echo "Run_RF   = " $Run_RF'
+        write(fileId,"(A)") 'echo "Run_Stat = " $Run_Stat'
+
         write(fileId,"(A)") "# chargement des modules"
         write(fileId,"(A)") "module load intel-compiler/15.0.1"
         write(fileId,"(A)") "module load intel-mkl/11.2.1"
         write(fileId,"(A)") "module load intel-mpi/5.0.2"
-        write(fileId,"(A)") "module load hdf5/1.8.12"
+        write(fileId,"(A)") "module load phdf5/1.8.15"
+        write(fileId,"(A)") "module load fftw/3.3.4-intelmpi5.0.2"
 
         write(fileId,"(A)") ""
         write(fileId,"(A)") "# On se place dans le repertoire depuis lequel le job a ete soumis"
@@ -270,8 +302,16 @@ contains
         write(fileId,"(A)") "cat $PBS_NODEFILE | uniq > mpd.hosts"
         write(fileId,"(A)") "nb_nodes=`cat mpd.hosts|wc -l`"
         write(fileId,"(A)") ""
-        write(fileId,"(A)") "mpirun -np "//trim(numb2String(nProcsTotal))//" "//trim(execPath)
-        write(fileId,"(A)") "mpirun -np "//trim(numb2String(nProcsTotal))//" "//trim(exec2Path)//"<stat_input"
+        write(fileId,"(A)") 'if [ "$Run_RF" -eq "1"  ]'
+        write(fileId,"(A)") 'then'
+        write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
+        write(fileId,"(A)") 'fi'
+        write(fileId,"(A)") ""
+        write(fileId,"(A)") 'if [ "$Run_Stat" -eq "1"  ]'
+        write(fileId,"(A)") 'then'
+        write(fileId,"(A)") '    mpirun -np $NP '//trim(exec2Path)//"<stat_input"
+        !write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
+        write(fileId,"(A)") 'fi'
 
         close(fileId)
 

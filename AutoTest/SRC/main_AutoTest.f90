@@ -8,7 +8,7 @@ program main_AutoTest
     implicit none
 
     !USER
-    logical :: singleProc = .false.
+    logical :: singleProc = .true.
     logical :: constant_Domain_size = .false.
     integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
