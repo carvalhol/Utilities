@@ -12,9 +12,10 @@ program main_AutoTest
     logical :: constant_Domain_size = .false.
     integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
+    double precision :: xMax_multiplicator = 10.0D0
     logical, dimension(3) :: activeDim = [.false., .true., .false.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.false., .true.] !Global, Local
+    logical, dimension(2) :: activeApproach = [.true., .false.] !Global, Local
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -134,7 +135,7 @@ program main_AutoTest
         res_folder = "COMP"
         testTypeChar = "C"
         iterBase = [1, 1, 1]
-        nIter = [18, 40, 40] !MAX in FFT [*, 21, *]
+        nIter = [18, 10, 40] !MAX in FFT [*, 21, *]
         memPerChunk = 1000
 
     else if(constant_Domain_size) then
@@ -284,7 +285,7 @@ program main_AutoTest
 
                         do i = 2, ((nTests-1) + iterBase(nDim))
                             pos = mod(i-2,nDim) + 1
-                            xMax(pos) = xMax(pos)*2.0D0
+                            xMax(pos) = xMax(pos)*xMax_multiplicator
                         end do
                     end if
 
