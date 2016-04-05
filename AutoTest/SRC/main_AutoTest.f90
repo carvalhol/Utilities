@@ -8,14 +8,14 @@ program main_AutoTest
     implicit none
 
     !USER
-    logical :: singleProc = .true.
+    logical :: singleProc = .false.
     logical :: constant_Domain_size = .false.
     integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
-    double precision :: xMax_multiplicator = 10.0D0
-    logical, dimension(3) :: activeDim = [.false., .true., .false.] !1D, 2D and 3D
+    double precision :: xMax_multiplicator = 2.0D0
+    logical, dimension(3) :: activeDim = [.false., .false., .true.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.true., .false.] !Global, Local
+    logical, dimension(2) :: activeApproach = [.true., .true.] !Global, Local
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -57,7 +57,7 @@ program main_AutoTest
     character(len=200) :: dim_path
     character(len=200) :: method_path
     character(len=tSize) :: it_path
-    character(len=tSize) :: runAll_path
+    character(len=tSize) :: runAll_path, cleanAll_path
     character(len=50) :: genName = "gen_input"
     character(len=50) :: meshName = "mesh_input"
     character(len=10) :: methodTxt
@@ -96,7 +96,7 @@ program main_AutoTest
     integer(kind=8) :: xNTotal, kNTotal
     integer :: memPerProc, memPerChunk = -1
     integer :: timePerProc !s
-    integer :: runAll_Id = 100
+    integer :: runAll_Id = 100, cleanAll_Id = 101
 
     character(len=200) :: format
     double precision :: kAdjust    = 1.0D0 !"kNStep minimum" multiplier
@@ -134,21 +134,21 @@ program main_AutoTest
 
         res_folder = "COMP"
         testTypeChar = "C"
-        iterBase = [1, 1, 1]
-        nIter = [18, 10, 40] !MAX in FFT [*, 21, *]
-        memPerChunk = 1000
+        iterBase = [1, 15, 1]
+        nIter = [18, 17, 40] !MAX in FFT [*, 21, *]
+        memPerChunk = 40000
 
     else if(constant_Domain_size) then
         res_folder = "STRONG"
         testTypeChar = "S"
-        iterBase = [17, 21, 12]
+        iterBase = [17, 21, 7]
         nIter = [10, 10, 10]
 
     else
         res_folder = "WEAK"
         testTypeChar = "W"
 
-        iterBase = [16, 10, 7] !MAX [18, 16, 13], Obs: with [16, 14, 11] max = 5 iterations
+        iterBase = [16, 10, 17] !MAX [-, -, 16] FFT-l
         !nIter = [10, 10, 10]
         nIter = [10, 10, 10] !10 = 512 proc
         if(.false.) then
@@ -179,9 +179,9 @@ program main_AutoTest
             proc_per_chunk_Max = 1
             mem_per_chunk_Max = 125000
             n_chunk_Max = 1
-            !wallTime = "20:00:00"
-            queue = "icexq"
-            wallTime = "02:00:00" !FOR TESTS
+            wallTime = "4:00:00"
+            !queue = "iceq"
+            !wallTime = "02:00:00" !FOR TESTS
         else if (maxProcReq < 385) then
             queue = "icexq"
             proc_per_chunk_Max = 24
@@ -230,6 +230,10 @@ program main_AutoTest
                 "/runAll_",numb2String(nDim),"D-",indepChar,".sh")
             write(*,*) "runAll_path = ", runAll_path
             open (unit = runAll_Id , file = runAll_path, action = 'write')
+            cleanAll_path = string_join_many("./genTests/", res_folder, &
+                "/cleanAll_",numb2String(nDim),"D-",indepChar,".sh")
+            write(*,*) "cleanAll_path = ", runAll_path
+            open (unit = cleanAll_Id , file = cleanAll_path, action = 'write')
             write(runAll_Id,"(A)") "#!/bin/bash"
             write(runAll_Id,"(A)") ""
             write(runAll_Id,"(A)") "clear"
@@ -281,10 +285,12 @@ program main_AutoTest
                     if(constant_Domain_size) then
                         xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
                     else
+                        !VOLUMETRIC EVOLUTION
                         !xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
 
+                        !ALTERNATE 1D EVOLUTION
                         do i = 2, ((nTests-1) + iterBase(nDim))
-                            pos = mod(i-2,nDim) + 1
+                            pos = 4-(mod(i-2,nDim) + 1)
                             xMax(pos) = xMax(pos)*xMax_multiplicator
                         end do
                     end if
@@ -323,7 +329,7 @@ program main_AutoTest
 
                     if(independent == 1) then
                         do i = 2, nTests
-                            pos = mod(i-2,nDim) + 1
+                            pos = 4-(mod(i-2,nDim) + 1)
                             nFields(pos) = nFields(pos) * 2
                         end do
                     end if
@@ -372,33 +378,53 @@ program main_AutoTest
 
                 temp_path = string_join_many("./", numb2String(nDim),"D/", methodTxt)
 
+                if(nTests == 1) then
+                    write(runAll_Id,"(A)") " "
+                    write(runAll_Id,"(A)") " "
+                    write(cleanAll_Id,"(A)") " "
+                    write(cleanAll_Id,"(A)") " "
+                end if
                 if (cluster==1) then
-                    write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
+                    write(runAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
                     write(runAll_Id,"(A)") "qsub run.pbs"
                     write(runAll_Id,"(A)") "cd ../../../"
+                    write(runAll_Id,"(A)") " "
                 else if (cluster==2) then
-                    write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
+                    write(runAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
                     write(runAll_Id,"(A)") "sbatch run.slurm"
                     write(runAll_Id,"(A)") "cd ../../../"
+                    write(runAll_Id,"(A)") " "
                 else
-                    write(runAll_Id,"(A)") string_join_many("cd "//trim(temp_path),"/",it_folder)
+                    write(runAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
                     write(runAll_Id,"(A)") "./run.command"
                     write(runAll_Id,"(A)") "cd ../../../"
+                    write(runAll_Id,"(A)") " "
                 end if
+
+                write(cleanAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
+                write(cleanAll_Id,"(A)") "rm -r results"
+                write(cleanAll_Id,"(A)") "rm log_proc"
+                write(cleanAll_Id,"(A)") "rm stat_input"
+                write(cleanAll_Id,"(A)") "rm mpd.hosts"
+                write(cleanAll_Id,"(A)") "cd ../../../"
+                write(cleanAll_Id,"(A)") " "
+
                 !initial = .false.
                 end do !Tests
 
             end do !Methods
 
-            !write(runAll_Id,"(A)") "cd ../../../"
-            write(runAll_Id,"(A)") "sleep 1"
+            !write(runAll_Id,"(A)") "sleep 1"
             write(runAll_Id,"(A)") "done"
             write(runAll_Id,"(A)") ""
             if(cluster == 1) write(runAll_Id,"(A)") "qstat -u carvalhol"
             close (runAll_Id)
+            close (cleanAll_Id)
             write(*,*) "-> runAll done"
             call system("chmod u+x "//trim(runAll_path))
             call system("chmod a+r "//trim(runAll_path))
+            call system("chmod u+x "//trim(cleanAll_path))
+            call system("chmod a+r "//trim(cleanAll_path))
 
         end do !Dimension
 
