@@ -8,9 +8,9 @@ program main_AutoTest
     implicit none
 
     !USER
-    logical :: singleProc = .false.
+    logical :: singleProc = .true.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
     double precision :: xMax_multiplicator = 2.0D0
     logical, dimension(3) :: activeDim = [.false., .false., .true.] !1D, 2D and 3D
@@ -134,8 +134,8 @@ program main_AutoTest
 
         res_folder = "COMP"
         testTypeChar = "C"
-        iterBase = [1, 15, 1]
-        nIter = [18, 17, 40] !MAX in FFT [*, 21, *]
+        iterBase = [1, 15, 13]
+        nIter = [18, 17, 9] !MAX in FFT [*, 21, *]
         memPerChunk = 40000
 
     else if(constant_Domain_size) then
@@ -203,7 +203,7 @@ program main_AutoTest
         wallTime = "04:00:00" !Max "24:00:00"
     else if (cluster == 3) then
         proc_per_chunk_Max = 16
-        mem_per_chunk_Max = 4000
+        mem_per_chunk_Max = 80000
         n_chunk_Max = 1000
         wallTime = "04:00:00"
     end if

@@ -35,8 +35,9 @@ contains
         character(len=*), intent(out), optional :: runPath
         !LOCAL
         character(len=tSize) :: QManagerFile_path
-        character(len=tSize) :: gen_path
-        character(len=tSize) :: mesh_path
+        character(len=tSize) :: gen_path, gen_name
+        character(len=tSize) :: mesh_path, mesh_name
+        character(len=tSize) :: main_input_path
         character(len=tSize) :: command_path
         character(len=tSize) :: jobName
         integer :: i
@@ -51,9 +52,14 @@ contains
         write(*,*) "       nFields: ", nFields
 
 
+        gen_name = "./gen_input"
+        mesh_name = "./mesh_input"
         command_path = string_join_many(folderPath,"/","run.command")
-        gen_path  = string_join_many(folderPath,"/","gen_input")
-        mesh_path = string_join_many(folderPath,"/","mesh_input")
+        gen_path  = string_join_many(folderPath,"/",gen_name)
+        mesh_path = string_join_many(folderPath,"/",mesh_name)
+        main_input_path = string_join_many(folderPath,"/","RF_main_input")
+
+        call write_RF_main_input_file(main_input_path, gen_name, mesh_name)
 
         call write_mesh_file(nDim, xMinGlob, xMaxGlob, pointsPerCorrL, mesh_path)
 
@@ -81,6 +87,38 @@ contains
         if(present(runPath)) runPath = QManagerFile_path
 
     end subroutine makeCase
+
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    !-----------------------------------------------------------------------------------------------
+    subroutine write_RF_main_input_file(main_input_path, gen_path, mesh_path)
+
+        implicit none
+        !INPUT
+        character(len=*), intent(in) :: main_input_path, gen_path, mesh_path
+        !LOCAL
+        integer :: nSamples = 1
+        character(len=tsize) :: out_folder = "./results", out_name = "sample_1"
+        integer :: fileID
+
+        fileID = 18
+
+        open (unit = fileId , file = main_input_path, action = 'write')
+
+        write(fileId,"(A)") "$application 1"
+        write(fileId,"(A)") "$nSamples "//numb2String(nSamples)
+        write(fileId,*) " "
+        write(fileId,"(A)") '$mesh_input_1 '//trim(string_join_many('"',mesh_path,'"'))
+        write(fileId,"(A)") '$gen_input_1  '//trim(string_join_many('"',gen_path,'"'))
+        write(fileId,"(A)") '$out_folder_1 '//trim(string_join_many('"',out_folder,'"'))
+        write(fileId,"(A)") '$out_name_1   '//trim(string_join_many('"',out_name,'"'))
+
+        close(fileId)
+
+        !call system("chmod a+r "//trim(mesh_path))
+
+    end subroutine write_RF_main_input_file
 
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
