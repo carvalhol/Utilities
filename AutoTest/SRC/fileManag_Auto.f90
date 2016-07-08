@@ -238,8 +238,11 @@ contains
         !write(fileId,"(A)") 'rm  -r results'
         !write(fileId,"(A)") '#sleep 1'
         write(fileId,"(A)") 'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe'
-        write(fileId,"(A)") &
-        'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
+        !write(fileId,"(A)") &
+        !'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
+         write(fileId,"(A)") &
+        'mpirun --allow-run-as-root -np 4 /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
+        
         write(fileId,"(A)") ' '
         write(fileId,"(A)") 'ls'
 
@@ -347,7 +350,8 @@ contains
         write(fileId,"(A)") ""
         write(fileId,"(A)") 'if [ "$Run_Stat" -eq "1"  ]'
         write(fileId,"(A)") 'then'
-        write(fileId,"(A)") '    mpirun -np $NP '//trim(exec2Path)//"<stat_input"
+        write(fileId,"(A)") '    mpirun -np 4 '//trim(exec2Path)//"<stat_input"
+        !write(fileId,"(A)") '    mpirun -np $NP '//trim(exec2Path)//"<stat_input"
         !write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
         write(fileId,"(A)") 'fi'
 

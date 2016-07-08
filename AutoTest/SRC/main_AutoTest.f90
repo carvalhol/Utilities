@@ -10,12 +10,13 @@ program main_AutoTest
     !USER
     logical :: singleProc = .true.
     logical :: constant_Domain_size = .false.
-    integer :: cluster = 3 !1=Igloo, 2=Oxigen, 3=Local_Mac
+    integer :: nProc_single = 10
+    integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
-    double precision :: xMax_multiplicator = 2.0D0
-    logical, dimension(3) :: activeDim = [.false., .false., .true.] !1D, 2D and 3D
-    logical, dimension(4) :: activeMethod = [.false., .false., .false., .true.] !Isotropic, Shinozuka, Randomization and FFT
-    logical, dimension(2) :: activeApproach = [.true., .true.] !Global, Local
+    double precision :: xMax_multiplicator = 10.0D0
+    logical, dimension(3) :: activeDim = [.false., .true., .false.] !1D, 2D and 3D
+    logical, dimension(4) :: activeMethod = [.false., .true., .true., .true.] !Isotropic, Shinozuka, Randomization and FFT
+    logical, dimension(2) :: activeApproach = [.true., .false.] !Global, Local
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -134,8 +135,8 @@ program main_AutoTest
 
         res_folder = "COMP"
         testTypeChar = "C"
-        iterBase = [1, 15, 13]
-        nIter = [18, 17, 9] !MAX in FFT [*, 21, *]
+        iterBase = [1, 3, 13]
+        nIter = [18, 4, 9] !MAX in FFT [*, 21, *]
         memPerChunk = 40000
 
     else if(constant_Domain_size) then
@@ -148,9 +149,9 @@ program main_AutoTest
         res_folder = "WEAK"
         testTypeChar = "W"
 
-        iterBase = [16, 10, 17] !MAX [-, -, 16] FFT-l
+        iterBase = [16, 5, 17] !MAX [-, -, 16] FFT-l
         !nIter = [10, 10, 10]
-        nIter = [10, 10, 10] !10 = 512 proc
+        nIter = [10, 3, 10] !10 = 512 proc
         if(.false.) then
             ignore_Till_Iteration = [0, 0, 10]
             nIter = [10, 2, 14]
@@ -166,6 +167,8 @@ program main_AutoTest
         end if
     end if
 
+    write(*,*) "nIter = ", nIter
+
     !Global folders and files creation
     call delete_folder(res_folder, "./genTests/")
     call create_folder(res_folder, "./genTests/")
@@ -175,12 +178,12 @@ program main_AutoTest
 
     if(cluster == 1) then
         if(singleProc) then
-            queue = "uvq"
-            proc_per_chunk_Max = 1
+            !queue = "uvq"
+            proc_per_chunk_Max = nProc_single
             mem_per_chunk_Max = 125000
             n_chunk_Max = 1
             wallTime = "4:00:00"
-            !queue = "iceq"
+            queue = "iceq"
             !wallTime = "02:00:00" !FOR TESTS
         else if (maxProcReq < 385) then
             queue = "icexq"
@@ -283,22 +286,22 @@ program main_AutoTest
                     call set_vec(xMin, [(0.0D0, i=1, nDim)])  !Starts xMin in 0
                     call set_vec_Int(pointsPerCorrL, [(pointsPerCorrLBase, i=1, nDim)])
                     if(constant_Domain_size) then
-                        xMax(:) = xMax(:) * 2**(dble(iterBase(nDim)-1)/dble(nDim))
+                        xMax(:) = xMax(:) * xMax_multiplicator**(dble(iterBase(nDim)-1d0)/dble(nDim))
                     else
                         !VOLUMETRIC EVOLUTION
-                        !xMax(:) = xMax(:) * 2**(dble((nTests - 1) + iterBase(nDim)-1)/dble(nDim))
+                        xMax(:) = xMax(:) * xMax_multiplicator**(dble((nTests - 1) + iterBase(nDim)-1d0)/dble(nDim))
 
                         !ALTERNATE 1D EVOLUTION
-                        do i = 2, ((nTests-1) + iterBase(nDim))
-                            pos = 4-(mod(i-2,nDim) + 1)
-                            xMax(pos) = xMax(pos)*xMax_multiplicator
-                        end do
+                        !do i = 2, ((nTests-1) + iterBase(nDim))
+                        !    pos = nDim-(mod(i-2,nDim))
+                        !    xMax(pos) = xMax(pos)*xMax_multiplicator
+                        !end do
                     end if
 
                     !DEFINE NUMBER OF CLUSTERS
                     if(singleProc) then
-                        nProcsTotal = 1
-                        nProcsPerChunk = 1
+                        nProcsTotal = nProc_single
+                        nProcsPerChunk = nProc_single
                         nChunks = 1
                         if(memPerChunk < 0) memPerChunk=mem_per_chunk_Max
                     else
