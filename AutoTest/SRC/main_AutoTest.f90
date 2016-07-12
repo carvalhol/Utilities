@@ -10,7 +10,7 @@ program main_AutoTest
     !USER
     logical :: singleProc = .true.
     logical :: constant_Domain_size = .false.
-    integer :: nProc_single = 10
+    integer :: nProc_single = 1
     integer :: cluster = 1 !1=Igloo, 2=Oxigen, 3=Local_Mac
     integer :: nRuns = 1 !How many times each iteration
     double precision :: xMax_multiplicator = 10.0D0
@@ -113,14 +113,17 @@ program main_AutoTest
     integer :: nChunks
 
     if(cluster == 1) then
-        execPath = "/home/carvalhol/Projects/RANDOM_FIELD/build/randomField.exe"
-        exec2Path = "/home/carvalhol/Projects/RANDOM_FIELD/build/statistics.exe"
+        buildPath = "/home/carvalhol/Projects/RANDOM_FIELD/build"
+        execPath = trim(adjustL(buildPath))//"/randomField.exe"
+        exec2Path = trim(adjustL(buildPath))//"/statistics.exe"
     else if(cluster == 3) then
-        execPath = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/randomField.exe"
-        exec2Path = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe"
+        buildPath = "/Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build"
+        execPath = trim(adjustL(buildPath))//"/randomField.exe"
+        exec2Path = trim(adjustL(buildPath))//"/statistics.exe"
     else
-        execPath = "/home/abreul/RF/Novo/build/randomField.exe"
-        exec2Path = "/home/abreul/RF/Novo/build/statistics.exe"
+        buildPath = "/home/abreul/RF/Novo/build"
+        execPath = trim(adjustL(buildPath))//"/randomField.exe"
+        exec2Path = trim(adjustL(buildPath))//"/statistics.exe"
     end if
     write(*,*) "Running on: "
     call system("pwd")
@@ -136,7 +139,7 @@ program main_AutoTest
         res_folder = "COMP"
         testTypeChar = "C"
         iterBase = [1, 3, 13]
-        nIter = [18, 4, 9] !MAX in FFT [*, 21, *]
+        nIter = [18, 3, 9] !MAX in FFT [*, 21, *]
         memPerChunk = 40000
 
     else if(constant_Domain_size) then
@@ -241,6 +244,9 @@ program main_AutoTest
             write(runAll_Id,"(A)") ""
             write(runAll_Id,"(A)") "clear"
             write(runAll_Id,"(A)")
+            write(runAll_Id,"(A)") "startTime=`date -u`"
+            write(runAll_Id,"(A)")
+            write(runAll_Id,"(A)") trim(string_join_many("(cd "//buildPath, "; make all)"))
             write(runAll_Id,"(A)")
             write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
             write(runAll_Id,"(A)") "do"
@@ -388,28 +394,18 @@ program main_AutoTest
                     write(cleanAll_Id,"(A)") " "
                 end if
                 if (cluster==1) then
-                    write(runAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
-                    write(runAll_Id,"(A)") "qsub run.pbs"
-                    write(runAll_Id,"(A)") "cd ../../../"
-                    write(runAll_Id,"(A)") " "
+                    write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
+                                                trim(it_folder), "; qsub run.pbs)"))
                 else if (cluster==2) then
-                    write(runAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
-                    write(runAll_Id,"(A)") "sbatch run.slurm"
-                    write(runAll_Id,"(A)") "cd ../../../"
-                    write(runAll_Id,"(A)") " "
+                    write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
+                                                trim(it_folder), "; sbatch run.slurm)"))
                 else
-                    write(runAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
-                    write(runAll_Id,"(A)") "./run.command"
-                    write(runAll_Id,"(A)") "cd ../../../"
-                    write(runAll_Id,"(A)") " "
+                    write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
+                                                trim(it_folder), "; ./run.command)"))
                 end if
 
-                write(cleanAll_Id,"(A)") trim(string_join_many("cd "//trim(temp_path),"/",trim(it_folder)))
-                write(cleanAll_Id,"(A)") "rm -r results"
-                write(cleanAll_Id,"(A)") "rm log_proc"
-                write(cleanAll_Id,"(A)") "rm stat_input"
-                write(cleanAll_Id,"(A)") "rm mpd.hosts"
-                write(cleanAll_Id,"(A)") "cd ../../../"
+                write(cleanAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
+                                              trim(it_folder), "; rm -r results log_proc* stat_input mpd.hosts)"))
                 write(cleanAll_Id,"(A)") " "
 
                 !initial = .false.
@@ -419,6 +415,11 @@ program main_AutoTest
 
             !write(runAll_Id,"(A)") "sleep 1"
             write(runAll_Id,"(A)") "done"
+            write(runAll_Id,"(A)")
+            write(runAll_Id,"(A)") "endTime=`date -u`"
+            write(runAll_Id,"(A)")
+            write(runAll_Id,"(A)") 'echo "Start time $startTime"'
+            write(runAll_Id,"(A)") 'echo "  End time $endTime"'
             write(runAll_Id,"(A)") ""
             if(cluster == 1) write(runAll_Id,"(A)") "qstat -u carvalhol"
             close (runAll_Id)

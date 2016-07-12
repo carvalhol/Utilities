@@ -227,7 +227,7 @@ contains
 
         write(fileId,"(A)") "#!/bin/bash"
         write(fileId,"(A)") NP
-        write(fileId,"(A)") "(cd /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build; make all)"
+        !write(fileId,"(A)") "(cd /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build; make all)"
         write(fileId,"(A)") 'echo ""'
         write(fileId,"(A)") 'echo "---------------------------------"'
         write(fileId,"(A)") 'echo ""'
@@ -241,7 +241,7 @@ contains
         !write(fileId,"(A)") &
         !'mpirun --allow-run-as-root -np $NP /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
          write(fileId,"(A)") &
-        'mpirun --allow-run-as-root -np 4 /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
+        'mpirun --allow-run-as-root -np 1 /Users/carvalhol/Desktop/GITs/RANDOM_FIELD/build/statistics.exe<stat_input'
         
         write(fileId,"(A)") ' '
         write(fileId,"(A)") 'ls'
@@ -350,7 +350,7 @@ contains
         write(fileId,"(A)") ""
         write(fileId,"(A)") 'if [ "$Run_Stat" -eq "1"  ]'
         write(fileId,"(A)") 'then'
-        write(fileId,"(A)") '    mpirun -np 4 '//trim(exec2Path)//"<stat_input"
+        write(fileId,"(A)") '    mpirun -np 1 '//trim(exec2Path)//"<stat_input"
         !write(fileId,"(A)") '    mpirun -np $NP '//trim(exec2Path)//"<stat_input"
         !write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
         write(fileId,"(A)") 'fi'

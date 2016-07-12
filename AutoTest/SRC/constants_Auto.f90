@@ -23,6 +23,6 @@ module constants_Auto
     integer, parameter :: tSize = 200
 
     !Folders
-    character(len=200) :: execPath, exec2Path
+    character(len=1024) :: execPath, exec2Path, buildPath
 
 end module constants_Auto
