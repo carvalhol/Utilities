@@ -311,6 +311,13 @@ contains
         write(fileId,"(A)") '    NP='//trim(numb2String(nProcsTotal))
         write(fileId,"(A)") 'fi'
         write(fileId,"(A)") ' '
+        write(fileId,"(A)") 'if [ $nRuns ]'
+        write(fileId,"(A)") 'then'
+        write(fileId,"(A)") '    echo "nRuns_in = " $nRuns'
+        write(fileId,"(A)") 'else'
+        write(fileId,"(A)") '    nRuns=1'
+        write(fileId,"(A)") 'fi'
+        write(fileId,"(A)") ' '
         write(fileId,"(A)") 'if [ $Run_Stat ]'
         write(fileId,"(A)") 'then'
         write(fileId,"(A)") '    echo "Run_Stat_in = " $Run_Stat'
@@ -328,6 +335,7 @@ contains
         write(fileId,"(A)") 'echo "NP       = " $NP'
         write(fileId,"(A)") 'echo "Run_RF   = " $Run_RF'
         write(fileId,"(A)") 'echo "Run_Stat = " $Run_Stat'
+        write(fileId,"(A)") 'echo "   nRuns = " $nRuns'
 
         write(fileId,"(A)") "# chargement des modules"
         write(fileId,"(A)") "module load intel-compiler/15.0.1"
@@ -343,6 +351,10 @@ contains
         write(fileId,"(A)") "cat $PBS_NODEFILE | uniq > mpd.hosts"
         write(fileId,"(A)") "nb_nodes=`cat mpd.hosts|wc -l`"
         write(fileId,"(A)") ""
+        write(fileId,"(A)") "startTime=`date -u`"
+        write(fileId,"(A)") "for ((i=1;  i<=$nRuns; i++))"
+        write(fileId,"(A)") "do"
+        write(fileId,"(A)") 'echo "Running " $i'
         write(fileId,"(A)") 'if [ "$Run_RF" -eq "1"  ]'
         write(fileId,"(A)") 'then'
         write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
@@ -354,6 +366,13 @@ contains
         !write(fileId,"(A)") '    mpirun -np $NP '//trim(exec2Path)//"<stat_input"
         !write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
         write(fileId,"(A)") 'fi'
+        write(fileId,"(A)") 'sleep $sleep_time'
+        write(fileId,"(A)") 'done'
+        write(fileId,"(A)") "endTime=`date -u`"
+        write(fileId,"(A)") ""
+        write(fileId,"(A)") 'echo "     nRuns=$nRuns"'
+        write(fileId,"(A)") 'echo "Start time $startTime"'
+        write(fileId,"(A)") 'echo "  End time $endTime"'
 
         close(fileId)
 

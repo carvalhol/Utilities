@@ -58,7 +58,7 @@ program main_AutoTest
     character(len=200) :: dim_path
     character(len=200) :: method_path
     character(len=tSize) :: it_path
-    character(len=tSize) :: runAll_path, cleanAll_path
+    character(len=tSize) :: runAll_path, cleanAll_path, listAll_path
     character(len=50) :: genName = "gen_input"
     character(len=50) :: meshName = "mesh_input"
     character(len=10) :: methodTxt
@@ -97,7 +97,7 @@ program main_AutoTest
     integer(kind=8) :: xNTotal, kNTotal
     integer :: memPerProc, memPerChunk = -1
     integer :: timePerProc !s
-    integer :: runAll_Id = 100, cleanAll_Id = 101
+    integer :: runAll_Id = 100, cleanAll_Id = 101, listAll_Id=102
 
     character(len=200) :: format
     double precision :: kAdjust    = 1.0D0 !"kNStep minimum" multiplier
@@ -140,7 +140,7 @@ program main_AutoTest
         testTypeChar = "C"
         iterBase = [1, 3, 13]
         nIter = [18, 3, 9] !MAX in FFT [*, 21, *]
-        memPerChunk = 40000
+        memPerChunk = 4000
 
     else if(constant_Domain_size) then
         res_folder = "STRONG"
@@ -185,7 +185,7 @@ program main_AutoTest
             proc_per_chunk_Max = nProc_single
             mem_per_chunk_Max = 125000
             n_chunk_Max = 1
-            wallTime = "4:00:00"
+            wallTime = "24:00:00"
             queue = "iceq"
             !wallTime = "02:00:00" !FOR TESTS
         else if (maxProcReq < 385) then
@@ -238,8 +238,11 @@ program main_AutoTest
             open (unit = runAll_Id , file = runAll_path, action = 'write')
             cleanAll_path = string_join_many("./genTests/", res_folder, &
                 "/cleanAll_",numb2String(nDim),"D-",indepChar,".sh")
+            listAll_path = string_join_many("./genTests/", res_folder, &
+                "/listAll_",numb2String(nDim),"D-",indepChar,".sh")
             write(*,*) "cleanAll_path = ", runAll_path
             open (unit = cleanAll_Id , file = cleanAll_path, action = 'write')
+            open (unit = listAll_Id , file = listAll_path, action = 'write')
             write(runAll_Id,"(A)") "#!/bin/bash"
             write(runAll_Id,"(A)") ""
             write(runAll_Id,"(A)") "clear"
@@ -248,9 +251,16 @@ program main_AutoTest
             write(runAll_Id,"(A)")
             write(runAll_Id,"(A)") trim(string_join_many("(cd "//buildPath, "; make all)"))
             write(runAll_Id,"(A)")
-            write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
+            write(runAll_Id,"(A)") "nRuns="//numb2String(nRuns)
+            write(runAll_Id,"(A)") "Run_RF=1"
+            write(runAll_Id,"(A)") "Run_Stat=1"
+            write(runAll_Id,"(A)") "sleep_time=0"
+            write(runAll_Id,"(A)") "for i in {1..1}"
+            !write(runAll_Id,"(A)") "for i in {1.."//trim(numb2String(nRuns))//"}"
             write(runAll_Id,"(A)") "do"
             write(runAll_Id,"(A)") '   echo "Running $i"'
+            write(listAll_Id,"(A)") 'res="res"'
+            write(cleanAll_Id,"(A)") 'res="res"'
 
             do method = 1, size(activeMethod)
 
@@ -392,10 +402,15 @@ program main_AutoTest
                     write(runAll_Id,"(A)") " "
                     write(cleanAll_Id,"(A)") " "
                     write(cleanAll_Id,"(A)") " "
+                    write(listAll_Id,"(A)") " "
+                    write(listAll_Id,"(A)") " "
                 end if
                 if (cluster==1) then
                     write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
-                                                trim(it_folder), "; qsub run.pbs)"))
+                                                trim(it_folder), &
+                                                ";qsub -v Run_Stat=",&
+                                                "$Run_Stat,Run_RF=$Run_RF,nRuns=$nRuns,sleep_time=$sleep_time run.pbs)"))
+                                                !"; qsub run.pbs)"))
                 else if (cluster==2) then
                     write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
                                                 trim(it_folder), "; sbatch run.slurm)"))
@@ -405,8 +420,11 @@ program main_AutoTest
                 end if
 
                 write(cleanAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
-                                              trim(it_folder), "; rm -r results log_proc* stat_input mpd.hosts)"))
+                                              trim(it_folder), "; rm -r $res log_proc* stat_input mpd.hosts)"))
+                write(listAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
+                                              trim(it_folder),"/$res", "; pwd; ls | wc -l)"))
                 write(cleanAll_Id,"(A)") " "
+                write(listAll_Id,"(A)") " "
 
                 !initial = .false.
                 end do !Tests
@@ -429,6 +447,8 @@ program main_AutoTest
             call system("chmod a+r "//trim(runAll_path))
             call system("chmod u+x "//trim(cleanAll_path))
             call system("chmod a+r "//trim(cleanAll_path))
+            call system("chmod u+x "//trim(listAll_path))
+            call system("chmod a+r "//trim(listAll_path))
 
         end do !Dimension
 
