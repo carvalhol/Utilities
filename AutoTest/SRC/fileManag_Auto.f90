@@ -71,18 +71,18 @@ contains
         if(independent == 1) indepChar = "l"
         jobName = string_join_many("M",numb2String(method),"-",indepChar,"_",numb2String(iter,2))
 
-
-        if(cluster == 1) then
-            QManagerFile_path  = string_join_many(folderPath,"/","run.pbs")
-            call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
-                              memPerChunk, wallTime, queue, QManagerFile_path, jobName)
-        else if (cluster == 2)  then
-            QManagerFile_path  = string_join_many(folderPath,"/","run.slurm")
-            call writeSlurmfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
-                              memPerChunk, wallTime, queue, QManagerFile_path, jobName)
-        else if (cluster == 3) then
-            call write_command_file(nProcsTotal, command_path)
-        end if
+        select case (cluster) 
+            case(IGLOO, FUSION)
+                QManagerFile_path  = string_join_many(folderPath,"/","run.pbs")
+                call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
+                              memPerChunk, wallTime, queue, QManagerFile_path, jobName, cluster)
+            case(OXIGEN, S_DUMONT)
+                QManagerFile_path  = string_join_many(folderPath,"/","run.slurm")
+                call writeSlurmfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
+                              memPerChunk, wallTime, queue, QManagerFile_path, jobName, cluster)
+            case(LOCAL_MAC)
+                call write_command_file(nProcsTotal, command_path)
+        end select
 
         if(present(runPath)) runPath = QManagerFile_path
 
@@ -99,7 +99,7 @@ contains
         character(len=*), intent(in) :: main_input_path, gen_path, mesh_path
         !LOCAL
         integer :: nSamples = 1
-        character(len=tsize) :: out_folder = "./results", out_name = "sample_1"
+        character(len=tsize) :: out_folder = "./results/res", out_name = "sample_1"
         integer :: fileID
 
         fileID = 18
@@ -108,6 +108,7 @@ contains
 
         write(fileId,"(A)") "$application 1"
         write(fileId,"(A)") "$nSamples "//numb2String(nSamples)
+        write(fileId,"(A)") "$timeFolder 1"
         write(fileId,*) " "
         write(fileId,"(A)") '$mesh_input_1 '//trim(string_join_many('"',mesh_path,'"'))
         write(fileId,"(A)") '$gen_input_1  '//trim(string_join_many('"',gen_path,'"'))
@@ -257,7 +258,8 @@ contains
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
-    subroutine writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, wallTime, queue, QManagerFile_path, jobName)
+    subroutine writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, &
+                            wallTime, queue, QManagerFile_path, jobName, cluster)
 
         implicit none
         !INPUT
@@ -267,6 +269,7 @@ contains
         character(len=*), intent(in) :: queue
         !character(len=50) :: name
         character(len=50), intent(in) :: jobName
+        integer, intent(in) :: cluster
 
         !LOCAL
         integer :: nProcsPerChunk_chSz, nProcsTotal_chSz
@@ -303,6 +306,7 @@ contains
         !write(fileId,"(A15,A1,A7,A1, A10, A1, A5, A2, A1  )") "#PBS -l select=", numb2String(nChunks), ":ncpus=",numb2String(nProcsPerChunk),":mpiprocs=",numb2String(nProcsPerChunk),":mem=", numb2String(memPerChunk), "gb"
         write(fileId,"(A)") "#PBS -q "//queue
         write(fileId,"(A)") "#PBS -M lucianopaludoecp@gmail.com"
+        if(cluster == FUSION) write(fileId,"(A)") "#PBS -P omaha"
         write(fileId,"(A)") ""
         write(fileId,"(A)") 'if [ $NP ]'
         write(fileId,"(A)") 'then'
@@ -322,7 +326,7 @@ contains
         write(fileId,"(A)") 'then'
         write(fileId,"(A)") '    echo "Run_Stat_in = " $Run_Stat'
         write(fileId,"(A)") 'else'
-        write(fileId,"(A)") '    Run_Stat=1'
+        write(fileId,"(A)") '    Run_Stat=0'
         write(fileId,"(A)") 'fi'
         write(fileId,"(A)") ' '
         write(fileId,"(A)") 'if [ $Run_RF ]'
@@ -337,12 +341,25 @@ contains
         write(fileId,"(A)") 'echo "Run_Stat = " $Run_Stat'
         write(fileId,"(A)") 'echo "   nRuns = " $nRuns'
 
-        write(fileId,"(A)") "# chargement des modules"
-        write(fileId,"(A)") "module load intel-compiler/15.0.1"
-        write(fileId,"(A)") "module load intel-mkl/11.2.1"
-        write(fileId,"(A)") "module load intel-mpi/5.0.2"
-        write(fileId,"(A)") "module load phdf5/1.8.15"
-        write(fileId,"(A)") "module load fftw/3.3.4-intelmpi5.0.2"
+        if(cluster == IGLOO) then
+            write(fileId,"(A)") "# chargement des modules"
+            write(fileId,"(A)") "module purge" 
+            write(fileId,"(A)") "module load intel-compiler/15.0.1"
+            write(fileId,"(A)") "module load intel-mkl/11.2.1"
+            write(fileId,"(A)") "module load intel-mpi/5.0.2"
+            write(fileId,"(A)") "module load phdf5/1.8.15"
+            write(fileId,"(A)") "module load fftw/3.3.4-intelmpi5.0.2"
+        end if
+
+        if(cluster == FUSION) then
+            write(fileId,"(A)") "# chargement des modules"
+            write(fileId,"(A)") "module purge"
+            write(fileId,"(A)") "module load intel-compiler/16.0.3"
+            write(fileId,"(A)") "module load intel-mkl/11.3.3"
+            write(fileId,"(A)") "module load intel-mpi/5.1.2"
+            write(fileId,"(A)") "export LD_LIBRARY_PATH=~/LOCAL/lib:/gpfs/opt/compilers/intel/compilers_and_libraries_2016.3.210/linux/compiler/lib/intel64"
+            write(fileId,"(A)") "export LIBRARY_PATH=~/LOCAL/lib:/gpfs/opt/compilers/intel/compilers_and_libraries_2016.3.210/linux/compiler/lib/intel64"
+        end if
 
         write(fileId,"(A)") ""
         write(fileId,"(A)") "# On se place dans le repertoire depuis lequel le job a ete soumis"
@@ -366,7 +383,7 @@ contains
         !write(fileId,"(A)") '    mpirun -np $NP '//trim(exec2Path)//"<stat_input"
         !write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
         write(fileId,"(A)") 'fi'
-        write(fileId,"(A)") 'sleep $sleep_time'
+        !write(fileId,"(A)") 'sleep $sleep_time'
         write(fileId,"(A)") 'done'
         write(fileId,"(A)") "endTime=`date -u`"
         write(fileId,"(A)") ""
@@ -386,7 +403,7 @@ contains
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     subroutine writeSlurmfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, wallTime, &
-                              queue, QManagerFile_path, jobName)
+                              queue, QManagerFile_path, jobName, cluster)
 
         implicit none
         !INPUT
@@ -396,6 +413,7 @@ contains
         character(len=*), intent(in) :: queue
         !character(len=50) :: name
         character(len=50), intent(in) :: jobName
+        integer, intent(in) :: cluster
 
         !LOCAL
         integer :: nProcsPerChunk_chSz, nProcsTotal_chSz

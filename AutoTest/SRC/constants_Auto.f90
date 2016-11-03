@@ -2,19 +2,28 @@ module constants_Auto
 
     implicit none
 
-	double precision, parameter :: PI = 3.1415926535898d0;
-	double precision, parameter :: SQRT_2PI = 2.50662827463d0;
-	double precision, parameter :: ZERO = 0d0;
-	double precision, parameter :: TOLERANCE = 0.000000001
-	double precision, parameter :: MIN_DOUBLE = -2.0D+307
-	double precision, parameter :: MAX_DOUBLE = 2.0D+307
-	!METHOD
-	integer, parameter :: ISOTROPIC = 1, &
-	                      SHINOZUKA = 2, &
-	                      RANDOMIZATION = 3, &
-	                      FFT = 4
+    double precision, parameter :: PI = 3.1415926535898d0;
+    double precision, parameter :: SQRT_2PI = 2.50662827463d0;  
+    double precision, parameter :: ZERO = 0d0;
+    double precision, parameter :: TOLERANCE = 0.000000001
+    double precision, parameter :: MIN_DOUBLE = -2.0D+307
+    double precision, parameter :: MAX_DOUBLE = 2.0D+307
+    integer, parameter :: NDIM = 3 
+    !CLUSTER
+    integer, parameter :: IGLOO = 1, &
+                          OXIGEN = 2, &
+                          LOCAL_MAC = 3, &
+                          FUSION = 4, &
+                          S_DUMONT = 5 
+
+    !METHOD
+    integer, parameter :: ISOTROPIC = 1, &
+                          SHINOZUKA = 2, &
+                          RANDOMIZATION = 3, &
+                          FFT = 4
     !Correlation Model
     integer, parameter :: cm_GAUSSIAN = 1
+    
     !First-order Marginal Density
     integer, parameter :: fom_GAUSSIAN = 1, &
                           fom_LOGNORMAL = 2
@@ -24,5 +33,5 @@ module constants_Auto
 
     !Folders
     character(len=1024) :: execPath, exec2Path, buildPath
-
+    character(len=50), parameter :: basePath = "./genTests/"
 end module constants_Auto
