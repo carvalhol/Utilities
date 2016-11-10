@@ -8,28 +8,30 @@ program main_AutoTest
     implicit none
 
     !USER
-    integer, parameter :: cluster = FUSION !IGLOO, OXIGEN, LOCAL_MAC, FUSION, S_DUMONT
-    
+    character(len=50), parameter :: res_folder = "WEAK-4P"
+    integer         , parameter :: pMin3D=4,   pMax3D = pMin3D,     pMult3D = 1
+    double precision, parameter :: xMin3D=4d0, xMax3D = 256d0, xMult3D = 2d0**(0.333333333333333d0)
+    integer, parameter :: cluster = FUSION !IGLOO, OCCYGEN, LOCAL_MAC, FUSION, S_DUMONT
     double precision, dimension(NDIM,NDIM), parameter :: xMax_init = reshape([1d0, 0d0, 0d0, &
                                                                               1d0, 1d0, 0d0, &
-                                                                              1d0, 1d0, 1d0], &
+                                                                              xMin3D, xMin3D, xMin3D], &
                                                                               shape(xMax_init))  
     double precision, dimension(NDIM,NDIM), parameter :: xMax_mult = reshape([2d0, 0d0, 0d0, &
                                                                               2d0, 2d0, 0d0, &
-                                                                              2d0, 2d0, 2d0], &
+                                                                              xMult3D, xMult3D, xMult3D], &
                                                                               shape(xMax_mult))
     double precision, dimension(NDIM,NDIM), parameter :: xMax_max  = reshape([1024d0,    0d0,    0d0, &
                                                                               1024d0, 1024d0,    0d0, &
-                                                                              1024d0, 1024d0, 1024d0], &
+                                                                              xMax3D, xMax3D, xMax3D], &
                                                                               shape(xMax_max))   
-    integer, dimension(NDIM), parameter :: nProc_init = [1, 1, 1]
-    integer, dimension(NDIM), parameter :: nProc_mult = [2, 2, 2]
-    integer, dimension(NDIM), parameter :: nProc_max  = [512, 512, 512]
+    integer, dimension(NDIM), parameter :: nProc_init = [1, 1, pMin3D]
+    integer, dimension(NDIM), parameter :: nProc_mult = [1, 1, pMult3D]
+    integer, dimension(NDIM), parameter :: nProc_max  = [512, 512, pMax3D]
+    logical :: imposeMaxMemory = .true.
     integer :: nRuns = 1 !How many times each iteration
     logical, dimension(NDIM) :: activeDim      = [.false., .false., .true.] !1D, 2D and 3D
     logical, dimension(4) :: activeMethod   = [.false., .false. , .false. , .true.] !Isotropic, Shinozuka, Randomization and FFT
     logical, dimension(2) :: activeApproach = [.true. , .false.] !Global, Local
-    character(len=50), parameter :: res_folder = "WEAK"
 
     !COMPUTATION
     integer :: memPerNTerm = 1000 !mb
@@ -134,7 +136,7 @@ program main_AutoTest
             proc_per_chunk_Max = 1
             mem_per_chunk_Max = 4000
             n_chunk_Max = 1
-        case(OXIGEN)
+        case(OCCYGEN)
             buildPath = "/home/abreul/RF/Novo/build"
             proc_per_chunk_Max = 24
             mem_per_chunk_Max = 64000
@@ -161,7 +163,7 @@ program main_AutoTest
 
     !nIter    -> Number of iterations (define in 1D, 2D and 3D)
     where(nProc_mult==1)
-        nIter(:) = log(xMax_max(1,:)/xMax_init(1,:))/log(xMax_mult(1,:))
+        nIter(:) = nint(log(xMax_max(1,:)/xMax_init(1,:))/log(xMax_mult(1,:)))+1
     elsewhere
         nIter(:) = nint(log(dble(nProc_max(:))/dble(nProc_init(:)))/log(dble(nProc_mult(:)))) 
     end where
@@ -197,7 +199,7 @@ program main_AutoTest
 !            wallTime = "04:00:00"
 !        end if
 !
-!    else if (cluster == OXIGEN) then
+!    else if (cluster == OCCYGEN) then
 !        proc_per_chunk_Max = 24
 !        mem_per_chunk_Max = 64000
 !        n_chunk_Max = 80000/24
@@ -252,8 +254,9 @@ program main_AutoTest
             write(runAll_Id,"(A)") "for i in {1..1}"
             write(runAll_Id,"(A)") "do"
             write(runAll_Id,"(A)") '   echo "Running $i"'
-            write(listAll_Id,"(A)") 'res="res"'
-            write(cleanAll_Id,"(A)") 'res="res"'
+            write(listAll_Id,"(A)") 'res="results"'
+            write(cleanAll_Id,"(A)") 'res="logs stat_input mpd.hosts"'
+            write(cleanAll_Id,"(A)") '#res="results logs stat_input mpd.hosts"'
 
             do method = 1, size(activeMethod)
 
@@ -300,35 +303,7 @@ program main_AutoTest
                         memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))    
                     end if
                     if(memPerChunk < 512) memPerChunk = 512
-
-!                    !DEFINE NUMBER OF CLUSTERS
-!                    if(singleProc) then
-!                        nProcsTotal = nProc_single
-!                        nProcsPerChunk = nProc_single
-!                        nChunks = 1
-!                        if(memPerChunk < 0) memPerChunk=mem_per_chunk_Max
-!                    else
-!                        nProcsTotal = 2**(it-1)
-!                        if (cluster==2) then
-!                            !OCCYGEN
-!                            nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
-!                            memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
-!                            if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
-!                            nProcsPerChunk = nProcsTotal;
-!                            if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
-!                            if(nChunks < 1) nChunks = 1
-!                            if(memPerChunk < 512) memPerChunk = 512
-!                        else
-!                            !IGLOO
-!                            nChunks = ceiling(dble(nProcsTotal)/dble(proc_per_chunk_Max))
-!                            memPerChunk = ceiling(dble(mem_per_chunk_Max)*dble(nProcsTotal)/dble(proc_per_chunk_Max))
-!                            if(nChunks > 1) memPerChunk = mem_per_chunk_Max !proc_per_chunk_Max * memPerProc
-!                            nProcsPerChunk = nProcsTotal;
-!                            if(nChunks > 1) nProcsPerChunk = proc_per_chunk_Max
-!                            if(nChunks < 1) nChunks = 1
-!                            if(memPerChunk < 512) memPerChunk = 512
-!                        end if
-!                    end if
+                    if(imposeMaxMemory == .true.) memPerChunk = mem_per_chunk_Max
 
                     !Defining nFields
                     nFields(:) = 1
@@ -392,22 +367,22 @@ program main_AutoTest
                     write(listAll_Id,"(A)") " "
                     write(listAll_Id,"(A)") " "
                 end if
-                if (cluster==1) then
+                if (cluster==IGLOO .or. cluster==FUSION) then
                     write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
                                                 trim(it_folder), &
                                                 ";qsub -v Run_Stat=",&
                                                 "$Run_Stat,Run_RF=$Run_RF,nRuns=$nRuns,sleep_time=$sleep_time run.pbs)"))
                                                 !"; qsub run.pbs)"))
-                else if (cluster==2) then
+                else if (cluster==OCCYGEN) then
                     write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
                                                 trim(it_folder), "; sbatch run.slurm)"))
-                else
+                else if (cluster==LOCAL_MAC) then
                     write(runAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
                                                 trim(it_folder), "; ./run.command)"))
                 end if
 
                 write(cleanAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
-                                              trim(it_folder), "; rm -r $res log_proc* stat_input mpd.hosts)"))
+                                              trim(it_folder), "; rm -r $res)"))
                 write(listAll_Id,"(A)") trim(string_join_many("(cd "//trim(temp_path),"/",&
                                               trim(it_folder),"/$res", "; pwd; ls | wc -l)"))
                 write(cleanAll_Id,"(A)") " "

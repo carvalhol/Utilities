@@ -11,7 +11,7 @@ module constants_Auto
     integer, parameter :: NDIM = 3 
     !CLUSTER
     integer, parameter :: IGLOO = 1, &
-                          OXIGEN = 2, &
+                          OCCYGEN = 2, &
                           LOCAL_MAC = 3, &
                           FUSION = 4, &
                           S_DUMONT = 5 

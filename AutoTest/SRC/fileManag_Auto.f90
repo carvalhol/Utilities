@@ -38,7 +38,7 @@ contains
         character(len=tSize) :: gen_path, gen_name
         character(len=tSize) :: mesh_path, mesh_name
         character(len=tSize) :: main_input_path
-        character(len=tSize) :: command_path
+        character(len=tSize) :: command_path, vai_path
         character(len=tSize) :: jobName
         integer :: i
         character :: indepChar
@@ -55,6 +55,7 @@ contains
         gen_name = "./gen_input"
         mesh_name = "./mesh_input"
         command_path = string_join_many(folderPath,"/","run.command")
+        vai_path = string_join_many(folderPath,"/","vai.sh")
         gen_path  = string_join_many(folderPath,"/",gen_name)
         mesh_path = string_join_many(folderPath,"/",mesh_name)
         main_input_path = string_join_many(folderPath,"/","RF_main_input")
@@ -75,8 +76,8 @@ contains
             case(IGLOO, FUSION)
                 QManagerFile_path  = string_join_many(folderPath,"/","run.pbs")
                 call writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
-                              memPerChunk, wallTime, queue, QManagerFile_path, jobName, cluster)
-            case(OXIGEN, S_DUMONT)
+                              memPerChunk, wallTime, queue, QManagerFile_path, jobName, cluster, vai_path)
+            case(OCCYGEN, S_DUMONT)
                 QManagerFile_path  = string_join_many(folderPath,"/","run.slurm")
                 call writeSlurmfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, &
                               memPerChunk, wallTime, queue, QManagerFile_path, jobName, cluster)
@@ -87,7 +88,7 @@ contains
         if(present(runPath)) runPath = QManagerFile_path
 
     end subroutine makeCase
-
+    
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
@@ -109,6 +110,9 @@ contains
         write(fileId,"(A)") "$application 1"
         write(fileId,"(A)") "$nSamples "//numb2String(nSamples)
         write(fileId,"(A)") "$timeFolder 1"
+        write(fileId,*) " "
+        write(fileId,"(A)") "$calculateCorrL 0"
+        write(fileId,"(A)") "$deleteSampleAfterStatistics 1"
         write(fileId,*) " "
         write(fileId,"(A)") '$mesh_input_1 '//trim(string_join_many('"',mesh_path,'"'))
         write(fileId,"(A)") '$gen_input_1  '//trim(string_join_many('"',gen_path,'"'))
@@ -259,16 +263,16 @@ contains
     !-----------------------------------------------------------------------------------------------
     !-----------------------------------------------------------------------------------------------
     subroutine writePBSfile(nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk, &
-                            wallTime, queue, QManagerFile_path, jobName, cluster)
+                            wallTime, queue, QManagerFile_path, jobName, cluster, vai_path)
 
         implicit none
         !INPUT
         integer, intent(in) :: nDim, nProcsTotal, nProcsPerChunk, nChunks, memPerChunk
-        character(len=8), intent(in) :: wallTime
-        character(len=200) :: QManagerFile_path
+        character(len=*), intent(in) :: wallTime
+        character(len=*), intent(in) :: QManagerFile_path, vai_path
         character(len=*), intent(in) :: queue
         !character(len=50) :: name
-        character(len=50), intent(in) :: jobName
+        character(len=*), intent(in) :: jobName
         integer, intent(in) :: cluster
 
         !LOCAL
@@ -276,12 +280,13 @@ contains
         integer :: nChunks_chSz
         integer :: memPerChunk_chSz
         integer :: nDim_chSz
-        integer :: fileId
+        integer :: fileId, fid2
         character(len=200) :: format
         character(len=50) :: outName
         integer :: i
 
         fileID = 28
+        fid2 = 29
         outName = "out_RF"
         nDim_chSz = findCharSize(nDim)
         nProcsPerChunk_chSz = findCharSize(nProcsPerChunk)
@@ -300,10 +305,8 @@ contains
         format = string_join_many("(A15,A",numb2String(nChunks_chSz),",A7,A",numb2String(nProcsPerChunk_chSz), &
                                    ", A10, A", numb2String(nProcsPerChunk_chSz),", A5, A", &
                                    numb2String(memPerChunk_chSz),", A2  )")
-        !write(*,*) "format = ", format
         write(fileId,format) "#PBS -l select=", numb2String(nChunks), ":ncpus=",numb2String(nProcsPerChunk),&
                             ":mpiprocs=",numb2String(nProcsPerChunk),":mem=", numb2String(memPerChunk), "mb"
-        !write(fileId,"(A15,A1,A7,A1, A10, A1, A5, A2, A1  )") "#PBS -l select=", numb2String(nChunks), ":ncpus=",numb2String(nProcsPerChunk),":mpiprocs=",numb2String(nProcsPerChunk),":mem=", numb2String(memPerChunk), "gb"
         write(fileId,"(A)") "#PBS -q "//queue
         write(fileId,"(A)") "#PBS -M lucianopaludoecp@gmail.com"
         if(cluster == FUSION) write(fileId,"(A)") "#PBS -P omaha"
@@ -354,7 +357,7 @@ contains
         if(cluster == FUSION) then
             write(fileId,"(A)") "# chargement des modules"
             write(fileId,"(A)") "module purge"
-            write(fileId,"(A)") "module load intel-compiler/16.0.3"
+            write(fileId,"(A)") "module load intel-compilers/16.0.3"
             write(fileId,"(A)") "module load intel-mkl/11.3.3"
             write(fileId,"(A)") "module load intel-mpi/5.1.2"
             write(fileId,"(A)") "export LD_LIBRARY_PATH=~/LOCAL/lib:/gpfs/opt/compilers/intel/compilers_and_libraries_2016.3.210/linux/compiler/lib/intel64"
@@ -380,10 +383,7 @@ contains
         write(fileId,"(A)") 'if [ "$Run_Stat" -eq "1"  ]'
         write(fileId,"(A)") 'then'
         write(fileId,"(A)") '    mpirun -np 1 '//trim(exec2Path)//"<stat_input"
-        !write(fileId,"(A)") '    mpirun -np $NP '//trim(exec2Path)//"<stat_input"
-        !write(fileId,"(A)") '    mpirun -np $NP '//trim(execPath)
         write(fileId,"(A)") 'fi'
-        !write(fileId,"(A)") 'sleep $sleep_time'
         write(fileId,"(A)") 'done'
         write(fileId,"(A)") "endTime=`date -u`"
         write(fileId,"(A)") ""
@@ -394,6 +394,105 @@ contains
         close(fileId)
 
         call system("chmod a+r "//trim(QManagerFile_path))
+
+
+        !WRITING VAI FILE 
+        open (unit = fid2 , file = trim(adjustL(vai_path)), action = 'write')
+        write(fid2,"(A)") '#!/bin/bash'
+        write(fid2,"(A)") 'N_SELECT='//trim(numb2String(nChunks))
+        write(fid2,"(A)") 'N_CPU='//trim(numb2String(nProcsPerChunk))
+        write(fid2,"(A)") '# NP=$(($N_SELECT*$N_CPU))'
+        write(fid2,"(A)") 'NP='//trim(numb2String(nProcsTotal))
+        write(fid2,"(A)") 'Only_Build=0'
+        write(fid2,"(A)") 'Delete_Results=0'
+        write(fid2,"(A)") 'Run=0'
+        write(fid2,"(A)") 'Open_Output=0'
+        write(fid2,"(A)") ''
+        write(fid2,"(A)") 'Build_Path="/home/carvalhol/RANDOM_FIELD/build"'
+        write(fid2,"(A)") 'Queue="'//trim(queue)//'"'
+        write(fid2,"(A)") 'Mail="lucianopaludoecp@gmail.com"'
+        write(fid2,"(A)") 'User="carvalhol"'
+        write(fid2,"(A)") 'W_TIME="'//trim(wallTime)//'"'
+        write(fid2,"(A)") 'PBS_Name="run.pbs"'
+        write(fid2,"(A)") 'list_Name="VAI_Test"'
+        write(fid2,"(A)") 'output_Name="output_run"'
+        write(fid2,"(A)") 'mem="'//trim(numb2String(memPerChunk))//'mb"'
+        write(fid2,"(A)") 'time_to_find="20"'
+        write(fid2,"(A)") ''
+        write(fid2,"(A)") 'arg=$1'
+        write(fid2,"(A)") 'echo "Argument " $arg'
+        write(fid2,"(A)") ''
+        write(fid2,"(A)") 'if [[ -n "$arg"  ]]; then'
+        write(fid2,"(A)") '   echo "Ive got an argument"'
+        write(fid2,"(A)") 'else'
+        write(fid2,"(A)") '   echo "No argument, ill use build"'
+        write(fid2,"(A)") '   arg="build"'
+        write(fid2,"(A)") 'fi'
+        write(fid2,"(A)") ''
+        write(fid2,"(A)") 'if [[ "$arg" == "roda" ]]; then'
+        write(fid2,"(A)") '   echo "And it is roda"'
+        write(fid2,"(A)") '   Run=1'
+        write(fid2,"(A)") '   Only_Build=0'
+        write(fid2,"(A)") '   Delete_Results=1'
+        write(fid2,"(A)") '   Open_Output=1'
+        write(fid2,"(A)") '   (cd $Build_Path; make all)'
+        write(fid2,"(A)") 'elif [[ "$arg" == "build" ]]; then'
+        write(fid2,"(A)") '   Run=1'
+        write(fid2,"(A)") '   Only_Build=1'
+        write(fid2,"(A)") '   Delete_Results=0'
+        write(fid2,"(A)") '   Open_Output=0'
+        write(fid2,"(A)") '   (cd $Build_Path; make all)'
+        write(fid2,"(A)") 'elif [[ "$arg" == "all" ]]; then'
+        write(fid2,"(A)") '   Run=1'
+        write(fid2,"(A)") '   Only_Build=0'
+        write(fid2,"(A)") '   Delete_Results=1'
+        write(fid2,"(A)") '   Open_Output=1'
+        write(fid2,"(A)") '   (cd $Build_Path; make)'
+        write(fid2,"(A)") 'fi'
+        write(fid2,"(A)") ''
+        write(fid2,"(A)") 'if [[ "$Delete_Results" -eq "1" ]]; then'
+        write(fid2,"(A)") '   rm -r results logs'
+        write(fid2,"(A)") '   echo "Results Deleted"'
+        write(fid2,"(A)") 'fi'
+        write(fid2,"(A)") ''
+        write(fid2,"(A)") 'if [[ "$Only_Build" -eq "0" ]]; then'
+        write(fid2,"(A)") '   rm $output_Name'
+        write(fid2,"(A)") '   qsub -v NP=$NP,Run_Stat=$Run_Stat,Run_RF=$Run_RF \'
+        write(fid2,"(A)") '   -S /bin/bash \'
+        write(fid2,"(A)") '   -N $list_Name \'
+        write(fid2,"(A)") '   -o $output_Name \'
+        write(fid2,"(A)") '   -j oe \'
+        write(fid2,"(A)") '   -l walltime=$W_TIME \'
+        write(fid2,"(A)") '   -l select=$N_SELECT:ncpus=$N_CPU:mpiprocs=$N_CPU:mem=$mem \'
+        write(fid2,"(A)") '   -q $Queue \'
+        write(fid2,"(A)") '   -M $Mail \'
+        if(cluster == FUSION) write(fid2,"(A)") "    -P omaha \"
+        write(fid2,"(A)") '   $PBS_Name'
+        write(fid2,"(A)") '   qstat -u $User'
+        write(fid2,"(A)") '   qsub $PBS_Name'
+        write(fid2,"(A)") 'fi'
+        write(fid2,"(A)") '  '
+        write(fid2,"(A)") 'if [[ "$Open_Output" -eq "1" ]]; then'
+        write(fid2,"(A)") '   COUNTER=$time_to_find'
+        write(fid2,"(A)") '   until [ $COUNTER -lt 1 ]; do'
+        write(fid2,"(A)") '       let COUNTER-=1'
+        write(fid2,"(A)") '       sleep 1'
+        write(fid2,"(A)") '       if [[ -f $output_Name ]]; then'
+        write(fid2,"(A)") '           let COUNTER=0'
+        write(fid2,"(A)") '           echo ":) FILE FOUND!!"'
+        write(fid2,"(A)") '           more $output_Name'
+        write(fid2,"(A)") '       fi'
+        write(fid2,"(A)") '   done'
+        write(fid2,"(A)") ' '
+        write(fid2,"(A)") '   if [[ "$COUNTER" -lt 0 ]]; then'
+        write(fid2,"(A)") '       echo ":( IVE BEEN SEARCHING FOR"$time_to_find "s AND THE FILE ISNT HERE YET"'
+        write(fid2,"(A)") '   fi'
+        write(fid2,"(A)") 'fi'
+
+        close(fid2)
+
+        call system("chmod a+r "//trim(vai_path))
+        call system("chmod u+x "//trim(vai_path))
 
     end subroutine writePBSfile
 
